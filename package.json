@@ -1,0 +1,8 @@
+{
+  "name": "web",
+  "version": "0.0.0",
+  "scripts": {
+    "heroku-postbuild": "cd client && npm install && npm run build && cd ../server && npm ci && npm run build",
+    "start": "cd server && npm run start"
+  }
+}
