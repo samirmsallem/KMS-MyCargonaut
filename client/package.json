@@ -6,7 +6,9 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "build:prod": "ng build && move dist/client ..\\server\\frontend",
+    "unit-test": "ng test --sourceMap=false --browsers=ChromeHeadless --watch=false"
   },
   "private": true,
   "dependencies": {
