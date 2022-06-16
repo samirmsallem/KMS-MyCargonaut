@@ -1,5 +1,5 @@
 {
-  "name": "my-cargonaut-backenddd",
+  "name": "server",
   "version": "0.0.1",
   "description": "",
   "author": "",
@@ -23,9 +23,13 @@
   "dependencies": {
     "@nestjs/common": "^8.0.0",
     "@nestjs/core": "^8.0.0",
+    "@nestjs/mongoose": "^9.1.1",
     "@nestjs/platform-express": "^8.0.0",
     "@nestjs/serve-static": "^2.2.2",
+    "bcrypt": "^5.0.1",
     "firebase": "^9.8.3",
+    "mongoose": "^6.3.8",
+    "mongoose-unique-validator": "^3.0.0",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
     "rxjs": "^7.2.0"

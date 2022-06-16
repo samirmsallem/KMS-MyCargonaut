@@ -1,0 +1,12 @@
+POST /users/ HTTP/2
+host: localhost:3000
+accept: application/json
+content-type: application/json
+
+{
+  "email": "mustermann@email.de",
+  "firstname": "Max",
+  "lastname": "Mustermann",
+  "password": "max123",
+  "description": "Hallo ich bin Max Mustermann und fahre gerne Leute durch die Gegend."
+}
