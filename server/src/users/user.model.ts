@@ -14,6 +14,7 @@ export const UserSchema = new mongoose.Schema({
   },
   password: { type: String, required: true },
   description: { type: String, required: true },
+  coins: {type: Number, required: true}
 });
 UserSchema.plugin(uniqueValidator);
 
@@ -24,4 +25,5 @@ export interface User extends mongoose.Document {
   email: string;
   password: string;
   description: string;
+  coins: number;
 }
