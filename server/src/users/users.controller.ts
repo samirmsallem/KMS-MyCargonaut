@@ -1,4 +1,4 @@
-import {Controller, Post, Body, UseGuards, Request, Get} from '@nestjs/common';
+import {Controller, Post, Body, UseGuards, Request, Get, Put} from '@nestjs/common';
 import { UsersService } from './users.service';
 import { LocalAuthGuard } from 'src/auth/local.auth.guard';
 import * as bcrypt from 'bcrypt';
@@ -19,12 +19,14 @@ export class UsersController {
   ) {
     const saltorRounds = 10;
     const hashedPassword = await bcrypt.hash(userPassword, saltorRounds);
+    const coins = 0;
     const generatedId = await this.usersService.insertUser(
         userFirstname,
         userLastname,
         userEmail,
         hashedPassword,
         userDescription,
+        coins
     );
     return {id: generatedId};
   }
@@ -49,5 +51,42 @@ export class UsersController {
   @Get('/protectedRoute')
   getProtection(@Request() req): string {
     return req.user;
+  }
+  @UseGuards(AuthenticatedGuard)
+  @Put('/updateUser')
+  async updateUser(
+      @Body('firstname') userFirstname: string,
+      @Body('lastname') userLastname: string,
+      @Body('email') userEmail: string,
+      @Body('password') userPassword: string,
+      @Body('description') userDescription: string,
+      @Request() req
+  ) {
+    const emailID = req.user.userEmail;
+    const saltOrRounds = 10;
+    const hashedPassword = await bcrypt.hash(userPassword, saltOrRounds);
+    await this.usersService.updateUser(
+        userFirstname,
+        userLastname,
+        userEmail,
+        hashedPassword,
+        userDescription,
+        emailID
+    );
+    req.user.userEmail = userEmail;
+    return;
+  }
+  @UseGuards(AuthenticatedGuard)
+  @Put('/loadCoins')
+  async loadCoins(
+      @Body('coins') coins: number,
+      @Request() req
+  ) {
+    const emailID = req.user.userEmail;
+    const coinStatus = await this.usersService.loadCoins(
+        emailID,
+        coins
+    );
+    return coinStatus;
   }
 }

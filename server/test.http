@@ -4,7 +4,7 @@ accept: application/json
 content-type: application/json
 
 {
-  "email": "test@mail.de",
+  "email": "muster@mail.de",
   "firstname": "Test",
   "lastname": "Testermann",
   "password": "test",
@@ -19,8 +19,8 @@ accept: application/json
 content-type: application/json
 
 {
-"email": "test@mail.de",
-"password": "test"
+"email": "testing@mail.de",
+"password": "testing"
 }
 
 ###
@@ -36,5 +36,33 @@ GET /users/protectedRoute HTTP/2
 host: localhost:3000
 accept: application/json
 content-type: application/json
+
+###
+
+PUT /users/updateUser HTTP/2
+host: localhost:3000
+Set-Cookie: connect.sid=s%3A7EW8arhh3XZplt5dGBXL6BOFuTDYsQhE.U0W1paIGnxsGDRyQ7C1mF600RITJmD%2F5omHbOzfO9Dw; Path=/; HttpOnly
+accept: application/json
+content-type: application/json
+
+{
+  "email": "testing@mail.de",
+  "firstname": "Testing",
+  "lastname": "Testing",
+  "password": "testing",
+  "description": "Test"
+}
+
+###
+
+PUT /users/loadCoins HTTP/2
+host: localhost:3000
+Set-Cookie: connect.sid=s%3Acm4X6E620pAcqvPgEPZjrTb9vKCn6pPn.4eUyv8jjW320jc7l4WWLSJj8PNiXoxnPmr%2BndJZ0NxE; Path=/; HttpOnly
+accept: application/json
+content-type: application/json
+
+{
+"coins": 300
+}
 
 

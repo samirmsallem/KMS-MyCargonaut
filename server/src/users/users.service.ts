@@ -1,4 +1,4 @@
-import { Injectable, NotAcceptableException } from '@nestjs/common';
+import {Injectable, NotAcceptableException, UnauthorizedException} from '@nestjs/common';
 import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 import { User } from './user.model';
@@ -13,6 +13,7 @@ export class UsersService {
     email: string,
     password: string,
     description: string,
+    coins: number
   ) {
     const newUser = new this.userModel({
       firstname: firstname,
@@ -20,6 +21,7 @@ export class UsersService {
       email: email,
       password: password,
       description: description,
+      coins: coins
     });
     const result = await newUser.save();
     console.log(result);
@@ -33,5 +35,51 @@ export class UsersService {
       throw new NotAcceptableException('no matching email found');
     }
     return user;
+  }
+  async updateUser(
+      firstname: string,
+      lastname: string,
+      email: string,
+      password: string,
+      description: string,
+      emailID: string
+  ) {
+    const conditions = {
+      email: emailID
+    }
+    const updatedUser = {
+      firstname,
+      lastname,
+      email,
+      password,
+      description
+    }
+    this.userModel.findOneAndUpdate(conditions, updatedUser, (err, res) => {
+      if (err) {
+        console.log("User update failed")
+        return (err)
+      } else {
+        return (res)
+      }
+    })
+  }
+  async loadCoins(
+      emailID: string,
+      coins: number
+  ) {
+    const conditions = {
+      email: emailID
+    }
+    const updateCoins = {
+      coins
+    }
+    this.userModel.findOneAndUpdate(conditions,updateCoins, (err, res) => {
+      if(err) {
+        console.log(err)
+        return(err)
+      } else {
+        return(res)
+      }
+    })
   }
 }
