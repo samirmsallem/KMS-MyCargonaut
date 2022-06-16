@@ -57,7 +57,6 @@ export class UsersController {
   async updateUser(
       @Body('firstname') userFirstname: string,
       @Body('lastname') userLastname: string,
-      @Body('email') userEmail: string,
       @Body('password') userPassword: string,
       @Body('description') userDescription: string,
       @Request() req
@@ -68,12 +67,10 @@ export class UsersController {
     await this.usersService.updateUser(
         userFirstname,
         userLastname,
-        userEmail,
         hashedPassword,
         userDescription,
         emailID
     );
-    req.user.userEmail = userEmail;
     return;
   }
   @UseGuards(AuthenticatedGuard)
@@ -88,5 +85,22 @@ export class UsersController {
         coins
     );
     return coinStatus;
+  }
+  @UseGuards(AuthenticatedGuard)
+  @Post('/addVehicle')
+  async addVehicle(
+      @Body('model') vehicleModel: string,
+      @Body('space') vehicleSpace: number,
+      @Body('seats') vehicleSeats: number,
+      @Request() req
+  ) {
+    const emailID = req.user.userEmail;
+    const generatedId = await this.usersService.insertVehicle(
+        vehicleModel,
+        vehicleSpace,
+        vehicleSeats,
+        emailID
+    );
+    return {id: generatedId};
   }
 }

@@ -46,7 +46,6 @@ accept: application/json
 content-type: application/json
 
 {
-  "email": "testing@mail.de",
   "firstname": "Testing",
   "lastname": "Testing",
   "password": "testing",
@@ -63,6 +62,20 @@ content-type: application/json
 
 {
 "coins": 300
+}
+
+###
+
+POST /users/addVehicle HTTP/2
+host: localhost:3000
+Set-Cookie: connect.sid=s%3A7yq5o5JqZw7in9yUsrt3KjEIBjrkcROi.AH6kup7pkw3n%2B9zoHvROlPK9Ii6BU8AVH1u%2BMp2WgEM; Path=/; HttpOnly
+accept: application/json
+content-type: application/json
+
+{
+"model": "Nimbus3000",
+"space": 20,
+"seats": 5
 }
 
 
