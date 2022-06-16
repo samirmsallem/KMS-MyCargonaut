@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import {ListingService} from "./listing.service";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,16 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'client';
+  //title = 'client';
+
+  constructor(private listingService: ListingService) {}
+
+
+  loadOffers() {
+    this.listingService
+      .getOffers()
+      .subscribe( (response) => {
+        console.log(response);
+      });
+  }
 }

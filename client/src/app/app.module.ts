@@ -9,6 +9,9 @@ import { ProfilComponent } from './components/profil/profil.component';
 import {FormsModule} from "@angular/forms";
 import { HeaderComponent } from './components/header/header.component';
 
+
+import { ListingService } from './listing.service'
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,7 +26,7 @@ import { HeaderComponent } from './components/header/header.component';
     RouterModule,
     HttpClientModule,
   ],
-  providers: [LoginComponent],
+  providers: [ListingService,LoginComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
