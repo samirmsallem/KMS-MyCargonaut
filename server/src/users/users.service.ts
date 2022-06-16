@@ -2,10 +2,12 @@ import {Injectable, NotAcceptableException, UnauthorizedException} from '@nestjs
 import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 import { User } from './user.model';
+import { Vehicle } from "./vehicles.model";
+
 
 @Injectable()
 export class UsersService {
-  constructor(@InjectModel('User') public readonly userModel: Model<User>) {}
+  constructor(@InjectModel('User') public readonly userModel: Model<User>,@InjectModel('Vehicle') public readonly vehicleModel: Model<Vehicle> ) {}
 
   async insertUser(
     firstname: string,
@@ -39,7 +41,6 @@ export class UsersService {
   async updateUser(
       firstname: string,
       lastname: string,
-      email: string,
       password: string,
       description: string,
       emailID: string
@@ -50,7 +51,6 @@ export class UsersService {
     const updatedUser = {
       firstname,
       lastname,
-      email,
       password,
       description
     }
@@ -81,5 +81,21 @@ export class UsersService {
         return(res)
       }
     })
+  }
+  async insertVehicle(
+      model: string,
+      space: number,
+      seats: number,
+      emailID: string,
+  ) {
+    const newVehicle = new this.vehicleModel({
+      model: model,
+      space: space,
+      seats: seats,
+      email: emailID
+    });
+    const result = await newVehicle.save();
+    console.log(result);
+    return result.id as string;
   }
 }
