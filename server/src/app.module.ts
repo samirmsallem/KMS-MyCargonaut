@@ -6,7 +6,7 @@ import { ServeStaticModule } from '@nestjs/serve-static';
 @Module({
   imports: [
     ServeStaticModule.forRoot({
-      rootPath: `${__dirname}/../../my-cargonaut-frontend/dist/my-cargonaut-frontend`,
+      rootPath: `${__dirname}/../../client/dist/client`,
     }),
   ],
   controllers: [AppController],
