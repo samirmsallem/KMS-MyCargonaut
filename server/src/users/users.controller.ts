@@ -45,4 +45,9 @@ export class UsersController {
       msg: 'User logged out successfully'
     }
   }
+  @UseGuards(AuthenticatedGuard)
+  @Get('/protectedRoute')
+  getProtection(@Request() req): string {
+    return req.user;
+  }
 }

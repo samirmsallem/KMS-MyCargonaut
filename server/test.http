@@ -30,4 +30,11 @@ host: localhost:3000
 accept: application/json
 content-type: application/json
 
+###
+
+GET /users/protectedRoute HTTP/2
+host: localhost:3000
+accept: application/json
+content-type: application/json
+
 
