@@ -2,7 +2,7 @@
 
 
 ## Mitglieder:
-- Vladi Bova
+- Vladislav Bova
 - Jonas Schuck
 - Artem Grishin
 - Felix Karow
