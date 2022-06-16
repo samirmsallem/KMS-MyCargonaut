@@ -1,12 +1,33 @@
-POST /users/ HTTP/2
+POST /users/createUser HTTP/2
 host: localhost:3000
 accept: application/json
 content-type: application/json
 
 {
-  "email": "mustermann@email.de",
-  "firstname": "Max",
-  "lastname": "Mustermann",
-  "password": "max123",
-  "description": "Hallo ich bin Max Mustermann und fahre gerne Leute durch die Gegend."
+  "email": "test@mail.de",
+  "firstname": "Test",
+  "lastname": "Testermann",
+  "password": "test",
+  "description": "Hallo ich bin Test Test und fahre gerne Leute durch die Gegend."
 }
+
+###
+
+POST /users/loginUser HTTP/2
+host: localhost:3000
+accept: application/json
+content-type: application/json
+
+{
+"email": "test@mail.de",
+"password": "test"
+}
+
+###
+
+GET /users/logoutUser HTTP/2
+host: localhost:3000
+accept: application/json
+content-type: application/json
+
+

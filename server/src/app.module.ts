@@ -4,10 +4,13 @@ import { AppService } from './app.service';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { MongooseModule } from '@nestjs/mongoose';
 import { UsersModule } from './users/users.module';
+import { AuthService } from './auth/auth.service';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
     UsersModule,
+    AuthModule,
     ServeStaticModule.forRoot({
       rootPath: `${__dirname}/../../client/dist/client`,
     }),
@@ -19,6 +22,6 @@ import { UsersModule } from './users/users.module';
     ),
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, AuthService],
 })
 export class AppModule {}
