@@ -1,4 +1,4 @@
-POST /users/createUser HTTP/2
+POST /api/users/createUser HTTP/2
 host: localhost:3000
 accept: application/json
 content-type: application/json
@@ -13,7 +13,7 @@ content-type: application/json
 
 ###
 
-POST /users/loginUser HTTP/2
+POST /api/users/loginUser HTTP/2
 host: localhost:3000
 accept: application/json
 content-type: application/json
@@ -25,21 +25,21 @@ content-type: application/json
 
 ###
 
-GET /users/logoutUser HTTP/2
+GET /api/users/logoutUser HTTP/2
 host: localhost:3000
 accept: application/json
 content-type: application/json
 
 ###
 
-GET /users/protectedRoute HTTP/2
+GET /api/users/protectedRoute HTTP/2
 host: localhost:3000
 accept: application/json
 content-type: application/json
 
 ###
 
-PUT /users/updateUser HTTP/2
+PUT /api/users/updateUser HTTP/2
 host: localhost:3000
 Set-Cookie: connect.sid=s%3ARo-qeWvEPLsWHX79oFrdUYyd4I5M8Kbl.s0ZTd3IdON3dVBNYmjx7BKOjx7QJeBEm%2FPWpF2vJBCk; Path=/; HttpOnly
 accept: application/json
@@ -54,7 +54,7 @@ content-type: application/json
 
 ###
 
-PUT /users/loadCoins HTTP/2
+PUT /api/users/loadCoins HTTP/2
 host: localhost:3000
 Set-Cookie: connect.sid=s%3Acm4X6E620pAcqvPgEPZjrTb9vKCn6pPn.4eUyv8jjW320jc7l4WWLSJj8PNiXoxnPmr%2BndJZ0NxE; Path=/; HttpOnly
 accept: application/json
@@ -66,7 +66,7 @@ content-type: application/json
 
 ###
 
-POST /users/addVehicle HTTP/2
+POST /api/users/addVehicle HTTP/2
 host: localhost:3000
 Set-Cookie: connect.sid=s%3ARo-qeWvEPLsWHX79oFrdUYyd4I5M8Kbl.s0ZTd3IdON3dVBNYmjx7BKOjx7QJeBEm%2FPWpF2vJBCk; Path=/; HttpOnly
 accept: application/json
@@ -81,7 +81,7 @@ content-type: application/json
 
 ###
 
-GET /users/getVehicles HTTP/2
+GET /api/users/getVehicles HTTP/2
 host: localhost:3000
 Set-Cookie: connect.sid=s%3A4bx93d38dvN-o81Er85ZuFRCERepTTZ7.3ypcDS1GbgPzcgjvU%2Fcyj2vFYcdjVwFcfHFuWodjAEo; Path=/; HttpOnly
 accept: application/json
@@ -90,7 +90,7 @@ content-type: application/json
 
 ###
 
-DELETE /users/deleteVehicle HTTP/2
+DELETE /api/users/deleteVehicle HTTP/2
 host: localhost:3000
 Set-Cookie: connect.sid=s%3Aq5cMzXUxLvtW2JNYScU2Lksmyy6cXnpl.DmXgAqjKlVIPU09XchBxmDG58WblGETWiUuefIysRmk; Path=/; HttpOnly
 accept: application/json

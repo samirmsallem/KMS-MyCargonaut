@@ -4,7 +4,7 @@ import { LocalAuthGuard } from 'src/auth/local.auth.guard';
 import * as bcrypt from 'bcrypt';
 import {AuthenticatedGuard} from "../auth/authenticated.guard";
 
-@Controller('users')
+@Controller('api/users')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {
   }
