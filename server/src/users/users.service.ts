@@ -98,4 +98,24 @@ export class UsersService {
     console.log(result);
     return result.id as string;
   }
+  async getVehicles(
+      emailID: string,
+  ) {
+    const conditions = {
+      email: emailID
+    }
+    const vehicles = await this.vehicleModel.find(conditions);
+    console.log("Hier die Vehicles:" + vehicles)
+    return vehicles;
+  }
+  async deleteVehicle(
+      vehicleID: string
+  ) {
+    const conditions = {
+      _id: vehicleID
+    }
+    const vehicle = await this.vehicleModel.findOneAndDelete(conditions);
+    console.log("This vehicle was deleted:" + vehicle);
+    return vehicle;
+  }
 }

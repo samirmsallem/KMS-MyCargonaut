@@ -1,4 +1,4 @@
-import {Controller, Post, Body, UseGuards, Request, Get, Put} from '@nestjs/common';
+import {Controller, Post, Body, UseGuards, Request, Get, Put, Delete} from '@nestjs/common';
 import { UsersService } from './users.service';
 import { LocalAuthGuard } from 'src/auth/local.auth.guard';
 import * as bcrypt from 'bcrypt';
@@ -102,5 +102,27 @@ export class UsersController {
         emailID
     );
     return {id: generatedId};
+  }
+  @UseGuards(AuthenticatedGuard)
+  @Get('/getVehicles')
+  async getVehicle(
+      @Request() req
+  ) {
+    const emailID = req.user.userEmail;
+    await this.usersService.getVehicles(
+        emailID
+    );
+      return
+  }
+
+  @UseGuards(AuthenticatedGuard)
+  @Delete('/deleteVehicle')
+  async deleteVehicle(
+      @Body('id') vehicleID: string,
+  ) {
+    await this.usersService.deleteVehicle(
+        vehicleID
+    );
+    return;
   }
 }

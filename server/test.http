@@ -20,7 +20,7 @@ content-type: application/json
 
 {
 "email": "testing@mail.de",
-"password": "testing"
+"password": "muster"
 }
 
 ###
@@ -41,15 +41,15 @@ content-type: application/json
 
 PUT /users/updateUser HTTP/2
 host: localhost:3000
-Set-Cookie: connect.sid=s%3A7EW8arhh3XZplt5dGBXL6BOFuTDYsQhE.U0W1paIGnxsGDRyQ7C1mF600RITJmD%2F5omHbOzfO9Dw; Path=/; HttpOnly
+Set-Cookie: connect.sid=s%3ARo-qeWvEPLsWHX79oFrdUYyd4I5M8Kbl.s0ZTd3IdON3dVBNYmjx7BKOjx7QJeBEm%2FPWpF2vJBCk; Path=/; HttpOnly
 accept: application/json
 content-type: application/json
 
 {
-  "firstname": "Testing",
-  "lastname": "Testing",
-  "password": "testing",
-  "description": "Test"
+  "firstname": "Muster",
+  "lastname": "Muster",
+  "password": "muster",
+  "description": "Muster description"
 }
 
 ###
@@ -68,14 +68,34 @@ content-type: application/json
 
 POST /users/addVehicle HTTP/2
 host: localhost:3000
-Set-Cookie: connect.sid=s%3A7yq5o5JqZw7in9yUsrt3KjEIBjrkcROi.AH6kup7pkw3n%2B9zoHvROlPK9Ii6BU8AVH1u%2BMp2WgEM; Path=/; HttpOnly
+Set-Cookie: connect.sid=s%3ARo-qeWvEPLsWHX79oFrdUYyd4I5M8Kbl.s0ZTd3IdON3dVBNYmjx7BKOjx7QJeBEm%2FPWpF2vJBCk; Path=/; HttpOnly
 accept: application/json
 content-type: application/json
 
 {
-"model": "Nimbus3000",
-"space": 20,
-"seats": 5
+"model": "Nimbus3002",
+"space": 40,
+"seats": 9
 }
 
 
+###
+
+GET /users/getVehicles HTTP/2
+host: localhost:3000
+Set-Cookie: connect.sid=s%3A4bx93d38dvN-o81Er85ZuFRCERepTTZ7.3ypcDS1GbgPzcgjvU%2Fcyj2vFYcdjVwFcfHFuWodjAEo; Path=/; HttpOnly
+accept: application/json
+content-type: application/json
+
+
+###
+
+DELETE /users/deleteVehicle HTTP/2
+host: localhost:3000
+Set-Cookie: connect.sid=s%3Aq5cMzXUxLvtW2JNYScU2Lksmyy6cXnpl.DmXgAqjKlVIPU09XchBxmDG58WblGETWiUuefIysRmk; Path=/; HttpOnly
+accept: application/json
+content-type: application/json
+
+{
+  "id": "62ac643caca4d7bbaa26e183"
+}
