@@ -1,4 +1,4 @@
-name: Static code analysis and unit tests
+name: Static code analysis
 'on':
   push:
     branches:
@@ -13,7 +13,7 @@ jobs:
         uses: actions/checkout@master
         with:
           fetch-depth: 0
-      - name: Run Unit Tests
+      - name: Generate code coverage report
         run: |
           cd client
           npm ci
@@ -24,4 +24,4 @@ jobs:
         with:
           host: ${{ secrets.SONARQUBE_HOST }}
           login: ${{ secrets.SONARQUBE_TOKEN }}
-          projectKey: "kms-mycargonaut"
+          projectBaseDir: ""
