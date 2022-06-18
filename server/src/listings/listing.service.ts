@@ -8,6 +8,7 @@ export class ListingService {
     constructor(@InjectModel('Listing') public readonly listingModel: Model<Listing> ) {}
 
     async insertListing(
+        id: number,
         kosten: number,
         sitzplaetze: number,
         frachtplatz: number,
@@ -15,6 +16,7 @@ export class ListingService {
         ziel: string,
     ) {
         const newListing = new this.listingModel({
+            id: id,
             kosten: kosten,
             sitzplaetze: sitzplaetze,
             frachtplatz: frachtplatz,
@@ -26,8 +28,8 @@ export class ListingService {
         return result.id as string;
     }
 
-    async getListing(idListing: Number) {
-        const id = idListing;
+    async getListing(listingId: Number) {
+        const id = listingId;
         const listing = await this.listingModel.findOne({id});
         if (!listing) {
             throw new NotAcceptableException('no matching listing');
@@ -45,12 +47,30 @@ export class ListingService {
     }
 
     async updateListing(
+        id: number,
         kosten: number,
         sitzplaetze: number,
         frachtplatz: number,
         startort: string,
         ziel: string,
     ) {
-        // todo
+        const conditions = {
+            id: id
+        }
+        const updetedListing = {
+            kosten,
+            sitzplaetze,
+            frachtplatz,
+            startort,
+            ziel
+        }
+        this.listingModel.findByIdAndUpdate(conditions,updetedListing,(err,res) =>{
+            if (err) {
+                console.log("Listing update failed")
+                return (err)
+            } else {
+                return (res)
+            }
+        })
     }
 }

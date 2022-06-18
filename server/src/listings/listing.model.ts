@@ -1,6 +1,7 @@
 import * as mongoose from 'mongoose';
 
 export const ListingSchema = new mongoose.Schema({
+    id: {type: Number, required: true},
     kosten: {type: Number, required: true},
     sitzplaetze: {type: Number, required: true},
     frachtplatz: {type: Number},
@@ -9,7 +10,8 @@ export const ListingSchema = new mongoose.Schema({
 });
 
 export interface Listing extends mongoose.Document {
-    _id: string;
+    id: string;
+    //_id: string;
     kosten: number;
     sitzplaetze: number;
     frachtplatz: number;
