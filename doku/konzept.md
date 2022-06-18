@@ -1,9 +1,15 @@
 ## Technologiestack:
 
 FE: Angular
+
 BE: NestJS
-Datenbank + Hosting + Login über Firebase
-CI/CD: SonarQube von THM + dann Deployment in Firebase Hosting
+
+Datenbank: MongoDB 
+
+Hosting: Heroku
+
+CI/CD: SonarQube von THM + Hound für PRs + dann Deployment in Heroku
+
 
 
 ## Pages auf der Seite:
