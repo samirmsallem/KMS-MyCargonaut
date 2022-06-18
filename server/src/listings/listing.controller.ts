@@ -7,7 +7,6 @@ export class ListingController {
 
     @Post('/createListing')
     async addListing(
-        @Body('id') id: number,
         @Body('kosten') kosten: number,
         @Body('sitzplaetze') sitzplaetze: number,
         @Body('frachtplatz') frachtplatz: number,
@@ -15,7 +14,6 @@ export class ListingController {
         @Body('ziel') ziel: string,
     ) {
         const generatedId = await this.listingService.insertListing(
-            id,
             kosten,
             sitzplaetze,
             frachtplatz,

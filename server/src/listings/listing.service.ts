@@ -8,7 +8,6 @@ export class ListingService {
     constructor(@InjectModel('Listing') public readonly listingModel: Model<Listing> ) {}
 
     async insertListing(
-        id: number,
         kosten: number,
         sitzplaetze: number,
         frachtplatz: number,
@@ -16,7 +15,6 @@ export class ListingService {
         ziel: string,
     ) {
         const newListing = new this.listingModel({
-            id: id,
             kosten: kosten,
             sitzplaetze: sitzplaetze,
             frachtplatz: frachtplatz,
