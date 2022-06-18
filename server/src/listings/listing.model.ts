@@ -1,5 +1,6 @@
 import * as mongoose from 'mongoose';
 
+// Angebote
 export const ListingSchema = new mongoose.Schema({
     id: {type: Number, required: true},
     kosten: {type: Number, required: true},

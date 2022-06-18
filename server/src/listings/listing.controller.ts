@@ -5,6 +5,8 @@ import { ListingService } from './listing.service';
 export class ListingController {
     constructor(private readonly listingService: ListingService) {}
 
+
+    // Angebot erstellen
     @Post('/createListing')
     async addListing(
         @Body('kosten') kosten: number,
@@ -23,6 +25,8 @@ export class ListingController {
         return {id: generatedId}
     }
 
+
+    // get spezifisches Angebot
     @Get('/getListing')
     async getListing(
         @Request() req
@@ -32,6 +36,8 @@ export class ListingController {
         return;
     }
 
+
+    // löschen spezifisches Angebot
     @Delete('/deleteListing')
     async deleteListing(
         @Body('id') listingID: string,
@@ -42,6 +48,8 @@ export class ListingController {
         return;
     }
 
+
+    // ändern spezifisches Angebot
     @Put('/updateListing')
     async updateListing(
         @Body('kosten') kosten: number,
@@ -62,4 +70,10 @@ export class ListingController {
         );
         return;
     }
+
+    //todo GET: Alle Gesuche
+    // POST: Angebot annehmen
+    // POST: Angebot bieten
+    // GET(ALL): Alle Angebote
+    // GET(ALL): Alle Gesuche
 }
