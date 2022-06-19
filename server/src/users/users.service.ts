@@ -159,4 +159,12 @@ export class UsersService {
       await this.userModel.findOneAndUpdate(conditions, {stars: starsArr, evaluations: evaluatorArr, avStars: newAvStars})
     }
   }
+
+  getCoins(email: string) {
+    return this.userModel.findOne({email: email});
+  }
+
+  getEvaluations(email: string) {
+    return this.userModel.findOne({email: email});
+  }
 }
