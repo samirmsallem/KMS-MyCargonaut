@@ -48,6 +48,11 @@ export class ListingController {
         return;
     }
 
+    @Get()
+    async getAllListings() {
+        const listings = await this.listingService.getListings();
+        return listings
+    }
 
     // ändern spezifisches Angebot
     @Put('/updateListing')

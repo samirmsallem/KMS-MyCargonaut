@@ -35,6 +35,11 @@ export class ListingService {
         return listing;
     }
 
+    async getListings() {
+        const listings = await this.listingModel.find().exec();
+        return listings as Listing[];
+    }
+
     async deleteListing(listingId: string) {
         const conditions = {
             _id: listingId
