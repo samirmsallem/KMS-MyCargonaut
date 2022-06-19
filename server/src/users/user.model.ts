@@ -1,3 +1,4 @@
+/* eslint-disable */
 import * as mongoose from 'mongoose';
 
 const uniqueValidator = require('../../node_modules/mongoose-unique-validator');
@@ -14,7 +15,10 @@ export const UserSchema = new mongoose.Schema({
   },
   password: { type: String, required: true },
   description: { type: String, required: true },
-  coins: {type: Number, required: true}
+  coins: {type: Number, required: true},
+  stars: { type: Array, required: true },
+  avStars: { type: Number, required: true },
+  evaluations: {type: Array, required: true},
 });
 UserSchema.plugin(uniqueValidator);
 
@@ -26,4 +30,7 @@ export interface User extends mongoose.Document {
   password: string;
   description: string;
   coins: number;
+  stars: [];
+  avStars: number;
+  evaluations: [];
 }

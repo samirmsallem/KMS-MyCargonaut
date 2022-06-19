@@ -1,3 +1,4 @@
+/* eslint-disable */
 import {Injectable, NotAcceptableException, UnauthorizedException} from '@nestjs/common';
 import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
@@ -23,7 +24,10 @@ export class UsersService {
       email: email,
       password: password,
       description: description,
-      coins: coins
+      coins: coins,
+      stars: [],
+      avStars: 0,
+      evaluations: []
     });
     const result = await newUser.save();
     console.log(result);
@@ -117,5 +121,42 @@ export class UsersService {
     const vehicle = await this.vehicleModel.findOneAndDelete(conditions);
     console.log("This vehicle was deleted:" + vehicle);
     return vehicle;
+  }
+
+  async insertEvaluation(
+      email: string,
+      evaluation: number,
+      evaluator: string,
+  ) {
+    const conditions = {
+      email: email,
+    };
+    const currentTarget = await this.userModel.findOne(conditions);
+    if(currentTarget.evaluations.length === 0) {
+      await this.userModel.findOneAndUpdate(conditions, {stars: [evaluation], evaluations: [evaluator], avStars: evaluation})
+    } else {
+      for(let i = 0; i < currentTarget.evaluations.length; i++) {
+        if(currentTarget.evaluations[i] === evaluator) {
+          let starsArr: Number[] = currentTarget.stars;
+          starsArr[i] = evaluation;
+          let newAvStars: number = 0;
+          for(let i = 0; i < currentTarget.stars.length; i++) {
+            newAvStars = newAvStars + currentTarget.stars[i];
+          }
+          newAvStars = ((newAvStars) / (currentTarget.stars.length))
+          return this.userModel.findOneAndUpdate(conditions, {stars: starsArr, avStars: newAvStars});
+        }
+      }
+      let starsArr: Number[] = currentTarget.stars;
+      starsArr.push(evaluation);
+      let evaluatorArr: String[] = currentTarget.evaluations;
+      evaluatorArr.push(evaluator);
+      let newAvStars: number = 0;
+      for(let i = 0; i < currentTarget.stars.length; i++) {
+        newAvStars = newAvStars + currentTarget.stars[i];
+      }
+      newAvStars = ((newAvStars) / (currentTarget.stars.length))
+      await this.userModel.findOneAndUpdate(conditions, {stars: starsArr, evaluations: evaluatorArr, avStars: newAvStars})
+    }
   }
 }
