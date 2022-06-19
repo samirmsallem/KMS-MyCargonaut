@@ -166,4 +166,12 @@ export class UsersController {
     return user.avStars;
   }
 
+  @UseGuards(AuthenticatedGuard)
+  @Get('/getAll')
+  async getAll()
+   {
+    const users = await this.usersService.getAll();
+    return users;
+  }
+
 }

@@ -167,4 +167,8 @@ export class UsersService {
   getEvaluations(email: string) {
     return this.userModel.findOne({email: email});
   }
+
+  getAll() {
+    return this.userModel.find({});
+  }
 }
