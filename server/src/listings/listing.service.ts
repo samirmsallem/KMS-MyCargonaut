@@ -21,9 +21,12 @@ export class ListingService {
             startort: startort,
             ziel: ziel
         });
+        console.log("hi");
         const result = await newListing.save();
+        console.log("hi");
         console.log(result);
-        return result.id as string;
+
+        return result.id as Number;
     }
 
     async getListing(listingId: Number) {

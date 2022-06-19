@@ -6,11 +6,16 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { UsersModule } from './users/users.module';
 import { AuthService } from './auth/auth.service';
 import { AuthModule } from './auth/auth.module';
+import { ListingModule } from './listings/listing.module';
+import { ListingService } from './listings/listing.service';
+import { RequestModule } from './requests/request.module';
 
 @Module({
   imports: [
     UsersModule,
     AuthModule,
+    ListingModule,
+    RequestModule,
     ServeStaticModule.forRoot({
       rootPath: `${__dirname}/../../client/dist/my-cargonaut-frontend`
     }),
