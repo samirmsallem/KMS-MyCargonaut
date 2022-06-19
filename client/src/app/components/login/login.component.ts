@@ -6,12 +6,15 @@ import {UserService} from "../../service/user.service";
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
+
 export class LoginComponent implements OnInit {
   firstname = '';
   lastname = '';
   email = '';
   password = '';
   description = '';
+  loginEmail = '';
+  loginPassword = '';
 
 
   constructor(private userService: UserService) { }
@@ -21,10 +24,13 @@ export class LoginComponent implements OnInit {
 
 
   logIn() {
-    this.userService.logIn(this.email, this.password);
+    this.userService.logIn(this.loginEmail, this.loginPassword);
+  }
+  logOut() {
+    this.userService.logOut();
   }
   registerUser() {
-    this.userService.Register()
+    this.userService.registerUser(this.firstname, this.lastname, this.email, this.password, this.description);
   }
 
   }
