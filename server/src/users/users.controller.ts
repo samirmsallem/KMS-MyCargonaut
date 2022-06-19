@@ -142,4 +142,28 @@ export class UsersController {
     return { id: generatedId };
   }
 
+  @UseGuards(AuthenticatedGuard)
+  @Get('/getCoins')
+  async getCoins(
+      @Request() req
+  ) {
+    const emailID = req.user.userEmail;
+    const coins = await this.usersService.getCoins(
+        emailID
+    );
+    return coins.coins;
+  }
+
+  @UseGuards(AuthenticatedGuard)
+  @Get('/getOwnEvaluations')
+  async getOwnEvaluations(
+      @Request() req
+  ) {
+    const emailID = req.user.userEmail;
+    const user = await this.usersService.getEvaluations(
+        emailID
+    );
+    return user.avStars;
+  }
+
 }
