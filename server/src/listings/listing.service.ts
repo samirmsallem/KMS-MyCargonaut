@@ -36,7 +36,9 @@ export class ListingService {
     }
 
     async getListings() {
-        const listings = await this.listingModel.find().exec();
+        const filter = {};
+        const listings = await this.listingModel.find(filter).exec();
+
         return listings as Listing[];
     }
 

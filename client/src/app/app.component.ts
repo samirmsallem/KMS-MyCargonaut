@@ -8,7 +8,7 @@ import {Observable} from "rxjs";
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  //title = 'client';
+  title = 'client';
 
   constructor(private listingService: ListingService) {}
 

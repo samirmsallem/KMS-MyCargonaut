@@ -71,4 +71,9 @@ export class RequestService {
             }
         })
     }
+
+    async getRequests() {
+        const requests = await this.requestModel.find().exec();
+        return requests as Request[];
+    }
 }

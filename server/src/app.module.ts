@@ -12,7 +12,7 @@ import { AuthModule } from './auth/auth.module';
     UsersModule,
     AuthModule,
     ServeStaticModule.forRoot({
-      rootPath: `${__dirname}/../../client/dist/client`,
+      rootPath: `${__dirname}/../../client/dist/my-cargonaut-frontend`
     }),
     MongooseModule.forRoot(
       'mongodb+srv://cargonaut:IxW6IehCGoZpP85l@cluster0.8wcqf.mongodb.net/?retryWrites=true&w=majority',

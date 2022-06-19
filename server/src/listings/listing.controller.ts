@@ -48,7 +48,7 @@ export class ListingController {
         return;
     }
 
-    @Get()
+    @Get('/getAllListings')
     async getAllListings() {
         const listings = await this.listingService.getListings();
         return listings
