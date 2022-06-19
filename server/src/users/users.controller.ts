@@ -1,3 +1,4 @@
+/* eslint-disable */
 import {Controller, Post, Body, UseGuards, Request, Get, Put, Delete} from '@nestjs/common';
 import { UsersService } from './users.service';
 import { LocalAuthGuard } from 'src/auth/local.auth.guard';
@@ -125,4 +126,20 @@ export class UsersController {
     );
     return;
   }
+
+  @UseGuards(AuthenticatedGuard)
+  @Put('/addEval')
+  async addEval(
+      @Body('email') userEmail: string,
+      @Body('evaluation') evaluation: number,
+      @Request() req
+  ) {
+    const generatedId = await this.usersService.insertEvaluation(
+        userEmail,
+        evaluation,
+        req.user.userEmail,
+    );
+    return { id: generatedId };
+  }
+
 }

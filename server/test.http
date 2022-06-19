@@ -61,7 +61,7 @@ accept: application/json
 content-type: application/json
 
 {
-"coins": 300
+  "coins": 300
 }
 
 ###
@@ -98,4 +98,32 @@ content-type: application/json
 
 {
   "id": "62ac643caca4d7bbaa26e183"
+}
+
+###
+
+PUT /api/users/addEval HTTP/2
+host: localhost:3000
+accept: application/json
+content-type: application/json
+
+{
+  "email": "m@mail.de",
+  "evaluation": 1,
+  "currentUser": "n@mail.de"
+}
+
+###
+
+POST /api/users/createUser HTTP/2
+host: localhost:3000
+accept: application/json
+content-type: application/json
+
+{
+  "email": "n@mail.de",
+  "firstname": "n",
+  "lastname": "n",
+  "password": "n",
+  "description": "n"
 }
