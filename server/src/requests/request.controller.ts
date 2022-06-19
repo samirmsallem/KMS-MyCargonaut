@@ -31,35 +31,44 @@ export class RequestController {
     async getRequest(
         @Request() req
     ) {
-        const requestId = req.request.id;
+        const requestId = req.id;
         await this.requestService.getRequest(requestId);
         return;
     }
 
 
+
     // löschen spezifisches Angebot
     @Delete('/deleteRequest')
     async deleteRequest(
-        @Body('id') requestID: string,
+        @Request() req
     ) {
+        const requestID = req.id
         await this.requestService.deleteRequest(
             requestID
         );
         return;
     }
 
+    @Get()
+    async getRequests() {
+        const requests = await this.requestService.getRequests();
+        return requests
+    }
+
 
     // ändern spezifisches Angebot
     @Put('/updateRequest')
     async updateRequest(
-        @Body('kosten') kosten: number,
-        @Body('sitzplaetze') sitzplaetze: number,
-        @Body('frachtplatz') frachtplatz: number,
-        @Body('startort') startort: string,
-        @Body('ziel') ziel: string,
+
         @Request() req
     ) {
-        const id = req.request.id;
+        const  kosten = req.kosten;
+        const  sitzplaetze = req.sitzplaetze;
+        const  frachtplatz = req.frachtplatz;
+        const  startort = req.startort;
+        const  ziel = req.ziel;
+        const id = req.id;
         await this.requestService.updateRequest(
             id,
             kosten,
@@ -71,9 +80,5 @@ export class RequestController {
         return;
     }
 
-    //todo GET: Alle Gesuche
-    // POST: Angebot annehmen
-    // POST: Angebot bieten
-    // GET(ALL): Alle Angebote
-    // GET(ALL): Alle Gesuche
+
 }

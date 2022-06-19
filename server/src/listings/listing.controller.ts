@@ -31,7 +31,7 @@ export class ListingController {
     async getListing(
         @Request() req
     ) {
-        const listingId = req.listing.id;
+        const listingId = req.id;
         await this.listingService.getListing(listingId);
         return;
     }
