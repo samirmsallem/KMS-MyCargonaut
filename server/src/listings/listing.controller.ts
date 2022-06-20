@@ -9,6 +9,8 @@ export class ListingController {
     // Angebot erstellen
     @Post('/createListing')
     async addListing(
+        @Body('email') email: string,
+        @Body('zeit') zeit: Date,
         @Body('kosten') kosten: number,
         @Body('sitzplaetze') sitzplaetze: number,
         @Body('frachtplatz') frachtplatz: number,
@@ -16,6 +18,8 @@ export class ListingController {
         @Body('ziel') ziel: string,
     ) {
         const generatedId = await this.listingService.insertListing(
+            email,
+            zeit,
             kosten,
             sitzplaetze,
             frachtplatz,
@@ -60,14 +64,17 @@ export class ListingController {
     async updateListing(
         @Request() req
     ) {
+        const email = req.email;
+        const zeit = req.zeit;
         const  kosten = req.kosten;
         const  sitzplaetze = req.sitzplaetze;
         const  frachtplatz = req.frachtplatz;
         const  startort = req.startort;
         const  ziel = req.ziel;
-        const id = req.id;
+        //const id = req.id;
         await this.listingService.updateListing(
-            id,
+            email,
+            zeit,
             kosten,
             sitzplaetze,
             frachtplatz,
@@ -77,9 +84,57 @@ export class ListingController {
         return;
     }
 
-    //todo GET: Alle Gesuche
 
-    // POST: Angebot annehmen
+    // PUT: Angebot annehmen
+    @Put('/takeOffer')
+    async takeOffer(
+        @Request() req
+    ) {
+        // email string free
+        const email = req.email;
+        const zeit = req.zeit;
+
+        const  kosten = req.kosten;
+        const  sitzplaetze = req.sitzplaetze;
+        const  frachtplatz = req.frachtplatz;
+        const  startort = req.startort;
+        const  ziel = req.ziel;
+
+        await this.listingService.takeOffer(
+            email,
+            zeit,
+            kosten,
+            sitzplaetze,
+            frachtplatz,
+            startort,
+            ziel
+        );
+    }
+
+
     // POST: Angebot bieten
+    @Post('/giveOffer')
+    async giveOffer(
+        @Request() req
+    ) {
+        const email = req.email; // email des Anbieters
+        const zeit = req.zeit;
+        const  kosten = req.kosten;
+        const  sitzplaetze = req.sitzplaetze;
+        const  frachtplatz = req.frachtplatz;
+        const  startort = req.startort;
+        const  ziel = req.ziel;
+        //const id = req.id;
+
+        await this.listingService.giveOffer(
+            email,
+            zeit,
+            kosten,
+            sitzplaetze,
+            frachtplatz,
+            startort,
+            ziel
+        );
+    }
 
 }

@@ -8,6 +8,9 @@ export class ListingService {
     constructor(@InjectModel('Listing') public readonly listingModel: Model<Listing> ) {}
 
     async insertListing(
+        email: string,
+        zeit: Date,
+
         kosten: number,
         sitzplaetze: number,
         frachtplatz: number,
@@ -15,15 +18,18 @@ export class ListingService {
         ziel: string,
     ) {
         const newListing = new this.listingModel({
+            email: email,
+            zeit: zeit,
+
             kosten: kosten,
             sitzplaetze: sitzplaetze,
             frachtplatz: frachtplatz,
             startort: startort,
             ziel: ziel
         });
-        console.log("hi");
+        //console.log("hi");
         const result = await newListing.save();
-        console.log("hi");
+        //console.log("hi");
         console.log(result);
 
         return result.id as Number;
@@ -55,7 +61,9 @@ export class ListingService {
     }
 
     async updateListing(
-        id: number,
+        email: string,
+        zeit: Date,
+        //id: number,
         kosten: number,
         sitzplaetze: number,
         frachtplatz: number,
@@ -63,7 +71,8 @@ export class ListingService {
         ziel: string,
     ) {
         const conditions = {
-            id: id
+            email: email,
+            zeit: zeit
         }
         const updetedListing = {
             kosten,
@@ -73,6 +82,67 @@ export class ListingService {
             ziel
         }
         this.listingModel.findByIdAndUpdate(conditions,updetedListing,(err,res) =>{
+            if (err) {
+                console.log("Listing update failed")
+                return (err)
+            } else {
+                return (res)
+            }
+        })
+    }
+
+    async giveOffer(
+        email: string,
+        zeit: Date,
+        kosten: number,
+        sitzplaetze: number,
+        frachtplatz: number,
+        startort: string,
+        ziel: string,
+    ) {
+
+        const newListing = new this.listingModel({
+            email: email,
+            zeit: zeit,
+            kosten: kosten,
+            sitzplaetze: sitzplaetze,
+            frachtplatz: frachtplatz,
+            startort: startort,
+            ziel: ziel,
+        });
+
+        const result = await newListing.save();
+        console.log(result);
+        return result ;
+
+    }
+
+    async takeOffer(
+        email: string,
+        zeit: Date,
+
+        //id: number,
+        kosten: number,
+        sitzplaetze: number,
+        frachtplatz: number,
+        startort: string,
+        ziel: string,
+    ) {
+
+        const conditions = {
+            email: email,
+            zeit: Date
+        }
+
+        const updetedListing = {
+            kosten,
+            sitzplaetze,
+            frachtplatz,
+            startort,
+            ziel
+        }
+
+        this.listingModel.findOneAndUpdate(conditions, updetedListing, (err, res) => {
             if (err) {
                 console.log("Listing update failed")
                 return (err)
