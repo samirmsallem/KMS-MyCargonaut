@@ -2,12 +2,15 @@ import {Injectable, NotAcceptableException, UnauthorizedException} from '@nestjs
 import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 import { Request } from './request.model';
+import {Listing} from "../listings/listing.model";
 
 @Injectable()
 export class RequestService {
     constructor(@InjectModel('Request') public readonly requestModel: Model<Request> ) {}
 
     async insertRequest(
+        email: string,
+        zeit: Date,
         kosten: number,
         sitzplaetze: number,
         frachtplatz: number,
@@ -15,6 +18,8 @@ export class RequestService {
         ziel: string,
     ) {
         const newRequest = new this.requestModel({
+            email: email,
+            zeit: zeit,
             kosten: kosten,
             sitzplaetze: sitzplaetze,
             frachtplatz: frachtplatz,
@@ -23,7 +28,7 @@ export class RequestService {
         });
         const result = await newRequest.save();
         console.log(result);
-        return result.id as string;
+        return result.id as Number;
     }
 
     async getRequest(requestId: Number) {
@@ -36,16 +41,17 @@ export class RequestService {
     }
 
     async deleteRequest(requestId: string) {
-        const conditions = {
-            _id: requestId
-        }
-        const request = await this.requestModel.findOneAndDelete(conditions);
-        console.log("This request was deleted:" + request);
+        const filter = {
+            id: requestId
+        };
+        const request = await this.requestModel.findOneAndDelete(filter)
+
         return request;
     }
 
     async updateRequest(
-        id: number,
+        email: string,
+        zeit: Date,
         kosten: number,
         sitzplaetze: number,
         frachtplatz: number,
@@ -53,7 +59,8 @@ export class RequestService {
         ziel: string,
     ) {
         const conditions = {
-            id: id
+            email: email,
+            zeit: zeit
         }
         const updetedRequest = {
             kosten,
@@ -73,7 +80,37 @@ export class RequestService {
     }
 
     async getRequests() {
-        const requests = await this.requestModel.find().exec();
-        return requests as Request[];
+        const filter = {};
+        const requests = await this.requestModel.find(filter).exec();
+
+        return requests as Listing[];
+    }
+
+    // Angebot annehmen
+    async takeOffer(
+        email: string, // der anbieter
+        zeit: Date,
+        bucher: string,
+        kosten: number, // coins
+
+    ) {
+
+        const conditions = {
+            email: email,
+            zeit: Date
+        }
+
+        // todo hinzufügen nach dem merge
+        // this.userModel.findOneAndUpdate({email: email}, {$inc : {coins : kosten}})
+        // this.userModel.findOneAndUpdate({email: bucher}, {$inc : {coins : -kosten}})
+
+        this.requestModel.findOneAndUpdate(conditions, {bucher: bucher}, (err, res) => {
+            if (err) {
+                console.log("Request update failed")
+                return (err)
+            } else {
+                return (res)
+            }
+        })
     }
 }

@@ -71,7 +71,6 @@ export class ListingController {
         const  frachtplatz = req.frachtplatz;
         const  startort = req.startort;
         const  ziel = req.ziel;
-        //const id = req.id;
         await this.listingService.updateListing(
             email,
             zeit,
@@ -84,7 +83,7 @@ export class ListingController {
         return;
     }
 
-
+    // geht in request controller
     // PUT: Angebot annehmen
     @Put('/takeOffer')
     async takeOffer(

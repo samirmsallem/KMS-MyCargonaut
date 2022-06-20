@@ -122,6 +122,7 @@ export class ListingService {
 
     }
 
+    // geht in request service
     // Angebot annehmen
     async takeOffer(
         email: string, // der anbieter

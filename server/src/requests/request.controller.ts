@@ -9,6 +9,8 @@ export class RequestController {
     // Angebot erstellen
     @Post('/createRequest')
     async addRequest(
+        @Body('email') email: string,
+        @Body('zeit') zeit: Date,
         @Body('kosten') kosten: number,
         @Body('sitzplaetze') sitzplaetze: number,
         @Body('frachtplatz') frachtplatz: number,
@@ -16,6 +18,8 @@ export class RequestController {
         @Body('ziel') ziel: string,
     ) {
         const generatedId = await this.requestService.insertRequest(
+            email,
+            zeit,
             kosten,
             sitzplaetze,
             frachtplatz,
@@ -63,6 +67,8 @@ export class RequestController {
 
         @Request() req
     ) {
+        const email = req.email;
+        const zeit = req.zeit;
         const  kosten = req.kosten;
         const  sitzplaetze = req.sitzplaetze;
         const  frachtplatz = req.frachtplatz;
@@ -70,7 +76,8 @@ export class RequestController {
         const  ziel = req.ziel;
         const id = req.id;
         await this.requestService.updateRequest(
-            id,
+            email,
+            zeit,
             kosten,
             sitzplaetze,
             frachtplatz,
@@ -78,6 +85,28 @@ export class RequestController {
             ziel
         );
         return;
+    }
+
+    // PUT: Angebot annehmen
+    @Put('/takeOffer')
+    async takeOffer(
+        @Request() req
+    ) {
+        const email = req.email;
+        const zeit = req.zeit;
+        const bucher = req.bucher;
+        const  kosten = req.kosten;
+
+
+        const result = await this.requestService.takeOffer(
+            email,
+            zeit,
+            bucher,
+            kosten,
+
+        );
+
+        return result;
     }
 
 
