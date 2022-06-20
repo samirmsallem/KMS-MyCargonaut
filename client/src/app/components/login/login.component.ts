@@ -24,6 +24,7 @@ export class LoginComponent implements OnInit {
 
 
   logIn() {
+    console.log(this.loginEmail, this.loginPassword)
     this.userService.logIn(this.loginEmail, this.loginPassword);
   }
   logOut() {

@@ -1,7 +1,7 @@
 /* eslint-disable */
-import {Controller, Post, Body, UseGuards, Request, Get, Put, Delete} from '@nestjs/common';
-import { UsersService } from './users.service';
-import { LocalAuthGuard } from 'src/auth/local.auth.guard';
+import {Body, Controller, Delete, Get, Post, Put, Req, Request, Res, UseGuards} from '@nestjs/common';
+import {UsersService} from './users.service';
+import {LocalAuthGuard} from 'src/auth/local.auth.guard';
 import * as bcrypt from 'bcrypt';
 import {AuthenticatedGuard} from "../auth/authenticated.guard";
 
@@ -65,13 +65,26 @@ export class UsersController {
     const emailID = req.user.userEmail;
     const saltOrRounds = 10;
     const hashedPassword = await bcrypt.hash(userPassword, saltOrRounds);
-    await this.usersService.updateUser(
-        userFirstname,
-        userLastname,
-        hashedPassword,
-        userDescription,
-        emailID
-    );
+    const currentPassword = await (await this.usersService.getUser(emailID)).password;
+    console.log(currentPassword)
+    console.log(userPassword)
+    if(currentPassword === userPassword) {
+      await this.usersService.updateUser(
+          userFirstname,
+          userLastname,
+          userPassword,
+          userDescription,
+          emailID
+      );
+    } else {
+      await this.usersService.updateUser(
+          userFirstname,
+          userLastname,
+          hashedPassword,
+          userDescription,
+          emailID
+      );
+    }
     return;
   }
   @UseGuards(AuthenticatedGuard)
@@ -93,7 +106,8 @@ export class UsersController {
       @Body('model') vehicleModel: string,
       @Body('space') vehicleSpace: number,
       @Body('seats') vehicleSeats: number,
-      @Request() req
+      @Request() req,
+      @Res() res,
   ) {
     const emailID = req.user.userEmail;
     const generatedId = await this.usersService.insertVehicle(
@@ -102,29 +116,39 @@ export class UsersController {
         vehicleSeats,
         emailID
     );
-    return {id: generatedId};
+    const vehicles = await this.usersService.getVehicles(
+        emailID
+    );
+    res.status(200).send({vehicles: vehicles})
   }
   @UseGuards(AuthenticatedGuard)
   @Get('/getVehicles')
   async getVehicle(
-      @Request() req
-  ) {
+     @Request() req,
+     @Res() res,
+    ) {
     const emailID = req.user.userEmail;
-    await this.usersService.getVehicles(
+    const vehicles = await this.usersService.getVehicles(
         emailID
     );
-      return
+    res.status(200).send({vehicles: vehicles})
   }
 
   @UseGuards(AuthenticatedGuard)
-  @Delete('/deleteVehicle')
+  @Post('/deleteVehicle')
   async deleteVehicle(
       @Body('id') vehicleID: string,
+      @Request() req,
+      @Res() res,
   ) {
-    await this.usersService.deleteVehicle(
+    const vehicle = await this.usersService.deleteVehicle(
         vehicleID
     );
-    return;
+    const emailID = req.user.userEmail;
+    const vehicles = await this.usersService.getVehicles(
+        emailID
+    );
+    res.status(200).send({vehicles: vehicles})
   }
 
   @UseGuards(AuthenticatedGuard)
@@ -166,12 +190,25 @@ export class UsersController {
     return user.avStars;
   }
 
-  @UseGuards(AuthenticatedGuard)
+  //@UseGuards(AuthenticatedGuard)
   @Get('/getAll')
-  async getAll()
+  async getAll(
+      @Res() res
+  )
    {
-    const users = await this.usersService.getAll();
-    return users;
+     const usersArray = await this.usersService.getAll();
+     res.status(200).send({usersArray: usersArray})
+  }
+
+  //@UseGuards(AuthenticatedGuard)
+  @Get('/getUser')
+  async getUser(
+      @Req() req,
+      @Res() res,
+  )
+  {
+    const user = await this.usersService.getUser(req.user.userEmail);
+    res.status(200).send({user: user})
   }
 
 }
