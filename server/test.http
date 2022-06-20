@@ -19,8 +19,8 @@ accept: application/json
 content-type: application/json
 
 {
-"email": "testing@mail.de",
-"password": "muster"
+"email": "m@mail.de",
+"password": "m"
 }
 
 ###
@@ -127,3 +127,26 @@ content-type: application/json
   "password": "n",
   "description": "n"
 }
+
+###
+
+GET /api/users/getCoins HTTP/2
+host: localhost:3000
+Set-Cookie: connect.sid=s%3Ai7bIZvL7MlTKvcahT-RnvCAZxyIhMmAl.68LQ62TxMEPK9C3W3GwBDeVjJ0vZdb9qZ%2Bdgl9SJYSU; Path=/; HttpOnly
+accept: application/json
+content-type: application/json
+
+###
+
+GET /api/users/getOwnEvaluations HTTP/2
+host: localhost:3000
+Set-Cookie: connect.sid=s%3A3ImMBlfG73OejNfsYYExgr4SVnPDbjXo.1xvy7am%2FH9A3nWLrjLOfED2hJx8QNgmyZn4uxp1RxhM; Path=/; HttpOnly
+accept: application/json
+content-type: application/json
+
+###
+
+GET /api/users/getAll HTTP/2
+host: localhost:3000
+accept: application/json
+content-type: application/json

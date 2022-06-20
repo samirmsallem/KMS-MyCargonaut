@@ -4,7 +4,7 @@ import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 import { User } from './user.model';
 import { Vehicle } from "./vehicles.model";
-
+import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class UsersService {
@@ -48,25 +48,25 @@ export class UsersService {
       password: string,
       description: string,
       emailID: string
-  ) {
-    const conditions = {
-      email: emailID
-    }
-    const updatedUser = {
-      firstname,
-      lastname,
-      password,
-      description
-    }
-    this.userModel.findOneAndUpdate(conditions, updatedUser, (err, res) => {
-      if (err) {
-        console.log("User update failed")
-        return (err)
-      } else {
-        return (res)
-      }
-    })
+  ) {const conditions = {
+    email: emailID
   }
+  const updatedUser = {
+    firstname,
+    lastname,
+    password,
+    description
+  }
+  this.userModel.findOneAndUpdate(conditions, updatedUser, (err, res) => {
+    if (err) {
+      console.log("User update failed")
+      return (err)
+    } else {
+      return (res)
+    }
+  })
+    }
+
   async loadCoins(
       emailID: string,
       coins: number
