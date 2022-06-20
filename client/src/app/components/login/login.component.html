@@ -1,15 +1,44 @@
-<form id="loginForm">
-<input placeholder="E-Mail" type="text" id="loginEmail" [(ngModel)]="loginEmail" class="textInputs form-control"><br>
-<input placeholder="Passwort" type="password" id="loginPassword" [(ngModel)]="loginPassword" class="textInputs form-control"><br>
-  <button type="submit" (click)="logIn()" class="btn align-content-center text-white text-center mt-4 mb-4">Login</button>
-</form>
-<button type="submit" (click)="logOut()" class="btn align-content-center text-white text-center mt-4 mb-4">Logout</button>
-<form id="registerForm">
-  <input placeholder="Vorname" type="text" id="registerFirstname" [(ngModel)]="firstname" class="textInputs form-control"><br>
-  <input placeholder="Nachname" type="text" id="registerLastname" [(ngModel)]="lastname" class="textInputs form-control"><br>
-  <input placeholder="E-Mail" type="text" id="registerEmail" [(ngModel)]="email" class="textInputs form-control"><br>
-  <input placeholder="Passwort" type="password" id="registerPassword" [(ngModel)]="password" class="textInputs form-control"><br>
-  <textarea placeholder="Hier kannst du dich in wenigen Worten selbst beschreiben." type="text" id="registerDescription" [(ngModel)]="description" class="textInputs form-control"></textarea><br>
-  <button type="submit" (click)="registerUser()" class="btn align-content-center text-center btn-block mt-4 mb-4">Registrieren</button>
-</form>
+<div class="container-fluid">
+  <div class="container-fluid">
+    <div class="container-fluid">
+      <div class="col-12 text-center">
+        <h2>Login:</h2><br>
+        <form  id="loginForm">
+          <input placeholder="E-Mail" type="text" id="loginEmail" [(ngModel)]="loginEmail"
+                 class="form-control "><br>
+          <input placeholder="Passwort" type="password" id="loginPassword" [(ngModel)]="loginPassword"
+                 class="form-control">
+          <button type="submit" (click)="logIn()" class="btn align-content-center text-center mt-4 mb-4">Login</button>
+        </form>
+        <br>
+        <br>
+        <br>
+      </div>
+    </div>
+
+    <!--<button type="submit" (click)="logOut()" class="btn align-content-center text-white text-center mt-4 mb-4">Logout</button> -->
+
+    <div class="container-fluid">
+      <div class="col-12 text-center">
+        <h2>Konto anlegen:</h2><br>
+        <form id="registerForm">
+          <input placeholder="Vorname" type="text" id="registerFirstname" [(ngModel)]="firstname"
+                 class="form-control"><br>
+          <input placeholder="Nachname" type="text" id="registerLastname" [(ngModel)]="lastname"
+                 class="form-control"><br>
+          <input placeholder="E-Mail" type="text" id="registerEmail" [(ngModel)]="email"
+                 class="form-control"><br>
+          <input placeholder="Passwort" type="password" id="registerPassword" [(ngModel)]="password"
+                 class="form-control"><br>
+          <textarea placeholder="Hier kannst du dich in wenigen Worten selbst beschreiben." type="text"
+                    id="registerDescription" [(ngModel)]="description" class="textInputs form-control"></textarea>
+          <button type="submit" (click)="registerUser()"
+                  class="btn align-content-center text-center btn-block mt-4 mb-4">Registrieren
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
 
