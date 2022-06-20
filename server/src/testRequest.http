@@ -19,7 +19,6 @@ content-type: application/json
 
 
 GET /api/requests/getRequest HTTP/2
-
 host: localhost:3000
 Set-Cookie: connect.sid=s%3ARo-qeWvEPLsWHX79oFrdUYyd4I5M8Kbl.s0ZTd3IdON3dVBNYmjx7BKOjx7QJeBEm%2FPWpF2vJBCk; Path=/; HttpOnly
 accept: application/json
@@ -60,6 +59,18 @@ content-type: application/json
   "frachtplatz": 4,
   "startort": "Gießen",
   "ziel": "Berlin"
+}
+
+###
+
+GET /api/requests/getAllRequests HTTP/2
+host: localhost:3000
+Set-Cookie: connect.sid=s%3ARo-qeWvEPLsWHX79oFrdUYyd4I5M8Kbl.s0ZTd3IdON3dVBNYmjx7BKOjx7QJeBEm%2FPWpF2vJBCk; Path=/; HttpOnly
+accept: application/json
+content-type: application/json
+
+{
+  "id": "0"
 }
 
 

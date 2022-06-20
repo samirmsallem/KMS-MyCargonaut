@@ -50,7 +50,7 @@ export class RequestController {
         return;
     }
 
-    @Get()
+    @Get('/getAllRequests')
     async getRequests() {
         const requests = await this.requestService.getRequests();
         return requests

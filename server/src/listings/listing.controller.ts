@@ -40,8 +40,9 @@ export class ListingController {
     // löschen spezifisches Angebot
     @Delete('/deleteListing')
     async deleteListing(
-        @Body('id') listingID: string,
+        @Request() req
     ) {
+        const listingID = req.id
         await this.listingService.deleteListing(
             listingID
         );
@@ -57,14 +58,14 @@ export class ListingController {
     // ändern spezifisches Angebot
     @Put('/updateListing')
     async updateListing(
-        @Body('kosten') kosten: number,
-        @Body('sitzplaetze') sitzplaetze: number,
-        @Body('frachtplatz') frachtplatz: number,
-        @Body('startort') startort: string,
-        @Body('ziel') ziel: string,
         @Request() req
     ) {
-        const id = req.listing.id;
+        const  kosten = req.kosten;
+        const  sitzplaetze = req.sitzplaetze;
+        const  frachtplatz = req.frachtplatz;
+        const  startort = req.startort;
+        const  ziel = req.ziel;
+        const id = req.id;
         await this.listingService.updateListing(
             id,
             kosten,
@@ -77,8 +78,8 @@ export class ListingController {
     }
 
     //todo GET: Alle Gesuche
+
     // POST: Angebot annehmen
     // POST: Angebot bieten
-    // GET(ALL): Alle Angebote
-    // GET(ALL): Alle Gesuche
+
 }
