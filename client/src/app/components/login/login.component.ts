@@ -17,7 +17,8 @@ export class LoginComponent implements OnInit {
   loginPassword = '';
 
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService) {
+  }
 
   ngOnInit(): void {
   }
@@ -27,12 +28,14 @@ export class LoginComponent implements OnInit {
     console.log(this.loginEmail, this.loginPassword)
     this.userService.logIn(this.loginEmail, this.loginPassword);
   }
+
   logOut() {
     this.userService.logOut();
   }
+
   registerUser() {
     this.userService.registerUser(this.firstname, this.lastname, this.email, this.password, this.description);
   }
 
-  }
+}
 
