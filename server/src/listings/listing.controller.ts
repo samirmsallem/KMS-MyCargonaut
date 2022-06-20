@@ -90,25 +90,21 @@ export class ListingController {
     async takeOffer(
         @Request() req
     ) {
-        // email string free
         const email = req.email;
         const zeit = req.zeit;
-
+        const bucher = req.bucher;
         const  kosten = req.kosten;
-        const  sitzplaetze = req.sitzplaetze;
-        const  frachtplatz = req.frachtplatz;
-        const  startort = req.startort;
-        const  ziel = req.ziel;
 
-        await this.listingService.takeOffer(
+
+        const result = await this.listingService.takeOffer(
             email,
             zeit,
+            bucher,
             kosten,
-            sitzplaetze,
-            frachtplatz,
-            startort,
-            ziel
+
         );
+
+        return result;
     }
 
 
@@ -118,17 +114,19 @@ export class ListingController {
         @Request() req
     ) {
         const email = req.email; // email des Anbieters
+        const bucher = "free";
+
         const zeit = req.zeit;
         const  kosten = req.kosten;
         const  sitzplaetze = req.sitzplaetze;
         const  frachtplatz = req.frachtplatz;
         const  startort = req.startort;
         const  ziel = req.ziel;
-        //const id = req.id;
 
         await this.listingService.giveOffer(
             email,
             zeit,
+            bucher,
             kosten,
             sitzplaetze,
             frachtplatz,

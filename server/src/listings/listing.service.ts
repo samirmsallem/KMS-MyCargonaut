@@ -2,6 +2,8 @@ import {Injectable, NotAcceptableException, UnauthorizedException} from '@nestjs
 import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 import { Listing } from './listing.model';
+// todo import
+//import { userModel } from './users/user.model'
 
 @Injectable()
 export class ListingService {
@@ -91,9 +93,11 @@ export class ListingService {
         })
     }
 
+    // todo
     async giveOffer(
-        email: string,
+        email: string, // anbieter
         zeit: Date,
+        bucher: string,
         kosten: number,
         sitzplaetze: number,
         frachtplatz: number,
@@ -104,6 +108,7 @@ export class ListingService {
         const newListing = new this.listingModel({
             email: email,
             zeit: zeit,
+            bucher: bucher,
             kosten: kosten,
             sitzplaetze: sitzplaetze,
             frachtplatz: frachtplatz,
@@ -117,16 +122,13 @@ export class ListingService {
 
     }
 
+    // Angebot annehmen
     async takeOffer(
-        email: string,
+        email: string, // der anbieter
         zeit: Date,
+        bucher: string,
+        kosten: number, // coins
 
-        //id: number,
-        kosten: number,
-        sitzplaetze: number,
-        frachtplatz: number,
-        startort: string,
-        ziel: string,
     ) {
 
         const conditions = {
@@ -134,15 +136,11 @@ export class ListingService {
             zeit: Date
         }
 
-        const updetedListing = {
-            kosten,
-            sitzplaetze,
-            frachtplatz,
-            startort,
-            ziel
-        }
+        // todo hinzufügen nach dem merge
+        // this.userModel.findOneAndUpdate({email: email}, {$inc : {coins : kosten}})
+        // this.userModel.findOneAndUpdate({email: bucher}, {$inc : {coins : -kosten}})
 
-        this.listingModel.findOneAndUpdate(conditions, updetedListing, (err, res) => {
+        this.listingModel.findOneAndUpdate(conditions, {bucher: bucher}, (err, res) => {
             if (err) {
                 console.log("Listing update failed")
                 return (err)
