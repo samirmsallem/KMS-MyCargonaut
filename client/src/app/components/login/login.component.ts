@@ -24,9 +24,9 @@ export class LoginComponent implements OnInit {
   }
 
 
-  logIn() {
+  async logIn() {
     console.log(this.loginEmail, this.loginPassword)
-    this.userService.logIn(this.loginEmail, this.loginPassword);
+    await this.userService.logIn(this.loginEmail, this.loginPassword);
     this.loginEmail = '';
     this.loginPassword = '';
   }
@@ -35,8 +35,8 @@ export class LoginComponent implements OnInit {
     this.userService.logOut();
   }
 
-  registerUser() {
-    this.userService.registerUser(this.firstname, this.lastname, this.email, this.password, this.description);
+  async registerUser() {
+    await this.userService.registerUser(this.firstname, this.lastname, this.email, this.password, this.description);
     this.firstname = '';
     this.lastname = '';
     this.email = '';
