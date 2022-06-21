@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {ListingService} from "./listing.service";
+//import {ListingService} from "./listing.service";
 import {Observable} from "rxjs";
 
 @Component({
@@ -10,14 +10,5 @@ import {Observable} from "rxjs";
 export class AppComponent {
   title = 'client';
 
-  constructor(private listingService: ListingService) {}
 
-
-  loadOffers() {
-    this.listingService
-      .getOffers()
-      .subscribe( (response) => {
-        console.log(response);
-      });
-  }
 }

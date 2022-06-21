@@ -17,7 +17,7 @@ import { RequestModule } from './requests/request.module';
     ListingModule,
     RequestModule,
     ServeStaticModule.forRoot({
-      rootPath: `${__dirname}/../../client/dist/my-cargonaut-frontend`
+      rootPath: `${__dirname}/../../client/dist/client`
     }),
     MongooseModule.forRoot(
       'mongodb+srv://cargonaut:IxW6IehCGoZpP85l@cluster0.8wcqf.mongodb.net/?retryWrites=true&w=majority',
@@ -27,6 +27,6 @@ import { RequestModule } from './requests/request.module';
     ),
   ],
   controllers: [AppController],
-  providers: [AppService, AuthService],
+  providers: [AppService, AuthService, ListingService],
 })
 export class AppModule {}
