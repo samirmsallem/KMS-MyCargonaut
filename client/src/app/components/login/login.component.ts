@@ -27,6 +27,8 @@ export class LoginComponent implements OnInit {
   logIn() {
     console.log(this.loginEmail, this.loginPassword)
     this.userService.logIn(this.loginEmail, this.loginPassword);
+    this.loginEmail = '';
+    this.loginPassword = '';
   }
 
   logOut() {
@@ -35,6 +37,11 @@ export class LoginComponent implements OnInit {
 
   registerUser() {
     this.userService.registerUser(this.firstname, this.lastname, this.email, this.password, this.description);
+    this.firstname = '';
+    this.lastname = '';
+    this.email = '';
+    this.password = '';
+    this.description = '';
   }
 
 }
