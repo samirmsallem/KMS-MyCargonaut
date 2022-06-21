@@ -19,6 +19,10 @@ jobs:
           npm ci
           npm i --save-dev @types/node
           npm install -g @angular/cli
+          cd ..\server
+          npm ci
+          npm install mongoose
+          cd ..\client
           ng test --browsers=ChromeHeadless --watch=false
       - name: Run Backend unit tests
         run: |
