@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {User} from "../../../../server/src/users/user.model";
+import {environment} from "../../environments/environment";
 
 const httpOptions = {
   headers : new HttpHeaders({'Content-Type': 'application/json'})
@@ -43,13 +44,13 @@ export class UserService {
   currentUser: any;
   vehicleArray: any[] = [];
 
-  private localhostURL: string = "http://localhost:3000/";
+  private localhostURL: string = environment.backendUrl;
 
     constructor(private http: HttpClient) {
     }
 
     registerUser(firstname: string, lastname: string, email: string, password: string, description: string) {
-      return this.http.post(this.localhostURL + "api/users/createUser", {
+      return this.http.post(this.localhostURL + "/users/createUser", {
         firstname: firstname,
         lastname: lastname,
         password: password,
@@ -64,7 +65,7 @@ export class UserService {
     }
     logIn(email: string, password: string) {
       console.log("Login" + email + " " + password)
-      this.http.post(this.localhostURL + "api/users/loginUser",
+      this.http.post(this.localhostURL + "/users/loginUser",
         {
           "email": email,
           "password": password,
@@ -78,7 +79,7 @@ export class UserService {
     }
   logOut() {
     console.log("Logout")
-    this.http.get(this.localhostURL + "api/users/logoutUser",
+    this.http.get(this.localhostURL + "/users/logoutUser",
        httpOptions)
       .toPromise()
       .then((res: any) => {
@@ -89,7 +90,7 @@ export class UserService {
   }
 
   getAllUserData(): Promise<void> {
-    return this.http.get("http://localhost:3000/api/users/getAll", httpOptions).toPromise()
+    return this.http.get(this.localhostURL + "/users/getAll", httpOptions).toPromise()
       .then((res: any) => {
           for (let i = 0; i < res.usersArray.length; i++) {
             this.userArray.push(new userClass(res.usersArray[i]._id, res.usersArray[i].firstname, res.usersArray[i].lastname, res.usersArray[i].email, res.usersArray[i].password, res.usersArray[i].description, res.usersArray[i].coins, res.usersArray[i].stars, res.usersArray[i].avStars, res.usersArray[i].evaluations))
@@ -100,7 +101,7 @@ export class UserService {
   };
 
   getUserData(): Promise<void> {
-    return this.http.get("http://localhost:3000/api/users/getUser", httpOptions).toPromise()
+    return this.http.get(this.localhostURL + "/api/users/getUser", httpOptions).toPromise()
       .then((res: any) => {
         this.currentUser = res.user;
       }).catch(() => {
@@ -109,7 +110,7 @@ export class UserService {
   };
 
   updateUser(password: string, firstname: string, lastname: string, description: string) {
-    return this.http.put(this.localhostURL + "api/users/updateUser", {
+    return this.http.put(this.localhostURL + "/users/updateUser", {
       firstname: firstname,
       lastname: lastname,
       password: password,
@@ -123,7 +124,7 @@ export class UserService {
   }
 
   getVehicles(): Promise<void> {
-    return this.http.get("http://localhost:3000/api/users/getVehicles", httpOptions).toPromise()
+    return this.http.get(this.localhostURL + "/users/getVehicles", httpOptions).toPromise()
       .then((res: any) => {
         for (let i = 0; i < res.vehicles.length; i++) {
           this.vehicleArray.push([res.vehicles[i]._id, res.vehicles[i].model, res.vehicles[i].space, res.vehicles[i].seats])
@@ -135,7 +136,7 @@ export class UserService {
 
   deleteVehicle(id: string): Promise<void> {
     console.log("Deleting in progress... " + id)
-    return this.http.post("http://localhost:3000/api/users/deleteVehicle", {id}, httpOptions).toPromise()
+    return this.http.post(this.localhostURL + "/users/deleteVehicle", {id}, httpOptions).toPromise()
       .then((res: any) => {
         this.vehicleArray = [];
         for (let i = 0; i < res.vehicles.length; i++) {
@@ -147,7 +148,7 @@ export class UserService {
   };
 
   addVehicle(model: string, space: number, seats: number) {
-    return this.http.post(this.localhostURL + "api/users/addVehicle", {
+    return this.http.post(this.localhostURL + "/users/addVehicle", {
       model: model,
       space: space,
       seats: seats
