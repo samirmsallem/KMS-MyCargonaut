@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {UserService} from "../../service/user.service";
 
 @Component({
   selector: 'app-header',
@@ -9,10 +10,14 @@ export class HeaderComponent implements OnInit {
 
   openNavigation = false;
 
-  constructor() { }
+  constructor(private userService: UserService) { }
 
   toggleNavigation() {
     this.openNavigation = !this.openNavigation;
+  }
+
+  logOut() {
+    this.userService.logOut();
   }
 
   ngOnInit(): void {

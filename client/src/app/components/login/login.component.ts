@@ -31,9 +31,6 @@ export class LoginComponent implements OnInit {
     this.loginPassword = '';
   }
 
-  logOut() {
-    this.userService.logOut();
-  }
 
   async registerUser() {
     await this.userService.registerUser(this.firstname, this.lastname, this.email, this.password, this.description);
