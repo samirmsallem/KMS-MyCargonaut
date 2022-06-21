@@ -12,6 +12,7 @@ import { RequestModule } from './requests/request.module';
 
 @Module({
   imports: [
+      ListingModule,
     UsersModule,
     AuthModule,
     ListingModule,
@@ -27,6 +28,6 @@ import { RequestModule } from './requests/request.module';
     ),
   ],
   controllers: [AppController],
-  providers: [AppService, AuthService, ListingService],
+  providers: [AppService, AuthService],
 })
 export class AppModule {}

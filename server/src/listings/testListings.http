@@ -1,152 +1,94 @@
-POST /api/users/createUser HTTP/2
-host: localhost:3000
-accept: application/json
-content-type: application/json
-
-{
-  "email": "muster@mail.de",
-  "firstname": "Test",
-  "lastname": "Testermann",
-  "password": "test",
-  "description": "Hallo ich bin Test Test und fahre gerne Leute durch die Gegend."
-}
-
-###
-
-POST /api/users/loginUser HTTP/2
-host: localhost:3000
-accept: application/json
-content-type: application/json
-
-{
-"email": "m@mail.de",
-"password": "m"
-}
-
-###
-
-GET /api/users/logoutUser HTTP/2
-host: localhost:3000
-accept: application/json
-content-type: application/json
-
-###
-
-GET /api/users/protectedRoute HTTP/2
-host: localhost:3000
-accept: application/json
-content-type: application/json
-
-###
-
-PUT /api/users/updateUser HTTP/2
+POST /api/listings/createListing HTTP/2
 host: localhost:3000
 Set-Cookie: connect.sid=s%3ARo-qeWvEPLsWHX79oFrdUYyd4I5M8Kbl.s0ZTd3IdON3dVBNYmjx7BKOjx7QJeBEm%2FPWpF2vJBCk; Path=/; HttpOnly
 accept: application/json
 content-type: application/json
 
 {
-  "firstname": "Muster",
-  "lastname": "Muster",
-  "password": "muster",
-  "description": "Muster description"
+  "email": "mark.zukerberg@gmail.com",
+  "zeit": "2022-06-20T16:50:06.419Z",
+  "kosten": 50,
+  "sitzplaetze": 2,
+  "frachtplatz": 4,
+  "startort": "Gießen",
+  "ziel": "Frankfurt"
 }
 
-###
 
-PUT /api/users/loadCoins HTTP/2
-host: localhost:3000
-Set-Cookie: connect.sid=s%3Acm4X6E620pAcqvPgEPZjrTb9vKCn6pPn.4eUyv8jjW320jc7l4WWLSJj8PNiXoxnPmr%2BndJZ0NxE; Path=/; HttpOnly
-accept: application/json
-content-type: application/json
+### spezifisches Gesuch laden
 
-{
-  "coins": 300
-}
 
-###
-
-POST /api/users/addVehicle HTTP/2
+GET /api/listings/getListing HTTP/2
 host: localhost:3000
 Set-Cookie: connect.sid=s%3ARo-qeWvEPLsWHX79oFrdUYyd4I5M8Kbl.s0ZTd3IdON3dVBNYmjx7BKOjx7QJeBEm%2FPWpF2vJBCk; Path=/; HttpOnly
 accept: application/json
 content-type: application/json
 
 {
-"model": "Nimbus3002",
-"space": 40,
-"seats": 9
+  "id": "0"
 }
 
 
-###
-
-GET /api/users/getVehicles HTTP/2
-host: localhost:3000
-Set-Cookie: connect.sid=s%3A4bx93d38dvN-o81Er85ZuFRCERepTTZ7.3ypcDS1GbgPzcgjvU%2Fcyj2vFYcdjVwFcfHFuWodjAEo; Path=/; HttpOnly
-accept: application/json
-content-type: application/json
+### spezifisches Gesuch löschen
 
 
-###
-
-DELETE /api/users/deleteVehicle HTTP/2
+DELETE /api/listings/deleteListing HTTP/2
 host: localhost:3000
 Set-Cookie: connect.sid=s%3Aq5cMzXUxLvtW2JNYScU2Lksmyy6cXnpl.DmXgAqjKlVIPU09XchBxmDG58WblGETWiUuefIysRmk; Path=/; HttpOnly
 accept: application/json
 content-type: application/json
 
 {
-  "id": "62ac643caca4d7bbaa26e183"
+  "id": "0"
 }
 
-###
 
-PUT /api/users/addEval HTTP/2
+### Angebot editieren
+
+
+PUT /api/listings/updateListing HTTP/2
 host: localhost:3000
+Set-Cookie: connect.sid=s%3ARo-qeWvEPLsWHX79oFrdUYyd4I5M8Kbl.s0ZTd3IdON3dVBNYmjx7BKOjx7QJeBEm%2FPWpF2vJBCk; Path=/; HttpOnly
 accept: application/json
 content-type: application/json
 
 {
-  "email": "m@mail.de",
-  "evaluation": 1,
-  "currentUser": "n@mail.de"
+  "email": "mark.zukerberg@gmail.com",
+  "zeit": "2022-06-20T16:50:06.419Z",
+  "kosten": 100,
+  "sitzplaetze": 2,
+  "frachtplatz": 4,
+  "startort": "Gießen",
+  "ziel": "Berlin"
 }
 
 ###
 
-POST /api/users/createUser HTTP/2
+GET /api/listings/getAllListings HTTP/2
 host: localhost:3000
+Set-Cookie: connect.sid=s%3ARo-qeWvEPLsWHX79oFrdUYyd4I5M8Kbl.s0ZTd3IdON3dVBNYmjx7BKOjx7QJeBEm%2FPWpF2vJBCk; Path=/; HttpOnly
 accept: application/json
 content-type: application/json
 
 {
-  "email": "n@mail.de",
-  "firstname": "n",
-  "lastname": "n",
-  "password": "n",
-  "description": "n"
+  "id": "0"
 }
 
 ###
 
-GET /api/users/getCoins HTTP/2
+PUT /api/listings/takeOffer HTTP/2
 host: localhost:3000
-Set-Cookie: connect.sid=s%3Ai7bIZvL7MlTKvcahT-RnvCAZxyIhMmAl.68LQ62TxMEPK9C3W3GwBDeVjJ0vZdb9qZ%2Bdgl9SJYSU; Path=/; HttpOnly
+Set-Cookie: connect.sid=s%3ARo-qeWvEPLsWHX79oFrdUYyd4I5M8Kbl.s0ZTd3IdON3dVBNYmjx7BKOjx7QJeBEm%2FPWpF2vJBCk; Path=/; HttpOnly
 accept: application/json
 content-type: application/json
 
-###
-
-GET /api/users/getOwnEvaluations HTTP/2
-host: localhost:3000
-Set-Cookie: connect.sid=s%3A3ImMBlfG73OejNfsYYExgr4SVnPDbjXo.1xvy7am%2FH9A3nWLrjLOfED2hJx8QNgmyZn4uxp1RxhM; Path=/; HttpOnly
-accept: application/json
-content-type: application/json
-
-###
-
-GET /api/users/getAll HTTP/2
-host: localhost:3000
-accept: application/json
-content-type: application/json
+{
+  "email": "mark.zukerberg@gmail.com",
+  "zeit": "2022-06-20T16:50:06.419Z",
+  "bucher": "i take it",
+  "kosten": 100,
+  "sitzplaetze": 2,
+  "frachtplatz": 4,
+  "startort": "Gießen",
+  "ziel": "Berlin"
+}
