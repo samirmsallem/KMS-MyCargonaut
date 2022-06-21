@@ -1,0 +1,26 @@
+<div class="container-fluid" id="navbar">
+<nav class="navbar navbar-expand-lg" >
+  <a class="navbar-brand" href="#">
+    <img src="../../../assets/semi_androidMyCargonautldpi.png" width="110" height="50" alt="">
+  </a>
+  <button type="button" class="navbar-toggler"
+          (click)="toggleNavigation()">
+    <span><img src="../../../assets/hamburger_icon.png" width="46" height="32" alt=""></span>
+  </button>
+
+
+  <div class="collapse navbar-collapse"
+       [ngClass]="{ 'show': openNavigation}">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="#">Mein Profil</a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="#">Angebote ansehen</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+</div>
+
