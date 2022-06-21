@@ -7,4 +7,4 @@ jshint:
   enabled: true
 
 eslint:
-  enabled: true
+  enabled: false

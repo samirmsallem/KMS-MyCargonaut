@@ -1,7 +1,6 @@
-/* eslint-disable */
 import {Body, Controller, Delete, Get, Post, Put, Req, Request, Res, UseGuards} from '@nestjs/common';
 import {UsersService} from './users.service';
-import {LocalAuthGuard} from 'src/auth/local.auth.guard';
+import {LocalAuthGuard} from '../auth/local.auth.guard';
 import * as bcrypt from 'bcrypt';
 import {AuthenticatedGuard} from "../auth/authenticated.guard";
 

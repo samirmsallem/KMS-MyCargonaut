@@ -3,6 +3,7 @@ import { UsersService } from './users.service';
 import {User} from "./user.model";
 import {UsersController} from "./users.controller";
 import {getModelToken} from "@nestjs/mongoose";
+import {Vehicle} from "./vehicles.model";
 
 describe('UsersService', () => {
   let service: UsersService;
@@ -23,6 +24,20 @@ describe('UsersService', () => {
     description,
   });
 
+  const mockVehicle = (
+      _id = '1',
+  model = 'Test',
+  space = 1,
+  seats = 1,
+  email = 'test@mail.de'
+  ): Vehicle => <Vehicle>({
+    _id,
+    model,
+    space,
+    seats,
+    email
+  });
+
 
 
   beforeEach(async () => {
@@ -41,7 +56,20 @@ describe('UsersService', () => {
             remove: jest.fn(),
             exec: jest.fn(),
           },
-        }
+        },
+        {
+          provide: getModelToken('Vehicle'),
+          useValue: {
+            new: jest.fn().mockResolvedValue(mockVehicle()),
+            constructor: jest.fn().mockResolvedValue(mockVehicle()),
+            find: jest.fn(),
+            findOne: jest.fn(),
+            update: jest.fn(),
+            create: jest.fn(),
+            remove: jest.fn(),
+            exec: jest.fn(),
+          },
+        },
       ]
     }).compile();
 
