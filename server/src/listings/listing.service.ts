@@ -2,12 +2,12 @@ import {Injectable, NotAcceptableException, UnauthorizedException} from '@nestjs
 import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 import { Listing } from './listing.model';
-// todo import
-//import { userModel } from './users/user.model'
+
+import { User } from '../users/user.model';
 
 @Injectable()
 export class ListingService {
-    constructor(@InjectModel('Listing') public readonly listingModel: Model<Listing> ) {}
+    constructor(@InjectModel('Listing') public readonly listingModel: Model<Listing>, @InjectModel('User') public readonly userModel: Model<User> ) {}
 
     async insertListing(
         email: string,
@@ -29,9 +29,7 @@ export class ListingService {
             startort: startort,
             ziel: ziel
         });
-        //console.log("hi");
         const result = await newListing.save();
-        //console.log("hi");
         console.log(result);
 
         return result.id as Number;
@@ -65,7 +63,6 @@ export class ListingService {
     async updateListing(
         email: string,
         zeit: Date,
-        //id: number,
         kosten: number,
         sitzplaetze: number,
         frachtplatz: number,
@@ -93,7 +90,7 @@ export class ListingService {
         })
     }
 
-    // todo
+
     async giveOffer(
         email: string, // anbieter
         zeit: Date,
@@ -122,7 +119,7 @@ export class ListingService {
 
     }
 
-    // geht in request service
+
     // Angebot annehmen
     async takeOffer(
         email: string, // der anbieter
@@ -137,9 +134,9 @@ export class ListingService {
             zeit: Date
         }
 
-        // todo hinzufügen nach dem merge
-        // this.userModel.findOneAndUpdate({email: email}, {$inc : {coins : kosten}})
-        // this.userModel.findOneAndUpdate({email: bucher}, {$inc : {coins : -kosten}})
+        // User coins transactions
+        this.userModel.findOneAndUpdate({email: email}, {$inc : {coins : kosten}})
+        this.userModel.findOneAndUpdate({email: bucher}, {$inc : {coins : -kosten}})
 
         this.listingModel.findOneAndUpdate(conditions, {bucher: bucher}, (err, res) => {
             if (err) {
