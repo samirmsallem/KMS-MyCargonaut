@@ -1,0 +1,37 @@
+<div class="container-fluid">
+  <div class="container-fluid">
+    <h2>Finde deinen Fahrer</h2><br>
+    <form id="searchForm">
+      <input placeholder="Von" type="text" id="fartVonSuchende" [(ngModel)]="startort"
+             class="form-control"><br>
+      <input placeholder="Nach" type="text" id="fartNachSuchende" [(ngModel)]="ziel"
+             class="form-control"><br>
+      <input placeholder="Worum geht es" type="text" id="InfoForFart" [(ngModel)]="InfoForFart"
+             class="form-control"><br>
+
+      <! -- gegenstaende hinzufügen -->
+      <! -- date -->
+      <! -- time -->
+
+      <button type="submit" (click)="getAllListings()" class="btn btn-primary">Fahrer finden</button>
+    </form>
+  </div>
+
+  <div class="container-fluid">
+    <h2>Jetzt selbst eine Fahrt anbieten</h2><br>
+    <form id="SelbstAnbietenForm">
+      <input placeholder="Von" type="text" id="fartVonAnbieter" [(ngModel)]="startort"
+             class="form-control"><br>
+      <input placeholder="Nach" type="text" id="fartNachAnbieter" [(ngModel)]="ziel"
+             class="form-control"><br>
+
+
+      <! -- ich kann mitnehmen -->
+      <! -- Für -->
+      <! -- Kapazität  -->
+
+      <button type="submit" (click)="offerRide()" class="btn btn-primary">Fahrt anbieten</button>
+    </form>
+  </div>
+
+</div>
