@@ -1,0 +1,98 @@
+### Gesuch einstellen
+
+POST /api/requests/createRequest HTTP/2
+host: localhost:3000
+Set-Cookie: connect.sid=s%3ARo-qeWvEPLsWHX79oFrdUYyd4I5M8Kbl.s0ZTd3IdON3dVBNYmjx7BKOjx7QJeBEm%2FPWpF2vJBCk; Path=/; HttpOnly
+accept: application/json
+content-type: application/json
+
+{
+  "email": "mark.zukerberg@gmail.com",
+  "zeit": "2022-06-20T16:50:06.419Z",
+  "kosten": 50,
+  "sitzplaetze": 2,
+  "frachtplatz": 4,
+  "startort": "Gießen",
+  "ziel": "Frankfurt"
+}
+
+
+### spezifisches Gesuch laden
+
+
+GET /api/requests/getRequest HTTP/2
+host: localhost:3000
+Set-Cookie: connect.sid=s%3ARo-qeWvEPLsWHX79oFrdUYyd4I5M8Kbl.s0ZTd3IdON3dVBNYmjx7BKOjx7QJeBEm%2FPWpF2vJBCk; Path=/; HttpOnly
+accept: application/json
+content-type: application/json
+
+{
+    "id": "0" 
+}
+
+
+### spezifisches Gesuch löschen
+
+
+DELETE /api/requests/deleteRequest HTTP/2
+host: localhost:3000
+Set-Cookie: connect.sid=s%3Aq5cMzXUxLvtW2JNYScU2Lksmyy6cXnpl.DmXgAqjKlVIPU09XchBxmDG58WblGETWiUuefIysRmk; Path=/; HttpOnly
+accept: application/json
+content-type: application/json
+
+{
+  "id": "0"
+}
+
+
+### Angebot editieren
+
+
+PUT /api/requests/updateRequest HTTP/2
+host: localhost:3000
+Set-Cookie: connect.sid=s%3ARo-qeWvEPLsWHX79oFrdUYyd4I5M8Kbl.s0ZTd3IdON3dVBNYmjx7BKOjx7QJeBEm%2FPWpF2vJBCk; Path=/; HttpOnly
+accept: application/json
+content-type: application/json
+
+{
+  "email": "mark.zukerberg@gmail.com",
+  "zeit": "2022-06-20T16:50:06.419Z",
+  "kosten": 100,
+  "sitzplaetze": 2,
+  "frachtplatz": 4,
+  "startort": "Gießen",
+  "ziel": "Berlin"
+}
+
+###
+
+GET /api/requests/getAllRequests HTTP/2
+host: localhost:3000
+Set-Cookie: connect.sid=s%3ARo-qeWvEPLsWHX79oFrdUYyd4I5M8Kbl.s0ZTd3IdON3dVBNYmjx7BKOjx7QJeBEm%2FPWpF2vJBCk; Path=/; HttpOnly
+accept: application/json
+content-type: application/json
+
+{
+  "id": "0"
+}
+
+###
+
+PUT /api/requests/takeOffer HTTP/2
+host: localhost:3000
+Set-Cookie: connect.sid=s%3ARo-qeWvEPLsWHX79oFrdUYyd4I5M8Kbl.s0ZTd3IdON3dVBNYmjx7BKOjx7QJeBEm%2FPWpF2vJBCk; Path=/; HttpOnly
+accept: application/json
+content-type: application/json
+
+{
+  "email": "mark.zukerberg@gmail.com",
+  "zeit": "2022-06-20T16:50:06.419Z",
+  "bucher": "i take it",
+  "kosten": 100,
+  "sitzplaetze": 2,
+  "frachtplatz": 4,
+  "startort": "Gießen",
+  "ziel": "Berlin"
+}
+
+
