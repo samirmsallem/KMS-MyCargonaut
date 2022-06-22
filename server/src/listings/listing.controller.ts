@@ -1,3 +1,4 @@
+/* eslint-disable */
 import {Controller, Post, Body, UseGuards, Request, Get, Put, Delete} from '@nestjs/common';
 import { ListingService } from './listing.service';
 import {AuthenticatedGuard} from "../auth/authenticated.guard";

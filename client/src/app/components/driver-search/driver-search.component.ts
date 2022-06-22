@@ -9,7 +9,7 @@ import {ListingService} from "../../service/listing.service";
 export class DriverSearchComponent implements OnInit {
 
   email = '';
-  zeit = new Date();
+  zeit = new Date(); // richtig
   kosten = 0;
   sitzplaetze = 0;
   frachtplatz = 0;

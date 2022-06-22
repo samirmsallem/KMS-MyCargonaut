@@ -1,3 +1,4 @@
+/* eslint-disable */
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 
@@ -63,4 +64,38 @@ export class ListingService {
       ziel: ziel,
     })
   }
+
+  async updateListing(email: string, zeit: Date, bucher: string, kosten: number, sitzplaetze: number, frachtplatz: number,startort: string,ziel: string) {
+    return this.http.put(this.localhostURL + "/users/updateListing", {
+      email: email,
+      zeit: zeit,
+      bucher: bucher,
+      kosten: kosten,
+      sitzplaetze: sitzplaetze,
+      frachtplatz: frachtplatz,
+      startort: startort,
+      ziel: ziel
+    }, httpOptions).toPromise()
+      .then((res: any) => {
+        console.log('listing was updated' + res);
+      }).catch((err: any) => {
+        console.log('listing update failed' + err);
+      })
+  }
+
+  async deleteListing(id: string): Promise<void> {
+    console.log("Deleting in progress... " + id)
+    return this.http.post(this.localhostURL + "/users/deleteListing", {id}, httpOptions).toPromise()
+      .then((res: any) => {
+        this.listingArray = [];
+        for (let i = 0; i < res.listing.length; i++) {
+          this.listingArray.push(res.listings[i].email, res.listings[i].zeit, res.listings[i].kosten, res.listings[i].sitzplaetze, res.listings[i].frachtplatz, res.listings[i].startort, res.listings[i].ziel)
+        }
+      }).catch(() => {
+        console.log('could not get listings ');
+      })
+
+  };
+
+  // vehicles?
 }
