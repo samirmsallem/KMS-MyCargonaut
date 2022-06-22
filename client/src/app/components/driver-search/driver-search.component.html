@@ -6,12 +6,13 @@
              class="form-control"><br>
       <input placeholder="Nach" type="text" id="fartNachSuchende" [(ngModel)]="ziel"
              class="form-control"><br>
-      <input placeholder="Worum geht es" type="text" id="InfoForFart" [(ngModel)]="InfoForFart"
+      <input placeholder="zeit" type="text" id="zeit" [(ngModel)]="zeit"
+             class="form-control"><br>
+      <input placeholder="sitzplaetze" type="text" id="sitzplaetze" [(ngModel)]="sitzplaetze"
+             class="form-control"><br>
+      <input placeholder="frachtplatz" type="text" id="frachtplatz" [(ngModel)]="frachtplatz"
              class="form-control"><br>
 
-      <! -- gegenstaende hinzufügen -->
-      <! -- date -->
-      <! -- time -->
 
       <button type="submit" (click)="getAllListings()" class="btn btn-primary">Fahrer finden</button>
     </form>
@@ -24,13 +25,16 @@
              class="form-control"><br>
       <input placeholder="Nach" type="text" id="fartNachAnbieter" [(ngModel)]="ziel"
              class="form-control"><br>
+      <input placeholder="sitzplaetze" type="text" id="sitzplaetzeAnbieter" [(ngModel)]="sitzplaetze"
+             class="form-control"><br>
+      <input placeholder="frachtplatz" type="text" id="frachtplatzAnbieter" [(ngModel)]="frachtplatz"
+             class="form-control"><br>
+      <input placeholder="coins" type="text" id="coinsAnbieter" [(ngModel)]="kosten"
+             class="form-control"><br>
 
-
-      <! -- ich kann mitnehmen -->
-      <! -- Für -->
-      <! -- Kapazität  -->
 
       <button type="submit" (click)="offerRide()" class="btn btn-primary">Fahrt anbieten</button>
+      <! -- todo später dropdown button -->
     </form>
   </div>
 
