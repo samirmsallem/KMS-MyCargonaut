@@ -8,6 +8,8 @@ import {ListingService} from "../../service/listing.service";
 })
 export class DriverSearchComponent implements OnInit {
 
+  constructor(private listingService: ListingService) { }
+
   email = '';
   zeit = new Date(); // richtig
   kosten = 0;
@@ -16,12 +18,20 @@ export class DriverSearchComponent implements OnInit {
 
   startort = '';
   ziel = '';
-
   bucher = '';
 
-  InfoForFart = '';
 
-  constructor(private listingService: ListingService) { }
+  emailAnbieter = '';
+  zeitAnbieter = new Date(); // richtig
+  kostenAnbieter = 0;
+  sitzplaetzeAnbieter = 0;
+  frachtplatzAnbieter = 0;
+
+  startortAnbieter = '';
+  zielAnbieter = '';
+  bucherAnbieter = '';
+
+
 
   listingsArray: any;
 
