@@ -1,5 +1,6 @@
 import {Controller, Post, Body, UseGuards, Request, Get, Put, Delete} from '@nestjs/common';
 import { ListingService } from './listing.service';
+import {AuthenticatedGuard} from "../auth/authenticated.guard";
 
 @Controller('api/listings')
 export class ListingController {
@@ -7,6 +8,7 @@ export class ListingController {
 
 
     // Angebot erstellen
+    @UseGuards(AuthenticatedGuard)
     @Post('/createListing')
     async addListing(
         @Body('email') email: string,
@@ -31,6 +33,7 @@ export class ListingController {
 
 
     // get spezifisches Angebot
+    @UseGuards(AuthenticatedGuard)
     @Get('/getListing')
     async getListing(
         @Request() req
@@ -42,6 +45,7 @@ export class ListingController {
 
 
     // löschen spezifisches Angebot
+    @UseGuards(AuthenticatedGuard)
     @Delete('/deleteListing')
     async deleteListing(
         @Request() req
@@ -54,12 +58,14 @@ export class ListingController {
     }
 
     @Get('/getAllListings')
+    @UseGuards(AuthenticatedGuard)
     async getAllListings() {
         const listings = await this.listingService.getListings();
         return listings
     }
 
     // ändern spezifisches Angebot
+    @UseGuards(AuthenticatedGuard)
     @Put('/updateListing')
     async updateListing(
         @Request() req
@@ -85,6 +91,7 @@ export class ListingController {
 
     // geht in request controller
     // PUT: Angebot annehmen
+    @UseGuards(AuthenticatedGuard)
     @Put('/takeOffer')
     async takeOffer(
         @Request() req
@@ -108,6 +115,7 @@ export class ListingController {
 
 
     // POST: Angebot bieten
+    @UseGuards(AuthenticatedGuard)
     @Post('/giveOffer')
     async giveOffer(
         @Request() req
