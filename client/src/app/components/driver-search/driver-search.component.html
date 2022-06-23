@@ -1,4 +1,19 @@
 <div class="container-fluid">
+
+  <div class="container-fluid">
+    <h2>Angebote</h2><br>
+   <div *ngFor="let listing of listingsArray">
+     <div class="card m-3" style="width: 18rem;">
+       <div class="card-body">
+         <h5 class="card-title">Angebot</h5>
+         <h6 class="card-subtitle mb-2 text-muted">{{listing}}</h6>
+       </div>
+     </div>
+   </div>
+  </div>
+
+
+
   <div class="container-fluid">
     <h2>Finde deinen Fahrer</h2><br>
     <form id="searchForm">

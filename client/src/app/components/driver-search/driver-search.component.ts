@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ListingService} from "../../service/listing.service";
 import {Router} from "@angular/router";
+import {Listing} from "../../../../../server/src/listings/listing.model";
 
 @Component({
   selector: 'app-driver-search',
@@ -12,6 +13,8 @@ export class DriverSearchComponent implements OnInit {
   constructor(private listingService: ListingService, private _router: Router) {
     if(localStorage.getItem('authenticated') == 'false'){
       this._router.navigate([''])
+    } else {
+      this.getAllListings()
     }
 }
 
@@ -27,7 +30,7 @@ export class DriverSearchComponent implements OnInit {
 
 
 
-  listingsArray: any;
+  listingsArray: Listing[] = [];
 
   ngOnInit(): void {
   }
