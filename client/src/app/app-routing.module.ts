@@ -3,10 +3,12 @@ import { RouterModule, Routes } from '@angular/router';
 import {LoginComponent} from "./components/login/login.component";
 import {AppComponent} from "./app.component";
 import {ProfilComponent} from "./components/profil/profil.component";
+import {DriverSearchComponent} from "./components/driver-search/driver-search.component";
 
 const routes: Routes = [
   {path: '', component: LoginComponent},
   {path: 'profil', component: ProfilComponent},
+  {path: 'driverSearch', component: DriverSearchComponent}
 ];
 
 @NgModule({

@@ -1,0 +1,41 @@
+<div class="container-fluid">
+  <div class="container-fluid">
+    <h2>Finde deinen Fahrer</h2><br>
+    <form id="searchForm">
+      <input placeholder="Von" type="text"  [(ngModel)]="startort"
+             class="form-control"><br>
+      <input placeholder="Nach" type="text"  [(ngModel)]="ziel"
+             class="form-control"><br>
+      <input placeholder="zeit" type="text"  [(ngModel)]="zeit"
+             class="form-control"><br>
+      <input placeholder="sitzplaetze" type="text"  [(ngModel)]="sitzplaetze"
+             class="form-control"><br>
+      <input placeholder="frachtplatz" type="text"  [(ngModel)]="frachtplatz"
+             class="form-control"><br>
+
+
+      <button type="submit" (click)="getAllListings()" class="btn btn-primary">Fahrer finden</button>
+    </form>
+  </div>
+
+  <div class="container-fluid">
+    <h2>Jetzt selbst eine Fahrt anbieten</h2><br>
+    <form id="SelbstAnbietenForm">
+      <input placeholder="VonAnbieter" type="text"  [(ngModel)]="startortAnbieter"
+             class="form-control"><br>
+      <input placeholder="NachAnbieter" type="text"  [(ngModel)]="zielAnbieter"
+             class="form-control"><br>
+      <input placeholder="sitzplaetzeAnbieter" type="text"  [(ngModel)]="sitzplaetzeAnbieter"
+             class="form-control"><br>
+      <input placeholder="frachtplatzAnbieter" type="text"  [(ngModel)]="frachtplatzAnbieter"
+             class="form-control"><br>
+      <input placeholder="coinsAnbieter" type="text"  [(ngModel)]="kostenAnbieter"
+             class="form-control"><br>
+
+
+      <button type="submit" (click)="offerRide()" class="btn btn-primary">Fahrt anbieten</button>
+      <! -- todo später dropdown button -->
+    </form>
+  </div>
+
+</div>

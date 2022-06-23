@@ -8,13 +8,18 @@ import { LoginComponent } from './components/login/login.component';
 import { ProfilComponent } from './components/profil/profil.component';
 import {FormsModule} from "@angular/forms";
 import { HeaderComponent } from './components/header/header.component';
+import { DriverSearchComponent } from './components/driver-search/driver-search.component';
+
+//import {ListingModule} from  '../'
+
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     ProfilComponent,
-    HeaderComponent
+    HeaderComponent,
+    DriverSearchComponent
   ],
   imports: [
     BrowserModule,
@@ -22,6 +27,7 @@ import { HeaderComponent } from './components/header/header.component';
     FormsModule,
     RouterModule,
     HttpClientModule,
+    //ListingModule
   ],
   providers: [LoginComponent],
   bootstrap: [AppComponent]
