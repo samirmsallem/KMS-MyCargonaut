@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { DriverSearchComponent } from './driver-search.component';
+import {HttpClientModule} from "@angular/common/http";
 
 describe('DriverSearchComponent', () => {
   let component: DriverSearchComponent;
@@ -8,7 +9,8 @@ describe('DriverSearchComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ DriverSearchComponent ]
+      declarations: [ DriverSearchComponent ],
+      imports: [HttpClientModule]
     })
     .compileComponents();
 
