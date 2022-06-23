@@ -1,6 +1,7 @@
 /* eslint-disable */
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {environment} from "../../environments/environment";
 
 const httpOptions = {
   headers : new HttpHeaders({'Content-Type': 'application/json'})
@@ -35,13 +36,13 @@ export class ListingService {
   listingArray: any[] = [];
   //currentUser: any;
 
-  private localhostURL: string = "http://localhost:3000/";
+  private localhostURL: string = environment.backendUrl;
 
   constructor(private http: HttpClient) {
   }
 
   getAllListings() {
-   return this.http.get(this.localhostURL + "api/listings/getAllListings ",httpOptions)
+   return this.http.get(this.localhostURL + "/listings/getAllListings ",httpOptions)
      .toPromise()
      .then((res: any) => {
        for (let i = 0; i < res.listings.length; i++) {
