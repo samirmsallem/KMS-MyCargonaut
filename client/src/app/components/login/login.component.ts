@@ -32,27 +32,29 @@ export class LoginComponent implements OnInit {
 
   async logIn() {
     console.log(this.loginEmail, this.loginPassword)
-    let res = await this.userService.logIn(this.loginEmail, this.loginPassword);
-    if(res){
-      this._router.navigate(['dashboard'])
-    }
-    this.loginEmail = '';
-    this.loginPassword = '';
+    this.userService.logIn(this.loginEmail, this.loginPassword).then(res => {
+      if(res){
+        this._router.navigate(['dashboard'])
+      }
+      this.loginEmail = '';
+      this.loginPassword = '';
+    });
   }
 
 
   async registerUser() {
     this.userService.registerUser(this.firstname, this.lastname, this.email, this.password, this.description).then(async res => {
       if (res) {
-        let res = await this.userService.logIn(this.email, this.password);
-        if (res) {
-          this._router.navigate(['dashboard'])
-        }
-        this.firstname = '';
-        this.lastname = '';
-        this.email = '';
-        this.password = '';
-        this.description = '';
+        this.userService.logIn(this.email, this.password).then(res => {
+          if (res) {
+            this._router.navigate(['dashboard'])
+          }
+          this.firstname = '';
+          this.lastname = '';
+          this.email = '';
+          this.password = '';
+          this.description = '';
+        });
       }
     })
   }
