@@ -8,7 +8,7 @@ import {DriverSearchComponent} from "./components/driver-search/driver-search.co
 const routes: Routes = [
   {path: '', component: LoginComponent},
   {path: 'profil', component: ProfilComponent},
-  {path: 'driverSearch', component: DriverSearchComponent}
+  {path: 'dashboard', component: DriverSearchComponent}
 ];
 
 @NgModule({

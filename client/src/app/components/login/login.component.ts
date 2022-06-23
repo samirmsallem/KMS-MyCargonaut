@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {UserService} from "../../service/user.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-login',
@@ -19,7 +20,10 @@ export class LoginComponent implements OnInit {
   loginPassword = '';
 
 
-  constructor(private userService: UserService) {
+  constructor(private userService: UserService, private _router: Router) {
+    if(localStorage.getItem('authenticated') == 'true'){
+      this._router.navigate(['dashboard'])
+    }
   }
 
   ngOnInit(): void {
@@ -28,19 +32,29 @@ export class LoginComponent implements OnInit {
 
   async logIn() {
     console.log(this.loginEmail, this.loginPassword)
-    await this.userService.logIn(this.loginEmail, this.loginPassword);
+    let res = await this.userService.logIn(this.loginEmail, this.loginPassword);
+    if(res){
+      this._router.navigate(['dashboard'])
+    }
     this.loginEmail = '';
     this.loginPassword = '';
   }
 
 
   async registerUser() {
-    await this.userService.registerUser(this.firstname, this.lastname, this.email, this.password, this.description);
-    this.firstname = '';
-    this.lastname = '';
-    this.email = '';
-    this.password = '';
-    this.description = '';
+    this.userService.registerUser(this.firstname, this.lastname, this.email, this.password, this.description).then(async res => {
+      if (res) {
+        let res = await this.userService.logIn(this.email, this.password);
+        if (res) {
+          this._router.navigate(['dashboard'])
+        }
+        this.firstname = '';
+        this.lastname = '';
+        this.email = '';
+        this.password = '';
+        this.description = '';
+      }
+    })
   }
 
 }

@@ -49,7 +49,7 @@ export class UserService {
     constructor(private http: HttpClient) {
     }
 
-    registerUser(firstname: string, lastname: string, email: string, password: string, description: string) {
+    registerUser(firstname: string, lastname: string, email: string, password: string, description: string): Promise<boolean> {
       return this.http.post(this.localhostURL + "/users/createUser", {
         firstname: firstname,
         lastname: lastname,
@@ -59,13 +59,15 @@ export class UserService {
       }, httpOptions).toPromise()
         .then((res: any) => {
           console.log('user was created' + res);
+          return true;
         }).catch((err: any) => {
           console.log('user creation failed' + err);
+          return false;
         })
     }
-    logIn(email: string, password: string) {
+    async logIn(email: string, password: string): Promise<boolean> {
       console.log("Login" + email + " " + password)
-      this.http.post(this.localhostURL + "/users/loginUser",
+      return this.http.post(this.localhostURL + "/users/loginUser",
         {
           "email": email,
           "password": password,
@@ -73,9 +75,12 @@ export class UserService {
         .toPromise()
         .then((res: any) => {
           console.log('login successful' + res);
+          localStorage.setItem('authenticated', 'true');
+          return true;
         }).catch((err: any) => {
-        console.log('login failed' + err);
-      })
+          console.log('login failed' + err);
+          return false;
+        })
     }
   logOut() {
     console.log("Logout")
@@ -84,6 +89,7 @@ export class UserService {
       .toPromise()
       .then((res: any) => {
         console.log('logout successful' + res);
+        localStorage.setItem('authenticated', 'false');
       }).catch((err: any) => {
       console.log('logout failed' + err);
     })
