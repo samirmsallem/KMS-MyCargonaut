@@ -2,16 +2,11 @@
   <div class="container-fluid">
     <h2>Finde deinen Fahrer</h2><br>
     <form id="searchForm">
-      <input placeholder="Von" type="text"  [(ngModel)]="startort"
-             class="form-control"><br>
-      <input placeholder="Nach" type="text"  [(ngModel)]="ziel"
-             class="form-control"><br>
-      <input placeholder="zeit" type="text"  [(ngModel)]="zeit"
-             class="form-control"><br>
-      <input placeholder="sitzplaetze" type="text"  [(ngModel)]="sitzplaetze"
-             class="form-control"><br>
-      <input placeholder="frachtplatz" type="text"  [(ngModel)]="frachtplatz"
-             class="form-control"><br>
+      <input #from placeholder="Von" type="text" class="form-control"><br>
+      <input #to placeholder="Nach" type="text" class="form-control"><br>
+      <input #time placeholder="zeit" type="text" class="form-control"><br>
+      <input #seats placeholder="sitzplaetze" type="text" class="form-control"><br>
+      <input #storage type="text" class="form-control" placeholder="frachtplatz"><br>
 
 
       <button type="submit" (click)="getAllListings()" class="btn btn-primary">Fahrer finden</button>
@@ -21,19 +16,14 @@
   <div class="container-fluid">
     <h2>Jetzt selbst eine Fahrt anbieten</h2><br>
     <form id="SelbstAnbietenForm">
-      <input placeholder="VonAnbieter" type="text"  [(ngModel)]="startortAnbieter"
-             class="form-control"><br>
-      <input placeholder="NachAnbieter" type="text"  [(ngModel)]="zielAnbieter"
-             class="form-control"><br>
-      <input placeholder="sitzplaetzeAnbieter" type="text"  [(ngModel)]="sitzplaetzeAnbieter"
-             class="form-control"><br>
-      <input placeholder="frachtplatzAnbieter" type="text"  [(ngModel)]="frachtplatzAnbieter"
-             class="form-control"><br>
-      <input placeholder="coinsAnbieter" type="text"  [(ngModel)]="kostenAnbieter"
-             class="form-control"><br>
+      <input #fromA placeholder="VonAnbieter" type="text" class="form-control"><br>
+      <input #toA placeholder="NachAnbieter" type="text" class="form-control"><br>
+      <input #spacesA placeholder="sitzplaetzeAnbieter" type="text" class="form-control"><br>
+      <input #storageA placeholder="frachtplatzAnbieter" type="text" class="form-control"><br>
+      <input #coins placeholder="coinsAnbieter" type="text" class="form-control"><br>
 
 
-      <button type="submit" (click)="offerRide()" class="btn btn-primary">Fahrt anbieten</button>
+      <button type="submit" (click)="offerRide('', 'TestUser', coins.valueAsNumber, spacesA.valueAsNumber, storageA.valueAsNumber, fromA.value, toA.value)" class="btn btn-primary">Fahrt anbieten</button>
       <! -- todo später dropdown button -->
     </form>
   </div>

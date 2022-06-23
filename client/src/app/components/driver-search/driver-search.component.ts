@@ -10,17 +10,6 @@ export class DriverSearchComponent implements OnInit {
 
   constructor(private listingService: ListingService) { }
 
-  email = '';
-  zeit = new Date(); // richtig
-  kosten = 0;
-  sitzplaetze = 0;
-  frachtplatz = 0;
-
-  startort = '';
-  ziel = '';
-  bucher = '';
-
-
   emailAnbieter = '';
   zeitAnbieter = new Date(); // richtig
   kostenAnbieter = 0;
@@ -47,8 +36,9 @@ export class DriverSearchComponent implements OnInit {
     })
   }
 
-  offerRide() {
-     this.listingService.addOffer(this.email, this.zeit, this.bucher, this.kosten, this.sitzplaetze, this.frachtplatz, this.startort, this.ziel).then(() => {
+  offerRide(email: string, bucher: string, kosten: number, sitzplaetze: number, frachtplatz: number, startort: string, ziel: string) {
+    console.log(startort)
+     this.listingService.addOffer(email, new Date(), bucher, kosten, sitzplaetze, frachtplatz, startort, ziel).then(() => {
        this.listingsArray = this.listingService.listingArray;
        console.log("Successfully added offer")
      }).catch(() => {

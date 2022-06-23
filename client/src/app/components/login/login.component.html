@@ -1,6 +1,6 @@
 <div class="container-fluid">
   <div class="container-fluid">
-    <div class="container-fluid">
+    <div class="container-fluid" *ngIf="showLogin">
       <div class="col-12 text-center">
         <h2>Login:</h2><br>
         <form  id="loginForm">
@@ -10,6 +10,7 @@
                  class="form-control">
           <button type="submit" (click)="logIn()" class="btn align-content-center text-center mt-4 mb-4">Anmelden</button>
         </form>
+        <label class="btn align-content-center" (click)="showLogin = false">Noch keinen Account?</label>
         <br>
         <br>
         <br>
@@ -17,7 +18,7 @@
     </div>
 
 
-    <div class="container-fluid">
+    <div class="container-fluid" *ngIf="!showLogin">
       <div class="col-12 text-center">
         <h2>Konto anlegen:</h2><br>
         <form id="registerForm">
@@ -35,6 +36,7 @@
                   class="btn align-content-center text-center btn-block mt-4 mb-4">Registrieren
           </button>
         </form>
+        <label class="btn align-content-center" (click)="showLogin = true">Bereits registriert?</label>
       </div>
     </div>
   </div>
