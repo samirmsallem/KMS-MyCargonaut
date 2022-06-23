@@ -8,6 +8,8 @@ import {UserService} from "../../service/user.service";
 })
 
 export class LoginComponent implements OnInit {
+  showLogin = true;
+
   firstname = '';
   lastname = '';
   email = '';

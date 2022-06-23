@@ -53,7 +53,7 @@ export class ListingService {
   }
 
   async addOffer(email: string, zeit: Date, bucher: string, kosten: number, sitzplaetze: number, frachtplatz: number,startort: string,ziel: string) {
-    return this.http.post(this.localhostURL + "api/listings/createListing", {
+    return this.http.post(this.localhostURL + "/listings/createListing", {
       email: email,
       zeit: zeit,
       bucher: bucher,
@@ -62,7 +62,7 @@ export class ListingService {
       frachtplatz: frachtplatz,
       startort: startort,
       ziel: ziel,
-    })
+    }, httpOptions)
   }
 
   async updateListing(email: string, zeit: Date, bucher: string, kosten: number, sitzplaetze: number, frachtplatz: number,startort: string,ziel: string) {
