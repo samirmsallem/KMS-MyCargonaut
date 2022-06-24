@@ -9,6 +9,7 @@ import { ProfilComponent } from './components/profil/profil.component';
 import {FormsModule} from "@angular/forms";
 import { HeaderComponent } from './components/header/header.component';
 import { DriverSearchComponent } from './components/driver-search/driver-search.component';
+import { ListingsSearchResultComponent } from './components/listings-search-result/listings-search-result.component';
 
 //import {ListingModule} from  '../'
 
@@ -19,7 +20,8 @@ import { DriverSearchComponent } from './components/driver-search/driver-search.
     LoginComponent,
     ProfilComponent,
     HeaderComponent,
-    DriverSearchComponent
+    DriverSearchComponent,
+    ListingsSearchResultComponent
   ],
   imports: [
     BrowserModule,
