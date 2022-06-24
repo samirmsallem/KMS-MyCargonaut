@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {ListingService} from "../../service/listing.service";
+import {ListingService} from "../service/listing.service";
 import {Router} from "@angular/router";
-import {Listing} from "../../../../../server/src/listings/listing.model";
+
 
 @Component({
   selector: 'app-driver-search',
@@ -11,10 +11,8 @@ import {Listing} from "../../../../../server/src/listings/listing.model";
 export class DriverSearchComponent implements OnInit {
 
   constructor(private listingService: ListingService, private _router: Router) {
-    if(localStorage.getItem('authenticated') == 'false'){
+    if(localStorage.getItem('authenticated') === null){
       this._router.navigate([''])
-    } else {
-      this.getAllListings()
     }
 }
 
@@ -29,25 +27,16 @@ export class DriverSearchComponent implements OnInit {
   bucherAnbieter = '';
 
 
-
-  listingsArray: Listing[] = [];
-
   ngOnInit(): void {
   }
 
-   getAllListings() {
-     this.listingService.getAllListings().then(() =>{
-      this.listingsArray = this.listingService.listingArray;
-      console.log("Successfully got listing")
-    }).catch(() => {
-      console.log("Error");
-    })
+  searchRide() {
+
   }
 
   offerRide(email: string, bucher: string, kosten: number, sitzplaetze: number, frachtplatz: number, startort: string, ziel: string) {
     console.log(startort)
      this.listingService.addOffer(email, new Date(), bucher, kosten, sitzplaetze, frachtplatz, startort, ziel).then(() => {
-       this.listingsArray = this.listingService.listingArray;
        console.log("Successfully added offer")
      }).catch(() => {
        console.log("Error");

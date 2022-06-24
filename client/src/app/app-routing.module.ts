@@ -1,14 +1,15 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import {LoginComponent} from "./components/login/login.component";
-import {AppComponent} from "./app.component";
-import {ProfilComponent} from "./components/profil/profil.component";
-import {DriverSearchComponent} from "./components/driver-search/driver-search.component";
+import {LoginComponent} from "./login/login.component";
+import {ProfilComponent} from "./profil/profil.component";
+import {DashboardComponent} from "./dashboard/dashboard.component";
+import {CreationComponent} from "./creation/creation.component";
 
 const routes: Routes = [
   {path: '', component: LoginComponent},
-  {path: 'profil', component: ProfilComponent},
-  {path: 'dashboard', component: DriverSearchComponent}
+  {path: 'profile', component: ProfilComponent},
+  {path: 'offer', component: CreationComponent},
+  {path: 'dashboard', component: DashboardComponent}
 ];
 
 @NgModule({

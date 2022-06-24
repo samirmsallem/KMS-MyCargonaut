@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {UserService} from "../../service/user.service";
+import {UserService} from "../service/user.service";
 import {Router} from "@angular/router";
 
 @Component({
@@ -10,7 +10,7 @@ import {Router} from "@angular/router";
 export class ProfilComponent implements OnInit {
 
   constructor(private userService: UserService, private _router: Router) {
-    if (localStorage.getItem('authenticated') == 'false') {
+    if (localStorage.getItem('authenticated') === null) {
       this._router.navigate([''])
     }
   }

@@ -4,11 +4,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {RouterModule} from "@angular/router";
 import {HttpClientModule} from "@angular/common/http";
-import { LoginComponent } from './components/login/login.component';
-import { ProfilComponent } from './components/profil/profil.component';
+import { LoginComponent } from './login/login.component';
+import { ProfilComponent } from './profil/profil.component';
 import {FormsModule} from "@angular/forms";
-import { HeaderComponent } from './components/header/header.component';
-import { DriverSearchComponent } from './components/driver-search/driver-search.component';
+import { HeaderComponent } from './header/header.component';
+import { DriverSearchComponent } from './driver-search/driver-search.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { CreationComponent } from './creation/creation.component';
+import { DriverOfferComponent } from './driver-offer/driver-offer.component';
 
 //import {ListingModule} from  '../'
 
@@ -19,7 +22,10 @@ import { DriverSearchComponent } from './components/driver-search/driver-search.
     LoginComponent,
     ProfilComponent,
     HeaderComponent,
-    DriverSearchComponent
+    DriverSearchComponent,
+    DashboardComponent,
+    CreationComponent,
+    DriverOfferComponent
   ],
   imports: [
     BrowserModule,

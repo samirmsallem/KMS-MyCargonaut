@@ -1,6 +1,5 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {User} from "../../../../server/src/users/user.model";
 import {environment} from "../../environments/environment";
 
 const httpOptions = {
@@ -49,6 +48,10 @@ export class UserService {
     constructor(private http: HttpClient) {
     }
 
+    isLoggedIn() : boolean {
+      return !localStorage.getItem('authenticated') === null;
+    }
+
     registerUser(firstname: string, lastname: string, email: string, password: string, description: string): Promise<boolean> {
       return this.http.post(this.localhostURL + "/users/createUser", {
         firstname: firstname,
@@ -89,7 +92,7 @@ export class UserService {
       .toPromise()
       .then((res: any) => {
         console.log('logout successful' + res);
-        localStorage.setItem('authenticated', 'false');
+        localStorage.removeItem('authenticated');
       }).catch((err: any) => {
       console.log('logout failed' + err);
     })

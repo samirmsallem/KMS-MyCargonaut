@@ -2,6 +2,8 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {environment} from "../../environments/environment";
+import {Listing} from "../model/Listing";
+import {ListingsDto} from "../model/ListingsDto";
 
 const httpOptions = {
   headers : new HttpHeaders({'Content-Type': 'application/json'})
@@ -33,7 +35,7 @@ class listingClass {
 })
 
 export class ListingService {
-  listingArray: any[] = [];
+  listingArray: Listing[] = [];
   //currentUser: any;
 
   private localhostURL: string = environment.backendUrl;
@@ -41,16 +43,18 @@ export class ListingService {
   constructor(private http: HttpClient) {
   }
 
-  getAllListings() {
-   return this.http.get(this.localhostURL + "/listings/getAllListings ",httpOptions)
-     .toPromise()
-     .then((res: any) => {
-       for (let i = 0; i < res.listings.length; i++) {
-         this.listingArray.push([res.listings[i].email, res.listings[i].zeit, res.listings[i].kosten, res.listings[i].sitzplaetze, res.listings[i].frachtplatz, res.listings[i].startort, res.listings[i].ziel])
-       }
-     }).catch((err: any) => {
-       console.log('get listings failed' + err);
-     })
+  async getAllListings(): Promise<Listing[]> {
+    await this.http.get<Listing[]>(this.localhostURL + "/listings/getAllListings ", httpOptions)
+      .toPromise()
+      .then(res => {
+        const list: Listing[] | undefined = res
+        if (list) {
+          console.log("res" + list[1].email)
+        }
+
+      })
+    return this.listingArray
+
   }
 
   async addOffer(email: string, zeit: Date, bucher: string, kosten: number, sitzplaetze: number, frachtplatz: number,startort: string,ziel: string) {
