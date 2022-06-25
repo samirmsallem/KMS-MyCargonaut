@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ListingService} from "../service/listing.service";
 import {Listing} from "../model/Listing";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-dashboard',
@@ -9,8 +10,12 @@ import {Listing} from "../model/Listing";
 })
 export class DashboardComponent implements OnInit {
 
-  constructor(private listingsService: ListingService) {
-    this.getAllListings()
+  constructor(private listingsService: ListingService, private _router: Router) {
+    if(localStorage.getItem('authenticated') === null){
+      this._router.navigate([''])
+    } else {
+      this.getAllListings()
+    }
   }
 
   ngOnInit(): void {

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import {ListingService} from "../service/listing.service";
-import {Router} from "@angular/router";
 
 
 @Component({
@@ -10,11 +9,7 @@ import {Router} from "@angular/router";
 })
 export class DriverSearchComponent implements OnInit {
 
-  constructor(private listingService: ListingService, private _router: Router) {
-    if(localStorage.getItem('authenticated') === null){
-      this._router.navigate([''])
-    }
-}
+  constructor(private listingService: ListingService) {}
 
   emailAnbieter = '';
   zeitAnbieter = new Date(); // richtig
