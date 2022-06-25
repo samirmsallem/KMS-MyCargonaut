@@ -101,11 +101,11 @@ export class ListingService {
   };
 
   // requests
-  async addRequest(email: string, zeit: string, bucher: string, kosten: number, sitzplaetze: string, frachtplatz: string,startort: string,ziel: string) {
+  async addRequest(email: string, zeit: Date, sucher: string, kosten: number, sitzplaetze: number, frachtplatz: number,startort: string,ziel: string) {
     return this.http.post(this.localhostURL + "/requests/createRequest", {
       email: email,
       zeit: zeit,
-      bucher: bucher,
+      sucher: sucher,
       kosten: kosten,
       sitzplaetze: sitzplaetze,
       frachtplatz: frachtplatz,

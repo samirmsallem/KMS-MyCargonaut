@@ -1,3 +1,4 @@
+/* eslint-disable */
 import {Injectable, NotAcceptableException, UnauthorizedException} from '@nestjs/common';
 import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
@@ -12,6 +13,7 @@ export class ListingService {
     async insertListing(
         email: string,
         zeit: Date,
+        bucher: string,
 
         kosten: number,
         sitzplaetze: number,
@@ -22,6 +24,7 @@ export class ListingService {
         const newListing = new this.listingModel({
             email: email,
             zeit: zeit,
+            bucher: bucher,
 
             kosten: kosten,
             sitzplaetze: sitzplaetze,

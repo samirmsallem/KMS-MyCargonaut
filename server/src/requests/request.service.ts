@@ -1,3 +1,4 @@
+/* eslint-disable */
 import {Injectable, NotAcceptableException, UnauthorizedException} from '@nestjs/common';
 import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
@@ -11,6 +12,7 @@ export class RequestService {
     async insertRequest(
         email: string,
         zeit: Date,
+        sucher: string,
         kosten: number,
         sitzplaetze: number,
         frachtplatz: number,
@@ -20,6 +22,7 @@ export class RequestService {
         const newRequest = new this.requestModel({
             email: email,
             zeit: zeit,
+            sucher: sucher,
             kosten: kosten,
             sitzplaetze: sitzplaetze,
             frachtplatz: frachtplatz,
@@ -83,7 +86,7 @@ export class RequestService {
         const filter = {};
         const requests = await this.requestModel.find(filter).exec();
 
-        return requests as Listing[];
+        return requests as Request[];
     }
 
     // Angebot annehmen
