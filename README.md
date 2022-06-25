@@ -22,4 +22,5 @@
 3. Deployment Heroku (main-Branch only) https://mycargonaut-kms.herokuapp.com/
 4. Hound (Code review on PR)
 
+![cicd_workflow](doku/cicd_workflow.JPG)
 
