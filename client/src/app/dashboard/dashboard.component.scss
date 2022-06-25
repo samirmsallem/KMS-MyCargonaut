@@ -1,0 +1,42 @@
+input {
+  border-color: #005b52;
+  border-radius: 0;
+  border-width: medium;
+  border-right-width: 0;
+  border-left-width: 0;
+  border-top-width: 0;
+  color: #005b52;
+}
+
+input::placeholder {
+  color: #005b52;
+}
+
+
+textarea {
+  border-color: #005b52;
+  border-radius: 0;
+  border-width: medium;
+  border-right-width: 0;
+  border-left-width: 0;
+  border-top-width: 0;
+}
+
+textarea::placeholder {
+  color: #005b52;
+}
+
+button {
+  border-radius: 0;
+  background-color: #005b52;
+  color: white;
+  font-weight: bold;
+}
+
+h2 {
+  color: #005b52;
+}
+
+p {
+  color: #005b52;
+}

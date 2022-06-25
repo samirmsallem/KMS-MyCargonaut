@@ -27,6 +27,9 @@ export class DashboardComponent implements OnInit {
     this.listingsService.getAllListings().then(res => {
       this.listingsArray = res;
     })
+  }
 
+  takeAngebot() {
+    //this.listingsService.
   }
 }

@@ -3,7 +3,18 @@
   <div *ngFor="let item of listingsArray">
     <div class="card m-3" style="width: 18rem;">
       <div class="card-body">
-        <h5 class="card-title">{{item.startort}} ---> {{item.ziel}}</h5>
+        <p>startort</p>
+        <h5 class="card-title">{{item.startort}}</h5>
+        <p>ziel</p>
+        <h5 class="card-title">{{item.ziel}} </h5>
+        <p>frachtplatz</p>
+        <h5 class="card-title">{{item.frachtplatz}} </h5>
+        <p>sitzplaetze</p>
+        <h5 class="card-title">{{item.sitzplaetze}} </h5>
+        <p>kosten</p>
+        <h5 class="card-title">{{item.kosten}} </h5>
+        <button type="submit" (click)="takeAngebot()" class="btn btn-primary">Angebot annehmen</button>
+
       </div>
     </div>
   </div>
