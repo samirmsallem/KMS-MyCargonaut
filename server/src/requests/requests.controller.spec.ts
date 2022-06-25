@@ -1,16 +1,16 @@
 /* eslint-disable */
 import { Test, TestingModule } from '@nestjs/testing';
-import { ListingService } from './listing.service';
-import {User} from "../users/user.model";
-import {ListingController} from "./listing.controller";
+import { RequestController } from './request.controller';
+import {RequestService} from "./request.service";
 import {getModelToken} from "@nestjs/mongoose";
+import {Request} from "./request.model";
 import {Vehicle} from "../users/vehicles.model";
-import {Listing} from "./listing.model";
+import {User} from "../users/user.model";
 
-describe('ListingService', () => {
-    let service: ListingService;
+describe('ListingsController', () => {
+    let controller: RequestController;
 
-    const mockListing = (
+    const mockRequest = (
         email= "abc@thm.de",
         zeit = new Date(),
         kosten = 5,
@@ -18,7 +18,7 @@ describe('ListingService', () => {
         frachtplatz = 5,
         startort = "A",
         ziel = "B"
-    ): Listing => <Listing>({
+    ): Request => <Request>({
         email,
         zeit,
         kosten,
@@ -44,31 +44,17 @@ describe('ListingService', () => {
         description,
     });
 
-    const mockVehicle = (
-        _id = '1',
-        model = 'Test',
-        space = 1,
-        seats = 1,
-        email = 'test@mail.de'
-    ): Vehicle => <Vehicle>({
-        _id,
-        model,
-        space,
-        seats,
-        email
-    });
-
-
 
     beforeEach(async () => {
         const module: TestingModule = await Test.createTestingModule({
+            controllers: [RequestController],
             providers: [
-                ListingService,
+                RequestService,
                 {
-                    provide: getModelToken('Listing'),
+                    provide: getModelToken('Request'),
                     useValue: {
-                        new: jest.fn().mockResolvedValue(mockListing()),
-                        constructor: jest.fn().mockResolvedValue(mockListing()),
+                        new: jest.fn().mockResolvedValue(mockRequest()),
+                        constructor: jest.fn().mockResolvedValue(mockRequest()),
                         find: jest.fn(),
                         findOne: jest.fn(),
                         update: jest.fn(),
@@ -94,10 +80,10 @@ describe('ListingService', () => {
             ]
         }).compile();
 
-        service = module.get<ListingService>(ListingService);
+        controller = module.get<RequestController>(RequestController);
     });
 
     it('should be defined', () => {
-        expect(service).toBeDefined();
+        expect(controller).toBeDefined();
     });
 });
