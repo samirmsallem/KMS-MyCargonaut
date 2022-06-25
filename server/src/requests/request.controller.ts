@@ -10,7 +10,7 @@ export class RequestController {
     @Post('/createRequest')
     async addRequest(
         @Body('email') email: string,
-        @Body('zeit') zeit: Date,
+        @Body('zeit') zeit: Date, // string?
         @Body('kosten') kosten: number,
         @Body('sitzplaetze') sitzplaetze: number,
         @Body('frachtplatz') frachtplatz: number,

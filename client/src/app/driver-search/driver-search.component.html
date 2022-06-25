@@ -8,23 +8,10 @@
       <input #seats placeholder="sitzplaetze" type="text" class="form-control"><br>
       <input #storage type="text" class="form-control" placeholder="frachtplatz"><br>
 
-      <button type="submit" class="btn btn-primary">Fahrer finden</button>
+      <button type="submit" (click)="searchRide('',  time.value,'TestUser', 50, seats.value, storage.value, from.value, to.value)" class="btn btn-primary">Fahrer finden</button>
     </form>
   </div>
 
-  <div class="container-fluid">
-    <h2>Jetzt selbst eine Fahrt anbieten</h2><br>
-    <form id="SelbstAnbietenForm">
-      <input #fromA placeholder="VonAnbieter" type="text" class="form-control"><br>
-      <input #toA placeholder="NachAnbieter" type="text" class="form-control"><br>
-      <input #spacesA placeholder="sitzplaetzeAnbieter" type="text" class="form-control"><br>
-      <input #storageA placeholder="frachtplatzAnbieter" type="text" class="form-control"><br>
-      <input #coins placeholder="coinsAnbieter" type="text" class="form-control"><br>
 
-
-      <button type="submit" (click)="offerRide('', 'TestUser', coins.valueAsNumber, spacesA.valueAsNumber, storageA.valueAsNumber, fromA.value, toA.value)" class="btn btn-primary">Fahrt anbieten</button>
-      <! -- todo später dropdown button -->
-    </form>
-  </div>
 
 </div>
