@@ -1,16 +1,16 @@
 /* eslint-disable */
 import { Test, TestingModule } from '@nestjs/testing';
-import { ListingService } from './listing.service';
+import { RequestService } from './request.service';
 import {User} from "../users/user.model";
-import {ListingController} from "./listing.controller";
+import {RequestController} from "./request.controller";
 import {getModelToken} from "@nestjs/mongoose";
 import {Vehicle} from "../users/vehicles.model";
-import {Listing} from "./listing.model";
+import {Request} from "./request.model";
 
-describe('ListingService', () => {
-    let service: ListingService;
+describe('RequestService', () => {
+    let service: RequestService;
 
-    const mockListing = (
+    const mockRequest = (
         email= "abc@thm.de",
         zeit = new Date(),
         kosten = 5,
@@ -18,7 +18,7 @@ describe('ListingService', () => {
         frachtplatz = 5,
         startort = "A",
         ziel = "B"
-    ): Listing => <Listing>({
+    ): Request => <Request>({
         email,
         zeit,
         kosten,
@@ -63,12 +63,12 @@ describe('ListingService', () => {
     beforeEach(async () => {
         const module: TestingModule = await Test.createTestingModule({
             providers: [
-                ListingService,
+                RequestService,
                 {
-                    provide: getModelToken('Listing'),
+                    provide: getModelToken('Request'),
                     useValue: {
-                        new: jest.fn().mockResolvedValue(mockListing()),
-                        constructor: jest.fn().mockResolvedValue(mockListing()),
+                        new: jest.fn().mockResolvedValue(mockRequest()),
+                        constructor: jest.fn().mockResolvedValue(mockRequest()),
                         find: jest.fn(),
                         findOne: jest.fn(),
                         update: jest.fn(),
@@ -94,7 +94,7 @@ describe('ListingService', () => {
             ]
         }).compile();
 
-        service = module.get<ListingService>(ListingService);
+        service = module.get<RequestService>(RequestService);
     });
 
     it('should be defined', () => {
