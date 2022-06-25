@@ -56,13 +56,14 @@ export class LoginComponent implements OnInit {
           if (res) {
             this._router.navigate(['dashboard'])
           }
-          this.invalid_register = true;
           this.firstname = '';
           this.lastname = '';
           this.email = '';
           this.password = '';
           this.description = '';
         });
+      } else {
+        this.invalid_register = true;
       }
     })
   }
