@@ -1,1 +1,10 @@
-<p>{{this.listingsArray}}</p>
+<h1>Verfügbare Angebote</h1>
+<div class="card-group">
+  <div *ngFor="let item of listingsArray">
+    <div class="card m-3" style="width: 18rem;">
+      <div class="card-body">
+        <h5 class="card-title">{{item.startort}} ---> {{item.ziel}}</h5>
+      </div>
+    </div>
+  </div>
+</div>

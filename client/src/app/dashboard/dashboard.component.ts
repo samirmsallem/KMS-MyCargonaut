@@ -23,8 +23,10 @@ export class DashboardComponent implements OnInit {
 
   listingsArray: Listing[] = [];
 
-  async getAllListings() {
-    this.listingsArray = await this.listingsService.getAllListings()
-    console.log(this.listingsArray + "got successful")
+  getAllListings() {
+    this.listingsService.getAllListings().then(res => {
+      this.listingsArray = res;
+    })
+
   }
 }
