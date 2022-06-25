@@ -8,7 +8,7 @@
       <input #seats placeholder="sitzplaetze" type="text" class="form-control"><br>
       <input #storage type="text" class="form-control" placeholder="frachtplatz"><br>
 
-      <button type="submit" (click)="searchRide('',  time.value,'TestUser', 50, seats.value, storage.value, from.value, to.value)" class="btn btn-primary">Fahrer finden</button>
+      <button type="submit" (click)="searchRide('',  time.value,'TestUser', 50, seats.valueAsNumber, storage.valueAsNumber, from.value, to.value)" class="btn btn-primary">Fahrer finden</button>
     </form>
   </div>
 

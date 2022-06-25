@@ -1,3 +1,4 @@
+/* eslint-disable */
 import {Controller, Post, Body, UseGuards, Request, Get, Put, Delete} from '@nestjs/common';
 import { RequestService } from './request.service';
 
@@ -10,7 +11,8 @@ export class RequestController {
     @Post('/createRequest')
     async addRequest(
         @Body('email') email: string,
-        @Body('zeit') zeit: Date, // string?
+        @Body('zeit') zeit: Date,
+        @Body('sucher') sucher: string,
         @Body('kosten') kosten: number,
         @Body('sitzplaetze') sitzplaetze: number,
         @Body('frachtplatz') frachtplatz: number,
@@ -20,6 +22,7 @@ export class RequestController {
         const generatedId = await this.requestService.insertRequest(
             email,
             zeit,
+            sucher,
             kosten,
             sitzplaetze,
             frachtplatz,

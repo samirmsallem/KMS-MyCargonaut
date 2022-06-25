@@ -1,11 +1,11 @@
 <div class="container-fluid">
   <h2>Jetzt selbst eine Fahrt anbieten</h2><br>
   <form id="SelbstAnbietenForm">
-    <input #fromA placeholder="VonAnbieter" type="text" class="form-control"><br>
-    <input #toA placeholder="NachAnbieter" type="text" class="form-control"><br>
-    <input #spacesA placeholder="sitzplaetzeAnbieter" type="text" class="form-control"><br>
-    <input #storageA placeholder="frachtplatzAnbieter" type="text" class="form-control"><br>
-    <input #coins placeholder="coinsAnbieter" type="text" class="form-control"><br>
+    <input #fromA placeholder="Von" type="text" class="form-control"><br>
+    <input #toA placeholder="Nach" type="text" class="form-control"><br>
+    <input #spacesA placeholder="sitzplaetze" type="text" class="form-control"><br>
+    <input #storageA placeholder="frachtplatz" type="text" class="form-control"><br>
+    <input #coins placeholder="coins" type="text" class="form-control"><br>
 
 
     <button type="submit" (click)="offerRide('', 'TestUser', coins.valueAsNumber, spacesA.valueAsNumber, storageA.valueAsNumber, fromA.value, toA.value)" class="btn btn-primary">Fahrt anbieten</button>

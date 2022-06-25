@@ -14,6 +14,7 @@ export class ListingController {
     async addListing(
         @Body('email') email: string,
         @Body('zeit') zeit: Date,
+        @Body('bucher') bucher: string,
         @Body('kosten') kosten: number,
         @Body('sitzplaetze') sitzplaetze: number,
         @Body('frachtplatz') frachtplatz: number,
@@ -23,6 +24,7 @@ export class ListingController {
         const generatedId = await this.listingService.insertListing(
             email,
             zeit,
+            bucher,
             kosten,
             sitzplaetze,
             frachtplatz,

@@ -1,3 +1,4 @@
+/* eslint-disable */
 import * as mongoose from 'mongoose';
 
 const uniqueValidator = require('../../node_modules/mongoose-unique-validator');
@@ -6,6 +7,7 @@ const uniqueValidator = require('../../node_modules/mongoose-unique-validator');
 export const ListingSchema = new mongoose.Schema({
     email: {type: String},
     zeit: {type: Date},
+    bucher: {type: String},
     kosten: {type: Number},
     sitzplaetze: {type: Number},
     frachtplatz: {type: Number},
