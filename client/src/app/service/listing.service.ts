@@ -3,7 +3,6 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {environment} from "../../environments/environment";
 import {Listing} from "../model/Listing";
-import {ListingsDto} from "../model/ListingsDto";
 
 const httpOptions = {
   headers : new HttpHeaders({'Content-Type': 'application/json'})
@@ -43,18 +42,17 @@ export class ListingService {
   constructor(private http: HttpClient) {
   }
 
-  async getAllListings(): Promise<Listing[]> {
-    await this.http.get<Listing[]>(this.localhostURL + "/listings/getAllListings ", httpOptions)
-      .toPromise()
-      .then(res => {
-        const list: Listing[] | undefined = res
-        if (list) {
-          console.log("res" + list[1].email)
+  public getAllListings(): Promise<Listing[]> {
+    return new Promise<Listing[]>(resolve => {
+      this.http.get<Listing[]>(this.localhostURL + "/listings/getAllListings ", httpOptions).subscribe(data => {
+        let listings: Listing[] = []
+        for(let listing of data){
+          console.log(listing.ziel)
+          listings.push(new Listing(listing.email, listing.zeit, listing.kosten, listing.sitzplaetze, listing.frachtplatz, listing.startort, listing.ziel))
         }
-
+        resolve(listings)
       })
-    return this.listingArray
-
+    })
   }
 
   async addOffer(email: string, zeit: Date, bucher: string, kosten: number, sitzplaetze: number, frachtplatz: number,startort: string,ziel: string) {
