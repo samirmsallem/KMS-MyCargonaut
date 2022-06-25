@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {UserService} from "../service/user.service";
 import {Router} from "@angular/router";
 
@@ -19,6 +19,10 @@ export class LoginComponent implements OnInit {
   loginEmail = '';
   loginPassword = '';
 
+  invalid_login = false;
+  invalid_register = false;
+
+
 
   constructor(private userService: UserService, private _router: Router) {
     if(localStorage.getItem('authenticated') == 'true'){
@@ -31,11 +35,13 @@ export class LoginComponent implements OnInit {
 
 
   async logIn() {
+    this.invalid_login = false;
     console.log(this.loginEmail, this.loginPassword)
     this.userService.logIn(this.loginEmail, this.loginPassword).then(res => {
       if(res){
         this._router.navigate(['dashboard'])
       }
+      this.invalid_login = true;
       this.loginEmail = '';
       this.loginPassword = '';
     });
@@ -43,12 +49,14 @@ export class LoginComponent implements OnInit {
 
 
   async registerUser() {
+    this.invalid_register = false;
     this.userService.registerUser(this.firstname, this.lastname, this.email, this.password, this.description).then(async res => {
       if (res) {
         this.userService.logIn(this.email, this.password).then(res => {
           if (res) {
             this._router.navigate(['dashboard'])
           }
+          this.invalid_register = true;
           this.firstname = '';
           this.lastname = '';
           this.email = '';

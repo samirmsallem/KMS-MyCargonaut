@@ -1,6 +1,9 @@
 <div class="container-fluid">
   <div class="container-fluid">
     <div class="container-fluid" *ngIf="showLogin">
+      <div class="alert alert-danger" role="alert" *ngIf="invalid_login">
+        Login nicht erfolgreich! Bitte versuche es erneut oder registriere dich.
+      </div>
       <div class="col-12 text-center">
         <h2>Login:</h2><br>
         <form  id="loginForm">
@@ -19,6 +22,9 @@
 
 
     <div class="container-fluid" *ngIf="!showLogin">
+      <div class="alert alert-danger" role="alert" *ngIf="invalid_register">
+        Registrierung nicht erfolgreich! Bitte versuche es erneut mit anderen Daten!
+      </div>
       <div class="col-12 text-center">
         <h2>Konto anlegen:</h2><br>
         <form id="registerForm">

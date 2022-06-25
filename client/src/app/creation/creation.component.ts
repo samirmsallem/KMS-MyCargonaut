@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-creation',
@@ -7,7 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CreationComponent implements OnInit {
 
-  constructor() { }
+  constructor(private _router: Router) {
+    if(localStorage.getItem('authenticated') === null){
+      this._router.navigate([''])
+    }
+  }
 
   ngOnInit(): void {
   }
