@@ -102,5 +102,19 @@ export class ListingService {
 
   };
 
+  // requests
+  async addRequest(email: string, zeit: string, bucher: string, kosten: number, sitzplaetze: string, frachtplatz: string,startort: string,ziel: string) {
+    return this.http.post(this.localhostURL + "/requests/createRequest", {
+      email: email,
+      zeit: zeit,
+      bucher: bucher,
+      kosten: kosten,
+      sitzplaetze: sitzplaetze,
+      frachtplatz: frachtplatz,
+      startort: startort,
+      ziel: ziel,
+    }, httpOptions)
+  }
+
   // vehicles?
 }

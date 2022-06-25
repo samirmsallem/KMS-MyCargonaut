@@ -7,7 +7,7 @@ import {CreationComponent} from "./creation/creation.component";
 
 const routes: Routes = [
   {path: '', component: LoginComponent},
-  {path: 'profile', component: ProfilComponent},
+  {path: 'profil', component: ProfilComponent},
   {path: 'offer', component: CreationComponent},
   {path: 'dashboard', component: DashboardComponent}
 ];

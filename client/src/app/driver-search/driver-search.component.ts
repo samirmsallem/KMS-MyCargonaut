@@ -30,14 +30,12 @@ export class DriverSearchComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  searchRide() {
 
-  }
 
-  offerRide(email: string, bucher: string, kosten: number, sitzplaetze: number, frachtplatz: number, startort: string, ziel: string) {
+  searchRide(email: string,  time: string, bucher: string, kosten:number, sitzplaetze: string, frachtplatz: string, startort: string, ziel: string) {
     console.log(startort)
-     this.listingService.addOffer(email, new Date(), bucher, kosten, sitzplaetze, frachtplatz, startort, ziel).then(() => {
-       console.log("Successfully added offer")
+     this.listingService.addRequest(email, time, bucher, kosten, sitzplaetze, frachtplatz, startort, ziel).then(() => {
+       console.log("Successfully added request")
      }).catch(() => {
        console.log("Error");
      })
