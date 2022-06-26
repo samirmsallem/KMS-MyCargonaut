@@ -1,1 +1,64 @@
 /* You can add global styles to this file, and also import other style files */
+input {
+  border-color: #005b52;
+  border-radius: 0;
+  border-width: medium;
+  border-right-width: 0;
+  border-left-width: 0;
+  border-top-width: 0;
+  color: #005b52;
+}
+
+input::placeholder {
+  color: #005b52;
+}
+
+input, select, textarea {
+  color: #005b52;
+}
+
+
+textarea {
+  border-color: #005b52;
+  border-radius: 0;
+  border-width: medium;
+  border-right-width: 0;
+  border-left-width: 0;
+  border-top-width: 0;
+}
+
+textarea::placeholder {
+  color: #005b52;
+}
+
+button {
+  border-radius: 0;
+  background-color: #005b52;
+  color: white;
+  font-weight: bold;
+}
+
+h1 {
+  color: #005b52;
+}
+
+h2 {
+  color: #005b52;
+}
+
+h3 {
+  color: #005b52;
+}
+
+h4 {
+  color: #005b52;
+}
+
+h5 {
+  color: #005b52;
+}
+
+label {
+  color: #005b52;
+}
+
