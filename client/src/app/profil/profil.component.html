@@ -1,7 +1,7 @@
-<div class=" col-lg-6 col-sm-12 mb-5 mb-lg-0 position-relative">
-  <div class="card bg-glass shadow">
+<div class="mb-5 mb-lg-0 position-relative card-group">
+  <div class="card bg-glass">
     <div class="card-body mt-3 px-4 py-5 px-md-5">
-
+      <h4 class="card-title">Meine Daten</h4>
         <div class="row">
           <div class="mb-2">
             <div class="form-outline">
@@ -43,115 +43,93 @@
           </div>
         </div>
         <br>
-
         <!-- Submit button -->
-        <button type="submit" class="btn text-white shadow orange btn-block mt-2 mb-2"
-           (click)="updateUser()">
-          Speichern
-        </button>
-
+        <button type="submit" class="btn align-content-center text-center mt-4 mb-4" (click)="updateUser()">Speichern</button>
     </div>
   </div>
-</div>
-
-
-<table>
-
-  <tbody>
-  <!--<tr *ngFor="let admin of adminArray; let i = index;">-->
-  <ng-container *ngFor="let vehicle of vehicleArray; let i = index;">
-    <tr>
-      <td>
-        <div class=" col-lg-6 col-sm-12 mb-5 mb-lg-0 position-relative">
-          <div class="card bg-glass shadow">
-            <div class="card-body mt-3 px-4 py-5 px-md-5">
-
-              <div class="row">
-                <div class="mb-2">
-                  <div class="form-outline">
-                    <h3>ID:</h3>
-                    <p>{{vehicleArray[i][0]}}</p>
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="mb-2">
-                  <div class="form-outline">
-                    <h3>Modell:</h3>
-                    <p>{{vehicleArray[i][1]}}</p>
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="mb-2">
-                  <div class="form-outline">
-                    <h3>Stauraum (in Litern):</h3>
-                    <p>{{vehicleArray[i][2]}}</p>
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class=" mb-3">
-                  <div class="form-outline">
-                    <h3>Sitzplätze (ohne Fahrer):</h3>
-                    <p>{{vehicleArray[i][3]}}</p>
-                  </div>
-                </div>
-              </div>
-              <br>
-
-              <!-- Submit button -->
-              <button type="submit" class="btn text-white shadow orange btn-block mt-2 mb-2"
-                      (click)="deleteVehicle(vehicleArray[i][0])">
-                Fahrzeug entfernen
-              </button>
-
-            </div>
-          </div>
-        </div>
-      </td>
-    </tr>
-  </ng-container>
-  </tbody>
-</table>
-
-<div class=" col-lg-6 col-sm-12 mb-5 mb-lg-0 position-relative">
-  <div class="card bg-glass shadow">
+  <div class="card bg-glass">
     <div class="card-body mt-3 px-4 py-5 px-md-5">
-
+      <h4 class="card-title">Neues Fahrzeug anlegen</h4>
+      <br>
+      <br>
       <div class="row">
         <div class="mb-2">
           <div class="form-outline">
-            <h3>Modell:</h3>
+            <h5>Modell:</h5>
             <input type="text" [(ngModel)]="model"  class="textInputs form-control">
           </div>
         </div>
       </div>
-
+      <br>
       <div class="row">
         <div class="mb-2">
           <div class="form-outline">
-            <h3>Stauraum (in Litern):</h3>
+            <h5>Stauraum (in Litern):</h5>
             <input type="text" [(ngModel)]="space"  class="textInputs form-control">
           </div>
         </div>
       </div>
+      <br>
       <div class="row">
         <div class="mb-2">
           <div class="form-outline">
-            <h3>Sitzplätze (ohne Fahrer):</h3>
+            <h5>Sitzplätze (ohne Fahrer):</h5>
             <input type="text" [(ngModel)]="seats"  class="textInputs form-control">
           </div>
         </div>
       </div>
       <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <button type="submit" class="btn text-white shadow orange btn-block mt-2 mb-2" (click)="addVehicle()">Speichern</button>
+    </div>
+  </div>
+</div>
 
-      <!-- Submit button -->
-      <button type="submit" class="btn text-white shadow orange btn-block mt-2 mb-2"
-              (click)="addVehicle()">
-        Speichern
-      </button>
-
+<br>
+<h4 class="text-center">Meine Fahrzeuge</h4>
+<br>
+<div class="mb-5 mb-lg-0 position-relative card-group">
+  <div *ngFor="let vehicle of vehicleArray; let i = index;">
+    <div class="card bg-glass">
+      <div class="card-body mt-3 px-4 py-5 px-md-5">
+        <div class="row">
+          <div class="mb-2">
+            <div class="form-outline">
+              <h3>ID:</h3>
+              <p>{{vehicleArray[i][0]}}</p>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="mb-2">
+            <div class="form-outline">
+              <h3>Modell:</h3>
+              <p>{{vehicleArray[i][1]}}</p>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="mb-2">
+            <div class="form-outline">
+              <h3>Stauraum (in Litern):</h3>
+              <p>{{vehicleArray[i][2]}}</p>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class=" mb-3">
+            <div class="form-outline">
+              <h3>Sitzplätze (ohne Fahrer):</h3>
+              <p>{{vehicleArray[i][3]}}</p>
+            </div>
+          </div>
+        </div>
+        <br>
+        <button type="submit" class="btn text-white shadow orange btn-block mt-2 mb-2" (click)="deleteVehicle(vehicleArray[i][0])">Fahrzeug entfernen</button>
+      </div>
     </div>
   </div>
 </div>
