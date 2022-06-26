@@ -13,17 +13,17 @@ export class DriverSearchComponent implements OnInit {
 
   constructor(private listingService: ListingService, private calendar: NgbCalendar) {}
 
-  created: boolean;
-  incomplete: boolean;
+  created = false
+  incomplete = false
 
   date: NgbDateStruct = this.calendar.getToday();
 
 
-  @ViewChild("from") from: ElementRef;
-  @ViewChild("to") to: ElementRef;
-  @ViewChild("spaces") spaces: ElementRef;
-  @ViewChild("storage") storage: ElementRef;
-  @ViewChild("coins") coins: ElementRef;
+  @ViewChild("from") from: ElementRef = {} as ElementRef;
+  @ViewChild("to") to: ElementRef = {} as ElementRef;
+  @ViewChild("spaces") spaces: ElementRef = {} as ElementRef;
+  @ViewChild("storage") storage: ElementRef = {} as ElementRef;
+  @ViewChild("coins") coins: ElementRef = {} as ElementRef;
 
   ngOnInit(): void {
   }

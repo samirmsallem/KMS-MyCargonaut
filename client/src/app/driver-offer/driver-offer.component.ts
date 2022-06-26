@@ -17,12 +17,12 @@ export class DriverOfferComponent implements OnInit {
   created = false;
   incomplete = false;
 
-  @ViewChild("from") from: ElementRef;
-  @ViewChild("to") to: ElementRef;
-  @ViewChild("spaces") spaces: ElementRef;
-  @ViewChild("storage") storage: ElementRef;
-  @ViewChild("vehicle") vehicle: ElementRef;
-  @ViewChild("coins") coins: ElementRef;
+  @ViewChild("from") from: ElementRef = {} as ElementRef;
+  @ViewChild("to") to: ElementRef = {} as ElementRef;
+  @ViewChild("spaces") spaces: ElementRef = {} as ElementRef;
+  @ViewChild("storage") storage: ElementRef = {} as ElementRef;
+  @ViewChild("vehicle") vehicle: ElementRef = {} as ElementRef;
+  @ViewChild("coins") coins: ElementRef = {} as ElementRef;
 
 
   date: NgbDateStruct = this.calendar.getToday();
