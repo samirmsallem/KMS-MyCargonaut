@@ -22,6 +22,7 @@ jobs:
           npm install -g @angular/cli
           cd ../server
           npm ci
+          npm i --save @nestjs/passport passport
           npm install mongoose
           cd ../client
           ng test --browsers=ChromeHeadless --watch=false
@@ -29,6 +30,7 @@ jobs:
         run: |
           cd server
           npm ci
+          npm i --save @nestjs/passport passport
           npm i --save-dev @types/node
           npm install mongoose
           npm run test
