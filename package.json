@@ -2,7 +2,7 @@
   "name": "web",
   "version": "0.0.0",
   "scripts": {
-    "heroku-postbuild": "cd client && npm config set legacy-peer-deps true && npm install && cd ../server && npm i && npm install mongoose && npm i --save-dev @types/node && cd ../client && npm run build:prod && cd ../server && npm run build",
+    "heroku-postbuild": "cd client && npm config set legacy-peer-deps true && npm install && cd ../server && npm i && npm i --save @nestjs/passport passport && npm install mongoose && npm i --save-dev @types/node && cd ../client && npm run build:prod && cd ../server && npm run build",
     "start": "cd server && npm run start"
   }
 }
