@@ -25,6 +25,8 @@ export class ProfilComponent implements OnInit {
   model = '';
   space = 0;
   seats = 0;
+  avgStars = 0;
+  stars: any[] = [];
 
 
   ngOnInit(): void {
@@ -35,6 +37,9 @@ export class ProfilComponent implements OnInit {
       this.firstname = this.currentUser.firstname;
       this.lastname = this.currentUser.lastname;
       this.description = this.currentUser.description;
+      this.avgStars = this.currentUser.avStars;
+      this.stars = this.currentUser.stars;
+
     }).then(()=> {
       this.userService.getVehicles().then(()=> {
         this.vehicleArray = this.userService.vehicleArray
