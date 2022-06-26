@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {environment} from "../../environments/environment";
+import {Listing} from "../model/Listing";
 
 const httpOptions = {
   headers : new HttpHeaders({'Content-Type': 'application/json'})
@@ -109,13 +110,13 @@ export class UserService {
       })
   };
 
-  getUserData(): Promise<void> {
-    return this.http.get(this.localhostURL + "/users/getUser", httpOptions).toPromise()
-      .then((res: any) => {
+  getUserData(): Promise<any> {
+    return new Promise<Listing[]>(resolve => {
+      this.http.get<any>(this.localhostURL + "/users/getUser", httpOptions).subscribe(res => {
         this.currentUser = res.user;
-      }).catch(() => {
-        console.log('could not get user');
+        resolve(this.currentUser)
       })
+    })
   };
 
   updateUser(password: string, firstname: string, lastname: string, description: string) {

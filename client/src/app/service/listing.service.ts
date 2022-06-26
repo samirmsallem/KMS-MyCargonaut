@@ -50,7 +50,7 @@ export class ListingService {
         let listings: Listing[] = []
         for(let listing of data){
           console.log(listing.ziel)
-          listings.push(new Listing(listing._id, listing.email, listing.zeit, listing.kosten, listing.sitzplaetze, listing.frachtplatz, listing.startort, listing.ziel))
+          listings.push(new Listing(listing._id, listing.ersteller, listing.bucher, listing.angenommen, listing.startort, listing.ziel, listing.zeit,  listing.kosten, listing.sitzplaetze, listing.frachtplatz))
         }
         resolve(listings)
       })
@@ -59,7 +59,7 @@ export class ListingService {
 
   public claimAngebot(id: string): Promise<boolean> {
     return new Promise<boolean>(resolve => {
-      this.http.post<boolean>(this.localhostURL + "/ ",{
+      this.http.post<boolean>(this.localhostURL + "/listings/takeOffer",{
         _id: id,
 
       }, httpOptions).subscribe(data => {
@@ -76,9 +76,8 @@ export class ListingService {
     );
   }
 
-  async updateListing(email: string, zeit: Date, bucher: string, kosten: number, sitzplaetze: number, frachtplatz: number,startort: string,ziel: string) {
+  async updateListing(zeit: Date, bucher: string, kosten: number, sitzplaetze: number, frachtplatz: number,startort: string,ziel: string) {
     return this.http.put(this.localhostURL + "/users/updateListing", {
-      email: email,
       zeit: zeit,
       bucher: bucher,
       kosten: kosten,

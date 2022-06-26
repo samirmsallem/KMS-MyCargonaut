@@ -13,6 +13,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { CreationComponent } from './creation/creation.component';
 import { DriverOfferComponent } from './driver-offer/driver-offer.component';
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
+import {DatePipe} from "@angular/common";
 
 //import {ListingModule} from  '../'
 
@@ -37,7 +38,7 @@ import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
     NgbModule,
     //ListingModule
   ],
-  providers: [LoginComponent],
+  providers: [LoginComponent, DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
