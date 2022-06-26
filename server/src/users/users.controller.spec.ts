@@ -5,6 +5,7 @@ import {UsersService} from "./users.service";
 import {getModelToken} from "@nestjs/mongoose";
 import {User} from "./user.model";
 import {Vehicle} from "./vehicles.model";
+import {PassportModule} from "@nestjs/passport";
 
 describe('UsersController', () => {
   let controller: UsersController;
@@ -46,6 +47,7 @@ describe('UsersController', () => {
       controllers: [UsersController],
       providers: [
         UsersService,
+        PassportModule,
         {
           provide: getModelToken('User'),
           useValue: {
