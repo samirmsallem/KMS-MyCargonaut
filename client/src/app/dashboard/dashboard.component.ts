@@ -12,7 +12,7 @@ import {DatePipe} from "@angular/common";
 })
 export class DashboardComponent implements OnInit {
 
-  coins: number;
+  coins: number = 0;
 
   constructor(private listingsService: ListingService, private _router: Router, private userService: UserService, public datepipe: DatePipe) {
     if(localStorage.getItem('authenticated') === null){

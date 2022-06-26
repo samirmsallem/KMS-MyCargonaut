@@ -27,7 +27,7 @@ export class ProfilComponent implements OnInit {
   seats = 0;
   avgStars = 0;
   stars: any[] = [];
-  coins : number;
+  coins = 0
 
 
   ngOnInit(): void {
