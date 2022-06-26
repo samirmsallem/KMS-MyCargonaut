@@ -11,7 +11,9 @@ describe('ListingService', () => {
     let service: ListingService;
 
     const mockListing = (
-        email= "abc@thm.de",
+        ersteller= "123123123",
+        bucher= "123123123",
+        angenommen = false,
         zeit = new Date(),
         kosten = 5,
         sitzplaetze = 5,
@@ -19,13 +21,16 @@ describe('ListingService', () => {
         startort = "A",
         ziel = "B"
     ): Listing => <Listing>({
-        email,
+        bucher,
         zeit,
         kosten,
         sitzplaetze,
         frachtplatz,
         startort,
-        ziel
+        ziel,
+        angenommen,
+        ersteller,
+
     });
 
     const mockUser = (
