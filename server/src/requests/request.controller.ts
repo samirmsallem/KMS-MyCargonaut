@@ -10,19 +10,17 @@ export class RequestController {
     // Angebot erstellen
     @Post('/createRequest')
     async addRequest(
-        @Body('email') email: string,
         @Body('zeit') zeit: Date,
-        @Body('sucher') sucher: string,
         @Body('kosten') kosten: number,
         @Body('sitzplaetze') sitzplaetze: number,
         @Body('frachtplatz') frachtplatz: number,
         @Body('startort') startort: string,
         @Body('ziel') ziel: string,
+        @Request() req
     ) {
         const generatedId = await this.requestService.insertRequest(
-            email,
             zeit,
-            sucher,
+            req.user._id,
             kosten,
             sitzplaetze,
             frachtplatz,
@@ -58,8 +56,8 @@ export class RequestController {
     }
 
     @Get('/getAllRequests')
-    async getRequests() {
-        const requests = await this.requestService.getRequests();
+    async getRequests(@Request() req) {
+        const requests = await this.requestService.getRequests(req.user._id);
         return requests
     }
 

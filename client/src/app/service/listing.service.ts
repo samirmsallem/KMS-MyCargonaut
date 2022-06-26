@@ -108,17 +108,10 @@ export class ListingService {
   };
 
   // requests
-  async addRequest(email: string, zeit: Date, sucher: string, kosten: number, sitzplaetze: number, frachtplatz: number,startort: string,ziel: string) {
-    return this.http.post(this.localhostURL + "/requests/createRequest", {
-      email: email,
-      zeit: zeit,
-      sucher: sucher,
-      kosten: kosten,
-      sitzplaetze: sitzplaetze,
-      frachtplatz: frachtplatz,
-      startort: startort,
-      ziel: ziel,
-    }, httpOptions)
+  async addRequest(listing: ListingsDto) {
+    return this.http.post<ListingsDto>(this.localhostURL + "/requests/createRequest", listing, httpOptions).pipe(
+      catchError(this.handleError)
+    );
   }
 
 

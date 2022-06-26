@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {ListingService} from "../service/listing.service";
+import {NgbCalendar, NgbDateStruct} from "@ng-bootstrap/ng-bootstrap";
+import {ListingsDto} from "../model/ListingsDto";
 
 
 @Component({
@@ -9,30 +11,53 @@ import {ListingService} from "../service/listing.service";
 })
 export class DriverSearchComponent implements OnInit {
 
-  constructor(private listingService: ListingService) {}
+  constructor(private listingService: ListingService, private calendar: NgbCalendar) {}
 
-  emailAnbieter = '';
-  zeitAnbieter = new Date();
-  kostenAnbieter = 0;
-  sitzplaetzeAnbieter = 0;
-  frachtplatzAnbieter = 0;
+  created: boolean;
+  incomplete: boolean;
 
-  startortAnbieter = '';
-  zielAnbieter = '';
-  bucherAnbieter = '';
+  date: NgbDateStruct = this.calendar.getToday();
 
+
+  @ViewChild("from") from: ElementRef;
+  @ViewChild("to") to: ElementRef;
+  @ViewChild("spaces") spaces: ElementRef;
+  @ViewChild("storage") storage: ElementRef;
+  @ViewChild("coins") coins: ElementRef;
 
   ngOnInit(): void {
   }
 
 
 
-  searchRide(email: string,  time: string, sucher: string, kosten:number, sitzplaetze: number, frachtplatz: number, startort: string, ziel: string) {
-    console.log(startort)
-     this.listingService.addRequest(email, new Date(), sucher, kosten, sitzplaetze, frachtplatz, startort, ziel).then(() => {
-       console.log("Successfully added request")
-     }).catch(() => {
-       console.log("Error");
-     })
+  searchRide(kosten: number, sitzplaetze: number, frachtplatz: number, startort: string, ziel: string, zeit: string) {
+    this.created = false;
+    this.incomplete = false;
+
+    if(kosten != null && sitzplaetze != null && frachtplatz != null && startort != "" && ziel != "" && zeit != ""){
+      this.listingService.addRequest(new ListingsDto(startort, ziel, zeit, frachtplatz, sitzplaetze, kosten)).then(() => {
+        this.created = true;
+        console.log("Successfully added request")
+        this.from.nativeElement.value = ""
+        this.to.nativeElement.value = ""
+        this.spaces.nativeElement.value = ""
+        this.coins.nativeElement.value = ""
+      }).catch(() => {
+        console.log("Error");
+      })
+    } else {
+      this.incomplete = true
+    }
+
+
   }
+
+  filterExistingOnes() {
+
+  }
+
+  dateToString() : string {
+    return this.date.year+"-"+this.date.month+"-"+this.date.day
+  }
+
 }
