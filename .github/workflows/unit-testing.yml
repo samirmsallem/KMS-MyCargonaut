@@ -16,6 +16,7 @@ jobs:
       - name: Run Frontend unit tests
         run: |
           cd client
+          npm config set legacy-peer-deps true
           npm ci
           npm i --save-dev @types/node
           npm install -g @angular/cli
