@@ -32,7 +32,7 @@ export class ListingService {
             frachtplatz: frachtplatz,
             startort: startort,
             ziel: ziel,
-            angenommen: false
+            angenommen: false,
         });
         const result = await newListing.save();
         console.log(result);

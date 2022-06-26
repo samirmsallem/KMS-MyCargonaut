@@ -29,7 +29,7 @@ export class ListingController {
             frachtplatz,
             startort,
             ziel,
-            req.user._id
+            req.user.userId
         );
         return {id: generatedId}
     }

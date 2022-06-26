@@ -1,17 +1,24 @@
-<div class="container-fluid">
-  <div class="container-fluid">
-    <h2>Finde deinen Fahrer</h2><br>
-    <form id="searchForm">
-      <input #from placeholder="Von" type="text" class="form-control"><br>
-      <input #to placeholder="Nach" type="text" class="form-control"><br>
-      <input #time placeholder="zeit" type="text" class="form-control"><br>
-      <input #seats placeholder="sitzplaetze" type="text" class="form-control"><br>
-      <input #storage type="text" class="form-control" placeholder="frachtplatz"><br>
 
-      <button type="submit" (click)="searchRide('',  time.value,'TestUser', 50, seats.valueAsNumber, storage.valueAsNumber, from.value, to.value)" class="btn btn-primary">Fahrer finden</button>
-    </form>
+  <div class="card-body mt-3 px-4 py-5 px-md-5">
+    <div class="alert alert-danger" role="alert" *ngIf="false">
+      Deine Suche ergab kein Ergebnis, klicke hier um ein Suchangebot zu erstellen
+    </div>
+    <h2>Finde deinen Fahrer</h2><br>
+
+    <div class="row">
+      <div class="mb-2">
+        <div class="form-outline">
+          <input type="text"  class="textInputs form-control">
+        </div>
+      </div>
+    </div>
+    <br>
+    <input #from placeholder="Von" type="text" class="form-control textInputs"><br>
+    <input #to placeholder="Nach" type="text" class="form-control"><br>
+    <input #time placeholder="zeit" type="text" class="form-control"><br>
+    <input #seats placeholder="sitzplaetze" type="text" class="form-control"><br>
+    <input #storage type="text" class="form-control" placeholder="frachtplatz"><br>
+
+    <button type="submit" (click)="searchRide('',  time.value,'TestUser', 50, seats.valueAsNumber, storage.valueAsNumber, from.value, to.value)" class="btn btn-primary">Fahrer finden</button>
   </div>
 
-
-
-</div>
