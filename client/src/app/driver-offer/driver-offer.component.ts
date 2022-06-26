@@ -16,8 +16,8 @@ export class DriverOfferComponent implements OnInit {
 
   offerRide(email: string, bucher: string, kosten: number, sitzplaetze: number, frachtplatz: number, startort: string, ziel: string) {
     console.log(startort)
-    this.listingService.addOffer(email, new Date(), bucher, kosten, sitzplaetze, frachtplatz, startort, ziel).then(() => {
-      console.log("Successfully added offer")
+    this.listingService.addOffer(email, new Date(), bucher, kosten, sitzplaetze, frachtplatz, startort, ziel).then( res => {
+      console.log("Successfully added offer" + res)
     }).catch(() => {
       console.log("Error");
     })

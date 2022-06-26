@@ -5,19 +5,21 @@ const uniqueValidator = require('../../node_modules/mongoose-unique-validator');
 
 // Angebote
 export const ListingSchema = new mongoose.Schema({
-    email: {type: String},
+
     zeit: {type: Date},
     bucher: {type: String},
     kosten: {type: Number},
     sitzplaetze: {type: Number},
     frachtplatz: {type: Number},
     startort: {type: String},
-    ziel: {type: String}
+    ziel: {type: String},
+    angenommen: {type: Boolean},
+    ersteller: {type: String}
 });
 ListingSchema.plugin(uniqueValidator);
 
 export interface Listing extends mongoose.Document {
-    email: string;
+
     zeit: Date;
     bucher: string;
     kosten: number;
@@ -25,5 +27,7 @@ export interface Listing extends mongoose.Document {
     frachtplatz: number;
     startort: string;
     ziel: string;
+    angenommen: boolean;
+    ersteller: string;
 
 }

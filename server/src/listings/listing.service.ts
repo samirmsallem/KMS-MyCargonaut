@@ -11,26 +11,28 @@ export class ListingService {
     constructor(@InjectModel('Listing') public readonly listingModel: Model<Listing>, @InjectModel('User') public readonly userModel: Model<User> ) {}
 
     async insertListing(
-        email: string,
+
         zeit: Date,
         bucher: string,
-
         kosten: number,
         sitzplaetze: number,
         frachtplatz: number,
         startort: string,
         ziel: string,
+        ersteller: string
+
     ) {
         const newListing = new this.listingModel({
-            email: email,
+
             zeit: zeit,
             bucher: bucher,
-
+            ersteller: ersteller,
             kosten: kosten,
             sitzplaetze: sitzplaetze,
             frachtplatz: frachtplatz,
             startort: startort,
-            ziel: ziel
+            ziel: ziel,
+            angenommen: false
         });
         const result = await newListing.save();
         console.log(result);
@@ -38,18 +40,22 @@ export class ListingService {
         return result.id as Number;
     }
 
-    async getListing(listingId: Number) {
-        const id = listingId;
-        const listing = await this.listingModel.findOne({id});
+    async getListing(listingId: string) : Promise<Listing> {
+        const conditions = {
+            _id: listingId
+        }
+        const listing = await this.listingModel.findOne(conditions);
         if (!listing) {
             throw new NotAcceptableException('no matching listing');
         }
         return listing;
     }
 
-    async getListings() {
-        const filter = {};
-        const listings = await this.listingModel.find(filter).exec();
+    async getListings(user: any) {
+
+        console.log(user)
+
+        const listings = await this.listingModel.find({ $and: [{ angenommen: { $eq: false } }, { ersteller: { $ne: user.userId} }] }).exec();
 
         return listings as Listing[];
     }
@@ -64,20 +70,20 @@ export class ListingService {
     }
 
     async updateListing(
-        email: string,
         zeit: Date,
         kosten: number,
         sitzplaetze: number,
         frachtplatz: number,
         startort: string,
         ziel: string,
+        _id: string
     ) {
         const conditions = {
-            email: email,
-            zeit: zeit
+            _id: _id
         }
         const updetedListing = {
             kosten,
+            zeit,
             sitzplaetze,
             frachtplatz,
             startort,
@@ -94,54 +100,22 @@ export class ListingService {
     }
 
 
-    async giveOffer(
-        email: string, // anbieter
-        zeit: Date,
-        bucher: string,
-        kosten: number,
-        sitzplaetze: number,
-        frachtplatz: number,
-        startort: string,
-        ziel: string,
-    ) {
-
-        const newListing = new this.listingModel({
-            email: email,
-            zeit: zeit,
-            bucher: bucher,
-            kosten: kosten,
-            sitzplaetze: sitzplaetze,
-            frachtplatz: frachtplatz,
-            startort: startort,
-            ziel: ziel,
-        });
-
-        const result = await newListing.save();
-        console.log(result);
-        return result ;
-
-    }
 
 
     // Angebot annehmen
     async takeOffer(
-        email: string, // der anbieter
-        zeit: Date,
-        bucher: string,
-        kosten: number, // coins
+        angebotsId,
+        userId
 
     ) {
 
-        const conditions = {
-            email: email,
-            zeit: Date
-        }
+        const angebot = await this.getListing(angebotsId);
 
         // User coins transactions
-        this.userModel.findOneAndUpdate({email: email}, {$inc : {coins : kosten}})
-        this.userModel.findOneAndUpdate({email: bucher}, {$inc : {coins : -kosten}})
+        this.userModel.findOneAndUpdate({_id: angebot.ersteller}, {$inc : {coins : angebot.kosten}})
+        this.userModel.findOneAndUpdate({_id: userId}, {$inc : {coins : -angebot.kosten}})
 
-        this.listingModel.findOneAndUpdate(conditions, {bucher: bucher}, (err, res) => {
+        this.listingModel.findOneAndUpdate({_id: angebotsId}, {bucher: userId, angenommen: true}, (err, res) => {
             if (err) {
                 console.log("Listing update failed")
                 return (err)

@@ -1,5 +1,5 @@
 /* eslint-disable */
-import {Controller, Post, Body, UseGuards, Request, Get, Put, Delete} from '@nestjs/common';
+import {Controller, Post, Body, UseGuards, Request, Get, Put, Delete, Param} from '@nestjs/common';
 import { ListingService } from './listing.service';
 import {AuthenticatedGuard} from "../auth/authenticated.guard";
 
@@ -12,7 +12,6 @@ export class ListingController {
     @UseGuards(AuthenticatedGuard)
     @Post('/createListing')
     async addListing(
-        @Body('email') email: string,
         @Body('zeit') zeit: Date,
         @Body('bucher') bucher: string,
         @Body('kosten') kosten: number,
@@ -20,9 +19,9 @@ export class ListingController {
         @Body('frachtplatz') frachtplatz: number,
         @Body('startort') startort: string,
         @Body('ziel') ziel: string,
+        @Request() req
     ) {
         const generatedId = await this.listingService.insertListing(
-            email,
             zeit,
             bucher,
             kosten,
@@ -30,6 +29,7 @@ export class ListingController {
             frachtplatz,
             startort,
             ziel,
+            req.user._id
         );
         return {id: generatedId}
     }
@@ -37,13 +37,11 @@ export class ListingController {
 
     // get spezifisches Angebot
     @UseGuards(AuthenticatedGuard)
-    @Get('/getListing')
+    @Get('/getListing/:id')
     async getListing(
-        @Request() req
+       @Param('id') id
     ) {
-        const listingId = req.id;
-        await this.listingService.getListing(listingId);
-        return;
+        return this.listingService.getListing(id);
     }
 
 
@@ -62,9 +60,8 @@ export class ListingController {
 
     @Get('/getAllListings')
     @UseGuards(AuthenticatedGuard)
-    async getAllListings() {
-        const listings = await this.listingService.getListings();
-        return listings
+    async getAllListings(@Request() req ) {
+      return await this.listingService.getListings(req.user);
     }
 
     // ändern spezifisches Angebot
@@ -73,21 +70,21 @@ export class ListingController {
     async updateListing(
         @Request() req
     ) {
-        const email = req.email;
         const zeit = req.zeit;
-        const  kosten = req.kosten;
-        const  sitzplaetze = req.sitzplaetze;
-        const  frachtplatz = req.frachtplatz;
-        const  startort = req.startort;
-        const  ziel = req.ziel;
+        const kosten = req.kosten;
+        const sitzplaetze = req.sitzplaetze;
+        const frachtplatz = req.frachtplatz;
+        const startort = req.startort;
+        const ziel = req.ziel;
+        const id = req.id;
         await this.listingService.updateListing(
-            email,
             zeit,
             kosten,
             sitzplaetze,
             frachtplatz,
             startort,
-            ziel
+            ziel,
+            id
         );
         return;
     }
@@ -95,21 +92,16 @@ export class ListingController {
     // geht in request controller
     // PUT: Angebot annehmen
     @UseGuards(AuthenticatedGuard)
-    @Put('/takeOffer')
+    @Post('/takeOffer')
     async takeOffer(
         @Request() req
     ) {
-        const email = req.email;
-        const zeit = req.zeit;
-        const bucher = req.bucher;
-        const  kosten = req.kosten;
-
+        const _id = req._id;
+        const user = req.user;
 
         const result = await this.listingService.takeOffer(
-            email,
-            zeit,
-            bucher,
-            kosten,
+            _id,
+            user._id
 
         );
 
@@ -117,32 +109,5 @@ export class ListingController {
     }
 
 
-    // POST: Angebot bieten
-    @UseGuards(AuthenticatedGuard)
-    @Post('/giveOffer')
-    async giveOffer(
-        @Request() req
-    ) {
-        const email = req.email; // email des Anbieters
-        const bucher = "free";
-
-        const zeit = req.zeit;
-        const  kosten = req.kosten;
-        const  sitzplaetze = req.sitzplaetze;
-        const  frachtplatz = req.frachtplatz;
-        const  startort = req.startort;
-        const  ziel = req.ziel;
-
-        await this.listingService.giveOffer(
-            email,
-            zeit,
-            bucher,
-            kosten,
-            sitzplaetze,
-            frachtplatz,
-            startort,
-            ziel
-        );
-    }
 
 }

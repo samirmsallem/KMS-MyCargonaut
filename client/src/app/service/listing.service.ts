@@ -48,10 +48,23 @@ export class ListingService {
         let listings: Listing[] = []
         for(let listing of data){
           console.log(listing.ziel)
-          listings.push(new Listing(listing.email, listing.zeit, listing.kosten, listing.sitzplaetze, listing.frachtplatz, listing.startort, listing.ziel))
+          listings.push(new Listing(listing._id, listing.email, listing.zeit, listing.kosten, listing.sitzplaetze, listing.frachtplatz, listing.startort, listing.ziel))
         }
         resolve(listings)
       })
+    })
+  }
+
+  public claimAngebot(id: string): Promise<boolean> {
+    return new Promise<boolean>(resolve => {
+      this.http.post<boolean>(this.localhostURL + "/ ",{
+        _id: id,
+
+      }, httpOptions).subscribe(data => {
+
+        resolve(data)
+      }
+      )
     })
   }
 
