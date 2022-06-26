@@ -1,21 +1,59 @@
-<h1>Verfügbare Angebote</h1>
-<div class="card-group">
-  <div *ngFor="let item of listingsArray">
-    <div class="card m-3" style="width: 18rem;">
-      <div class="card-body">
-        <p>startort</p>
-        <h5 class="card-title">{{item.startort}}</h5>
-        <p>ziel</p>
-        <h5 class="card-title">{{item.ziel}} </h5>
-        <p>frachtplatz</p>
-        <h5 class="card-title">{{item.frachtplatz}} </h5>
-        <p>sitzplaetze</p>
-        <h5 class="card-title">{{item.sitzplaetze}} </h5>
-        <p>kosten</p>
-        <h5 class="card-title">{{item.kosten}} </h5>
-        <button type="submit" (click)="takeAngebot(item._id)" class="btn btn-primary">Angebot annehmen</button>
 
+<div>
+  <h1 class="text-center">Verfügbare Angebote</h1>
+  <h2 class="text-center"><span class="badge alert-success align-content-center text-center">CargoCoins: {{coins}} <button type="button" class="btn btn-sm" (click)="addCoins()">+</button></span></h2>
+
+  <div class="mb-5 mb-lg-0 position-relative card-group align-content-center" style="display: flex;">
+    <div class="card-group">
+      <div *ngFor="let item of listingsArray">
+        <div class="card m-3" style="width: 27rem;">
+          <div class="card-header">
+            <h3 class="card-title">{{item.startort}} --> {{item.ziel}}</h3>
+            <h5>Am {{datepipe.transform(item.zeit, 'dd/MM/yyyy')}}</h5>
+          </div>
+          <div class="card-body">
+            <h5>Angebot von {{item.ersteller}}</h5>
+            <h5>Frachtplatz: {{item.frachtplatz}} </h5>
+            <h5>Freie Sitzplätze: {{item.sitzplaetze}} </h5>
+            <h5 *ngIf="coins >= item.kosten">Kosten in CargoCoins: <span class="badge alert-success align-content-center text-center">{{item.kosten}}</span></h5>
+            <h5 *ngIf="coins < item.kosten">Kosten in CargoCoins: <span class="badge alert-danger align-content-center text-center">{{item.kosten}}</span></h5>
+            <br>
+            <button type="submit" (click)="takeAngebot(item._id)" class="btn btn-primary" *ngIf="coins >= item.kosten">Angebot annehmen</button>
+
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </div>
+
+<br>
+
+<div>
+  <h1 class="text-center">Verfügbare Gesuche</h1>
+
+  <div class="mb-5 mb-lg-0 position-relative card-group align-content-center" style="display: flex;">
+    <div class="card-group">
+      <div *ngFor="let item of searchesArray">
+        <div class="card m-3" style="width: 27rem;">
+          <div class="card-header">
+            <h3 class="card-title">{{item.startort}} --> {{item.ziel}}</h3>
+            <h5>Am {{datepipe.transform(item.zeit, 'dd/MM/yyyy')}}</h5>
+          </div>
+          <div class="card-body">
+            <h5>Suche von {{item.ersteller}}</h5>
+            <h5>Frachtplatz: {{item.frachtplatz}} </h5>
+            <h5>Freie Sitzplätze: {{item.sitzplaetze}} </h5>
+            <br>
+            <input #coins placeholder="Preis für Fahrtangebot" type="number" class="form-control"><br>
+            <button type="submit" class="btn btn-primary">Angebot unterbreiten</button>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+

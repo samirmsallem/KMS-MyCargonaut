@@ -1,21 +1,26 @@
 export class Listing {
   _id: string
-  email: string
+  ersteller: string
+  bucher: string
+  angenommen: boolean
+  startort: string
+  ziel: string
   zeit: Date
   kosten: number
   sitzplaetze: number
   frachtplatz: number
-  startort: string
-  ziel: string
 
-  constructor(_id: string,email: string, zeit: Date, kosten: number, sitzplaetze: number, frachtplatz: number, startort: string, ziel: string) {
-    this._id = _id;
-    this.email = email;
+
+  constructor(id: string, ersteller: string, bucher: string, angenommen: boolean, startort: string, ziel: string, zeit: Date, kosten: number, sitzplaetze: number, frachtplatz: number) {
+    this._id = id;
+    this.ersteller = ersteller;
+    this.bucher = bucher;
+    this.angenommen = angenommen;
+    this.startort = startort;
+    this.ziel = ziel;
     this.zeit = zeit;
     this.kosten = kosten;
     this.sitzplaetze = sitzplaetze;
     this.frachtplatz = frachtplatz;
-    this.startort = startort;
-    this.ziel = ziel;
   }
 }

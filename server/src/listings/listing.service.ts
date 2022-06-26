@@ -41,10 +41,8 @@ export class ListingService {
     }
 
     async getListing(listingId: string) : Promise<Listing> {
-        const conditions = {
-            _id: listingId
-        }
-        const listing = await this.listingModel.findOne(conditions);
+        const listing = await this.listingModel.findById(listingId);
+        console.log(listing)
         if (!listing) {
             throw new NotAcceptableException('no matching listing');
         }
@@ -52,8 +50,6 @@ export class ListingService {
     }
 
     async getListings(user: any) {
-
-        console.log(user)
 
         const listings = await this.listingModel.find({ $and: [{ angenommen: { $eq: false } }, { ersteller: { $ne: user.userId} }] }).exec();
 
