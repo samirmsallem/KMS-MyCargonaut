@@ -110,7 +110,7 @@ export class UserService {
   };
 
   getUserData(): Promise<void> {
-    return this.http.get(this.localhostURL + "/api/users/getUser", httpOptions).toPromise()
+    return this.http.get(this.localhostURL + "/users/getUser", httpOptions).toPromise()
       .then((res: any) => {
         this.currentUser = res.user;
       }).catch(() => {
