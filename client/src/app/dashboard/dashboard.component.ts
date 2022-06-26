@@ -29,7 +29,14 @@ export class DashboardComponent implements OnInit {
     })
   }
 
-  takeAngebot() {
-    //this.listingsService.
+  takeAngebot(id :string) {
+    this.listingsService.claimAngebot(id).then(res => {
+      this.getAllListings()
+      if (res) {
+        console.log("Angebot erfolgreich angenommen")
+      }
+      }
+
+    )
   }
 }
