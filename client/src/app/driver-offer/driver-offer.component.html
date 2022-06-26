@@ -1,14 +1,34 @@
-<div class="container-fluid">
-  <h2>Jetzt selbst eine Fahrt anbieten</h2><br>
+<div class="card-body mt-3 px-4 py-5 px-md-5">
+  <div class="alert alert-success" role="alert" *ngIf="created">
+    Erfolgreich ein Angebot erstellt!
+  </div>
+  <div class="alert alert-danger" role="alert" *ngIf="incomplete">
+    Bitte alle Felder ausfüllen
+  </div>
+  <h2 class="card-title">Jetzt selbst eine Fahrt anbieten</h2><br>
   <form id="SelbstAnbietenForm">
-    <input #fromA placeholder="Von" type="text" class="form-control"><br>
-    <input #toA placeholder="Nach" type="text" class="form-control"><br>
-    <input #spacesA placeholder="sitzplaetze" type="text" class="form-control"><br>
-    <input #storageA placeholder="frachtplatz" type="text" class="form-control"><br>
-    <input #coins placeholder="coins" type="text" class="form-control"><br>
+    <input #from placeholder="Von" type="text" class="form-control"><br>
+    <input #to placeholder="Nach" type="text" class="form-control"><br>
+    <input #spaces placeholder="Anzahl freier Sitzplätze" type="number" class="form-control"><br>
+    <input #storage placeholder="Frachtraum (in Liter)" type="number" class="form-control"><br>
+    <input #vehicle placeholder="Fahrzeug" type="text" class="form-control"><br>
+    <input #coins placeholder="Kosten" type="number" class="form-control"><br>
 
+    <form class="row row-cols-sm-auto">
+      <div class="col-12">
+        <div class="input-group">
+          <input class="form-control" placeholder="yyyy-mm-dd"
+                 name="dp" [(ngModel)]="date" ngbDatepicker #d="ngbDatepicker">
+          <button class="btn calendar" (click)="d.toggle()" type="button"></button>
+        </div>
+      </div>
+    </form>
+    <br>
 
-    <button type="submit" (click)="offerRide('', 'TestUser', coins.valueAsNumber, spacesA.valueAsNumber, storageA.valueAsNumber, fromA.value, toA.value)" class="btn btn-primary">Fahrt anbieten</button>
-    <! -- todo später dropdown button -->
+    <button type="submit"
+            (click)="offerRide(coins.valueAsNumber, spaces.valueAsNumber, storage.valueAsNumber, from.value, to.value, dateToString())"
+            class="btn btn-primary">Fahrt anbieten
+    </button>
   </form>
 </div>
+

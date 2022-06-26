@@ -12,6 +12,7 @@ import { DriverSearchComponent } from './driver-search/driver-search.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { CreationComponent } from './creation/creation.component';
 import { DriverOfferComponent } from './driver-offer/driver-offer.component';
+import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 
 //import {ListingModule} from  '../'
 
@@ -33,6 +34,7 @@ import { DriverOfferComponent } from './driver-offer/driver-offer.component';
     FormsModule,
     RouterModule,
     HttpClientModule,
+    NgbModule,
     //ListingModule
   ],
   providers: [LoginComponent],

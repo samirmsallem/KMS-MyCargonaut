@@ -1,8 +1,10 @@
 /* eslint-disable */
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {HttpClient, HttpErrorResponse, HttpHeaders} from "@angular/common/http";
 import {environment} from "../../environments/environment";
 import {Listing} from "../model/Listing";
+import {ListingsDto} from "../model/ListingsDto";
+import {catchError, throwError} from "rxjs";
 
 const httpOptions = {
   headers : new HttpHeaders({'Content-Type': 'application/json'})
@@ -68,17 +70,10 @@ export class ListingService {
     })
   }
 
-  async addOffer(email: string, zeit: Date, bucher: string, kosten: number, sitzplaetze: number, frachtplatz: number,startort: string,ziel: string) {
-    return this.http.post(this.localhostURL + "/listings/createListing", {
-      email: email,
-      zeit: zeit,
-      bucher: bucher,
-      kosten: kosten,
-      sitzplaetze: sitzplaetze,
-      frachtplatz: frachtplatz,
-      startort: startort,
-      ziel: ziel,
-    }, httpOptions)
+  addOffer(listing: ListingsDto) {
+    return this.http.post<ListingsDto>(this.localhostURL + "/listings/createListing", listing, httpOptions).pipe(
+      catchError(this.handleError)
+    );
   }
 
   async updateListing(email: string, zeit: Date, bucher: string, kosten: number, sitzplaetze: number, frachtplatz: number,startort: string,ziel: string) {
@@ -125,6 +120,21 @@ export class ListingService {
       startort: startort,
       ziel: ziel,
     }, httpOptions)
+  }
+
+
+  private handleError(error: HttpErrorResponse) {
+    if (error.status === 0) {
+      // A client-side or network error occurred. Handle it accordingly.
+      console.error('An error occurred:', error.error);
+    } else {
+      // The backend returned an unsuccessful response code.
+      // The response body may contain clues as to what went wrong.
+      console.error(
+        `Backend returned code ${error.status}, body was: `, error.error);
+    }
+    // Return an observable with a user-facing error message.
+    return throwError(() => new Error('Something bad happened; please try again later.'));
   }
 
   // vehicles?

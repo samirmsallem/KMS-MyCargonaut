@@ -1,6 +1,8 @@
 <div class="mb-5 mb-lg-0 position-relative card-group">
   <div class="card bg-glass">
     <div class="card-body mt-3 px-4 py-5 px-md-5">
+      <h4 class="card-title">Deine CargoCoins: {{coins}}</h4>
+      <br>
       <h4 class="card-title">Meine Daten</h4>
         <div class="row">
           <div class="mb-2">
@@ -56,6 +58,7 @@
       </div>
 
       <br>
+      <br>
 
       <h4 class="card-title">Neues Fahrzeug anlegen</h4>
       <br>
@@ -99,14 +102,6 @@
   <div *ngFor="let vehicle of vehicleArray; let i = index;">
     <div class="card bg-glass">
       <div class="card-body mt-3 px-4 py-5 px-md-5">
-        <div class="row">
-          <div class="mb-2">
-            <div class="form-outline">
-              <h3>ID:</h3>
-              <p>{{vehicleArray[i][0]}}</p>
-            </div>
-          </div>
-        </div>
         <div class="row">
           <div class="mb-2">
             <div class="form-outline">
