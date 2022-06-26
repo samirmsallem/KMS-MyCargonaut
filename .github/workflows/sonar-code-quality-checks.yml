@@ -16,6 +16,7 @@ jobs:
       - name: Generate code coverage report
         run: |
           cd client
+          npm config set legacy-peer-deps true
           npm ci
           cd ../server
           npm i --save-dev @types/node
