@@ -1,24 +1,33 @@
+<div class="card-body mt-3 px-4 py-5 px-md-5">
+  <div class="alert alert-success" role="alert" *ngIf="created">
+    Erfolgreich eine Suche erstellt!
+  </div>
+  <div class="alert alert-danger" role="alert" *ngIf="incomplete">
+    Bitte alle Felder ausfüllen
+  </div>
+  <h2 class="card-title">Finde deinen Fahrer</h2><br>
+  <form id="SelbstAnbietenForm">
+    <input #from placeholder="Von" type="text" class="form-control"><br>
+    <input #to placeholder="Nach" type="text" class="form-control"><br>
+    <input #spaces placeholder="Anzahl benötigter Sitzplätze" type="number" class="form-control"><br>
+    <input #storage placeholder="Benötigter Frachtraum (in Liter)" type="number" class="form-control"><br>
+    <input #coins placeholder="Wunschkosten" type="number" class="form-control"><br>
 
-  <div class="card-body mt-3 px-4 py-5 px-md-5">
-    <div class="alert alert-danger" role="alert" *ngIf="false">
-      Deine Suche ergab kein Ergebnis, klicke hier um ein Suchangebot zu erstellen
-    </div>
-    <h2>Finde deinen Fahrer</h2><br>
-
-    <div class="row">
-      <div class="mb-2">
-        <div class="form-outline">
-          <input type="text"  class="textInputs form-control">
+    <form class="row row-cols-sm-auto">
+      <div class="col-12">
+        <div class="input-group">
+          <input class="form-control" placeholder="yyyy-mm-dd"
+                 name="dp" [(ngModel)]="date" ngbDatepicker #d="ngbDatepicker">
+          <button class="btn calendar" (click)="d.toggle()" type="button"></button>
         </div>
       </div>
-    </div>
+    </form>
     <br>
-    <input #from placeholder="Von" type="text" class="form-control textInputs"><br>
-    <input #to placeholder="Nach" type="text" class="form-control"><br>
-    <input #time placeholder="zeit" type="text" class="form-control"><br>
-    <input #seats placeholder="sitzplaetze" type="text" class="form-control"><br>
-    <input #storage type="text" class="form-control" placeholder="frachtplatz"><br>
+  <div class="button-group">
+    <button type="submit" (click)="searchRide(coins.valueAsNumber, spaces.valueAsNumber, storage.valueAsNumber, from.value, to.value, dateToString())" class="btn btn-primary">Suche veröffentlichen</button>
 
-    <button type="submit" (click)="searchRide('',  time.value,'TestUser', 50, seats.valueAsNumber, storage.valueAsNumber, from.value, to.value)" class="btn btn-primary">Fahrer finden</button>
+    <button type="submit" (click)="filterExistingOnes()" class="btn btn-primary">Fahrer finden</button>
   </div>
 
+  </form>
+</div>

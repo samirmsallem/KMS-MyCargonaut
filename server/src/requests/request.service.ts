@@ -10,7 +10,6 @@ export class RequestService {
     constructor(@InjectModel('Request') public readonly requestModel: Model<Request> ) {}
 
     async insertRequest(
-        email: string,
         zeit: Date,
         sucher: string,
         kosten: number,
@@ -20,7 +19,6 @@ export class RequestService {
         ziel: string,
     ) {
         const newRequest = new this.requestModel({
-            email: email,
             zeit: zeit,
             sucher: sucher,
             kosten: kosten,
@@ -36,7 +34,7 @@ export class RequestService {
 
     async getRequest(requestId: Number) {
         const id = requestId;
-        const request = await this.requestModel.findOne({id});
+        const request = await this.requestModel.findOne({id: id});
         if (!request) {
             throw new NotAcceptableException('no matching request');
         }
@@ -82,10 +80,8 @@ export class RequestService {
         })
     }
 
-    async getRequests() {
-        const filter = {};
-        const requests = await this.requestModel.find(filter).exec();
-
+    async getRequests(userId: string) {
+        const requests = await this.requestModel.find({ $and: [{ angenommen: { $eq: false } }, { sucher: { $ne: userId} }] }).exec();
         return requests as Request[];
     }
 
