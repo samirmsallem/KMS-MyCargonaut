@@ -1,11 +1,14 @@
-<div class="card-body mt-3 px-4 py-5 px-md-5">
+<div class="container-fluid">
+  <div class="container-fluid">
   <div class="alert alert-success" role="alert" *ngIf="created">
     Erfolgreich ein Angebot erstellt!
   </div>
-  <div class="alert alert-danger" role="alert" *ngIf="incomplete">
-    Bitte alle Felder ausfüllen
-  </div>
-  <h2 class="card-title">Jetzt selbst eine Fahrt anbieten</h2><br>
+    <div class="text-center">
+  <h2>Jetzt selbst eine Fahrt anbieten:</h2><br>
+    </div>
+    <div class="alert alert-danger" role="alert" *ngIf="incomplete">
+      Bitte alle Felder ausfüllen
+    </div>
   <form id="SelbstAnbietenForm">
     <input #from placeholder="Von" type="text" class="form-control"><br>
     <input #to placeholder="Nach" type="text" class="form-control"><br>
@@ -19,16 +22,17 @@
         <div class="input-group">
           <input class="form-control" placeholder="yyyy-mm-dd"
                  name="dp" [(ngModel)]="date" ngbDatepicker #d="ngbDatepicker">
-          <button class="btn calendar" (click)="d.toggle()" type="button"></button>
+          <button class="btn bi bi-calendar" (click)="d.toggle()" type="button"></button>
         </div>
       </div>
     </form>
     <br>
-
+ <div class="text-center">
     <button type="submit"
             (click)="offerRide(coins.valueAsNumber, spaces.valueAsNumber, storage.valueAsNumber, from.value, to.value, dateToString())"
-            class="btn btn-primary">Fahrt anbieten
+            class="btn align-content-center text-center mt-4 mb-4">Fahrt anbieten
     </button>
+ </div>
   </form>
 </div>
-
+</div>

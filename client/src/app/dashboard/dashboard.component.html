@@ -1,18 +1,17 @@
-
-<div>
-  <h1 class="text-center">Verfügbare Angebote</h1>
-  <h2 class="text-center"><span class="badge alert-success align-content-center text-center">CargoCoins: {{coins}} <button type="button" class="btn btn-sm" (click)="addCoins()">+</button></span></h2>
-
-  <div class="mb-5 mb-lg-0 position-relative card-group align-content-center" style="display: flex;">
+<div class="container-fluid">
+  <h2 class="text-center">Verfügbare Angebote:</h2><br>
+  <h2 class="text-center"><span class="badge alert-success align-content-center text-center">CargoCoins: {{coins}}<br>
+    <button type="button" class="btn btn-primary" (click)="addCoins()">+</button></span></h2><br>
+  <div class="mb-5 mb-lg-0 position-relative card-group align-content-center">
     <div class="card-group">
       <div *ngFor="let item of listingsArray">
-        <div class="card m-3" style="width: 27rem;">
+        <div class="card m-3">
           <div class="card-header">
             <h3 class="card-title">{{item.startort}} --> {{item.ziel}}</h3>
             <h5>Am {{datepipe.transform(item.zeit, 'dd/MM/yyyy')}}</h5>
           </div>
           <div class="card-body">
-            <h5>Angebot von {{item.ersteller}}</h5>
+            <h5>Angebot von:<br> {{item.ersteller}}</h5>
             <h5>Frachtplatz: {{item.frachtplatz}} </h5>
             <h5>Freie Sitzplätze: {{item.sitzplaetze}} </h5>
             <h5 *ngIf="coins >= item.kosten">Kosten in CargoCoins: <span class="badge alert-success align-content-center text-center">{{item.kosten}}</span></h5>
@@ -25,12 +24,12 @@
       </div>
     </div>
   </div>
-</div>
+
 
 <br>
 
-<div>
-  <h1 class="text-center">Verfügbare Gesuche</h1>
+
+  <h2 class="text-center">Verfügbare Gesuche:</h2>
 
   <div class="mb-5 mb-lg-0 position-relative card-group align-content-center" style="display: flex;">
     <div class="card-group">
@@ -54,6 +53,4 @@
     </div>
   </div>
 </div>
-
-
 
