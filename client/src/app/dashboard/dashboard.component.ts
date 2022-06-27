@@ -15,7 +15,7 @@ export class DashboardComponent implements OnInit {
 
   coins: number = 0;
   showCoinInput = false;
-  newCoins: number;
+  newCoins: number = 0;
   applied = false;
 
   constructor(private listingsService: ListingService, private _router: Router, private userService: UserService, public datepipe: DatePipe) {
