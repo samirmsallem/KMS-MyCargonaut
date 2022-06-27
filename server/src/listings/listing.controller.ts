@@ -13,7 +13,6 @@ export class ListingController {
     @Post('/createListing')
     async addListing(
         @Body('zeit') zeit: Date,
-        @Body('bucher') bucher: string,
         @Body('kosten') kosten: number,
         @Body('sitzplaetze') sitzplaetze: number,
         @Body('frachtplatz') frachtplatz: number,
@@ -21,6 +20,7 @@ export class ListingController {
         @Body('ziel') ziel: string,
         @Request() req
     ) {
+        const bucher = '';
         const generatedId = await this.listingService.insertListing(
             zeit,
             bucher,
@@ -29,7 +29,7 @@ export class ListingController {
             frachtplatz,
             startort,
             ziel,
-            req.user.userId
+            req.user.userEmail
         );
         return {id: generatedId}
     }
@@ -92,17 +92,15 @@ export class ListingController {
     // geht in request controller
     // PUT: Angebot annehmen
     @UseGuards(AuthenticatedGuard)
-    @Post('/takeOffer')
+    @Put('/takeOffer')
     async takeOffer(
+        @Body('_id') offerId: string,
         @Request() req
     ) {
-        const _id = req._id;
-        const user = req.user;
-
+        const userId = req.user.userEmail;
         const result = await this.listingService.takeOffer(
-            _id,
-            user._id
-
+            offerId,
+            userId,
         );
 
         return result;

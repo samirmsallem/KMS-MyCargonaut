@@ -14,12 +14,13 @@ export const ListingSchema = new mongoose.Schema({
     startort: {type: String},
     ziel: {type: String},
     angenommen: {type: Boolean},
-    ersteller: {type: String}
+    ersteller: {type: String},
 });
 ListingSchema.plugin(uniqueValidator);
 
 export interface Listing extends mongoose.Document {
 
+    _id: string;
     zeit: Date;
     bucher: string;
     kosten: number;
@@ -29,5 +30,4 @@ export interface Listing extends mongoose.Document {
     ziel: string;
     angenommen: boolean;
     ersteller: string;
-
 }
