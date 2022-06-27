@@ -4,10 +4,11 @@ import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 import { Request } from './request.model';
 import {Listing} from "../listings/listing.model";
+import {User} from "../users/user.model";
 
 @Injectable()
 export class RequestService {
-    constructor(@InjectModel('Request') public readonly requestModel: Model<Request> ) {}
+    constructor(@InjectModel('Request') public readonly requestModel: Model<Request>, @InjectModel('User') public readonly userModel: Model<User>  ) {}
 
     async insertRequest(
         zeit: Date,
@@ -17,6 +18,7 @@ export class RequestService {
         frachtplatz: number,
         startort: string,
         ziel: string,
+        bucher: string,
     ) {
         const newRequest = new this.requestModel({
             zeit: zeit,
@@ -25,7 +27,9 @@ export class RequestService {
             sitzplaetze: sitzplaetze,
             frachtplatz: frachtplatz,
             startort: startort,
-            ziel: ziel
+            ziel: ziel,
+            bucher: bucher,
+            angenommen: false
         });
         const result = await newRequest.save();
         console.log(result);
@@ -85,27 +89,15 @@ export class RequestService {
         return requests as Request[];
     }
 
-    // Angebot annehmen
-    async takeOffer(
-        email: string, // der anbieter
-        zeit: Date,
-        bucher: string,
-        kosten: number, // coins
-
+    async takeRequest(
+        offerId,
+        userId
     ) {
-
-        const conditions = {
-            email: email,
-            zeit: Date
-        }
-
-        // todo hinzufügen nach dem merge
-        // this.userModel.findOneAndUpdate({email: email}, {$inc : {coins : kosten}})
-        // this.userModel.findOneAndUpdate({email: bucher}, {$inc : {coins : -kosten}})
-
-        this.requestModel.findOneAndUpdate(conditions, {bucher: bucher}, (err, res) => {
+        const request = await this.getRequest(offerId);
+        await this.userModel.findOneAndUpdate({email: request.sucher}, {$inc : {coins : -request.kosten}})
+        await this.userModel.findOneAndUpdate({email: userId}, {$inc : {coins : +request.kosten}})
+        this.requestModel.findOneAndUpdate({_id: offerId}, {bucher: userId, angenommen: true}, (err, res) => {
             if (err) {
-                console.log("Request update failed")
                 return (err)
             } else {
                 return (res)

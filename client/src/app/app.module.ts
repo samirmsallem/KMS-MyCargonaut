@@ -14,8 +14,7 @@ import { CreationComponent } from './creation/creation.component';
 import { DriverOfferComponent } from './driver-offer/driver-offer.component';
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import {DatePipe} from "@angular/common";
-
-//import {ListingModule} from  '../'
+import {ListingService} from './service/listing.service'
 
 
 @NgModule({
@@ -27,7 +26,7 @@ import {DatePipe} from "@angular/common";
     DriverSearchComponent,
     DashboardComponent,
     CreationComponent,
-    DriverOfferComponent
+    DriverOfferComponent,
   ],
   imports: [
     BrowserModule,
@@ -36,7 +35,6 @@ import {DatePipe} from "@angular/common";
     RouterModule,
     HttpClientModule,
     NgbModule,
-    //ListingModule
   ],
   providers: [LoginComponent, DatePipe],
   bootstrap: [AppComponent]

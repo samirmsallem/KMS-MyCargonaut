@@ -5,6 +5,7 @@ import {environment} from "../../environments/environment";
 import {Listing} from "../model/Listing";
 import {ListingsDto} from "../model/ListingsDto";
 import {catchError, throwError} from "rxjs";
+import {Request} from "../model/Request";
 
 const httpOptions = {
   headers : new HttpHeaders({'Content-Type': 'application/json'})
@@ -37,7 +38,7 @@ class listingClass {
 
 export class ListingService {
   listingArray: Listing[] = [];
-  //currentUser: any;
+  requestArray: Request[] = [];
 
   private localhostURL: string = environment.backendUrl;
 
@@ -61,11 +62,20 @@ export class ListingService {
     return new Promise<boolean>(resolve => {
       this.http.put<boolean>(this.localhostURL + "/listings/takeOffer",{
         _id: id,
-
       }, httpOptions).subscribe(data => {
-
         resolve(data)
       }
+      )
+    })
+  }
+
+  public claimRequest(id: string): Promise<boolean> {
+    return new Promise<boolean>(resolve => {
+      this.http.put<boolean>(this.localhostURL + "/requests/takeRequest",{
+        _id: id,
+      }, httpOptions).subscribe(data => {
+          resolve(data)
+        }
       )
     })
   }
@@ -108,11 +118,12 @@ export class ListingService {
   };
 
   // requests
-  async addRequest(listing: ListingsDto) {
+  addRequest(listing: ListingsDto) {
     return this.http.post<ListingsDto>(this.localhostURL + "/requests/createRequest", listing, httpOptions).pipe(
       catchError(this.handleError)
     );
   }
+
 
 
   private handleError(error: HttpErrorResponse) {
@@ -129,5 +140,15 @@ export class ListingService {
     return throwError(() => new Error('Something bad happened; please try again later.'));
   }
 
-  // vehicles?
+  public getAllRequests(): Promise<Request[]> {
+    return new Promise<Request[]>(resolve => {
+      this.http.get<Request[]>(this.localhostURL + "/requests/getAllRequests ", httpOptions).subscribe(data => {
+        let requests: Request[] = []
+        for(let request of data){
+          requests.push(new Request(request._id, request.sucher, request.bucher, request.angenommen, request.startort, request.ziel, request.zeit,  request.kosten, request.sitzplaetze, request.frachtplatz))
+        }
+        resolve(requests)
+      })
+    })
+  }
 }

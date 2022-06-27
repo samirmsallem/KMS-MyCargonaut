@@ -1,6 +1,6 @@
-/* eslint-disable */
 import {Controller, Post, Body, UseGuards, Request, Get, Put, Delete} from '@nestjs/common';
 import { RequestService } from './request.service';
+import {AuthenticatedGuard} from "../auth/authenticated.guard";
 
 @Controller('api/requests')
 export class RequestController {
@@ -18,14 +18,16 @@ export class RequestController {
         @Body('ziel') ziel: string,
         @Request() req
     ) {
+        const bucher = '';
         const generatedId = await this.requestService.insertRequest(
             zeit,
-            req.user._id,
+            req.user.userEmail,
             kosten,
             sitzplaetze,
             frachtplatz,
             startort,
             ziel,
+            bucher
         );
         return {id: generatedId}
     }
@@ -88,27 +90,19 @@ export class RequestController {
         return;
     }
 
-    // PUT: Angebot annehmen
-    @Put('/takeOffer')
-    async takeOffer(
+    @UseGuards(AuthenticatedGuard)
+    @Put('/takeRequest')
+    async takeRequest(
+        @Body('_id') offerId: string,
         @Request() req
     ) {
-        const email = req.email;
-        const zeit = req.zeit;
-        const bucher = req.bucher;
-        const  kosten = req.kosten;
-
-
-        const result = await this.requestService.takeOffer(
-            email,
-            zeit,
-            bucher,
-            kosten,
-
+        const userId = req.user.userEmail;
+        const result = await this.requestService.takeRequest(
+            offerId,
+            userId,
         );
 
         return result;
     }
-
 
 }

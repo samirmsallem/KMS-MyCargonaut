@@ -12,10 +12,9 @@ import { RequestModule } from './requests/request.module';
 
 @Module({
   imports: [
-      ListingModule,
+    ListingModule,
     UsersModule,
     AuthModule,
-    ListingModule,
     RequestModule,
     ServeStaticModule.forRoot({
       rootPath: `${__dirname}/../../client/dist/client`

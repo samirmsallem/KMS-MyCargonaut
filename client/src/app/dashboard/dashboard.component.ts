@@ -4,6 +4,7 @@ import {Listing} from "../model/Listing";
 import {Router} from "@angular/router";
 import {UserService} from "../service/user.service";
 import {DatePipe} from "@angular/common";
+import {Request} from '../model/Request'
 
 @Component({
   selector: 'app-dashboard',
@@ -21,8 +22,9 @@ export class DashboardComponent implements OnInit {
     if(localStorage.getItem('authenticated') === null){
       this._router.navigate([''])
     } else {
-      this.getAllListings()
       this.getCoins()
+      this.getAllListings()
+      this.getAllRequests()
     }
   }
 
@@ -30,7 +32,7 @@ export class DashboardComponent implements OnInit {
   }
 
   listingsArray: Listing[] = [];
-  searchesArray: Listing[] = [];
+  searchesArray: Request[] = [];
 
 
   getAllListings() {
@@ -39,11 +41,29 @@ export class DashboardComponent implements OnInit {
     })
   }
 
+  getAllRequests() {
+    this.listingsService.getAllRequests().then(res => {
+      this.searchesArray = res;
+    })
+  }
+
   takeAngebot(id :string) {
     this.listingsService.claimAngebot(id).then(res => {
       if (res) {
-        this.getAllListings()
         this.getCoins()
+        this.getAllListings()
+        this.getAllRequests()
+      }
+    })
+    window.location.reload();
+  }
+
+  takeRequest(id :string) {
+    this.listingsService.claimRequest(id).then(res => {
+      if (res) {
+        this.getCoins()
+        this.getAllListings()
+        this.getAllRequests()
       }
     })
     window.location.reload();
