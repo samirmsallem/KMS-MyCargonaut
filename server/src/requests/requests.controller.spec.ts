@@ -11,21 +11,25 @@ describe('ListingsController', () => {
     let controller: RequestController;
 
     const mockRequest = (
-        email= "abc@thm.de",
+        sucher= "abc@thm.de",
+        bucher = "mail@mail.de",
         zeit = new Date(),
         kosten = 5,
         sitzplaetze = 5,
         frachtplatz = 5,
         startort = "A",
-        ziel = "B"
+        ziel = "B",
+        angenommen = false
     ): Request => <Request>({
-        email,
+        sucher,
+        bucher,
         zeit,
         kosten,
         sitzplaetze,
         frachtplatz,
         startort,
-        ziel
+        ziel,
+        angenommen
     });
 
     const mockUser = (
