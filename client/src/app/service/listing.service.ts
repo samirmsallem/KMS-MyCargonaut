@@ -59,7 +59,7 @@ export class ListingService {
 
   public claimAngebot(id: string): Promise<boolean> {
     return new Promise<boolean>(resolve => {
-      this.http.post<boolean>(this.localhostURL + "/listings/takeOffer",{
+      this.http.put<boolean>(this.localhostURL + "/listings/takeOffer",{
         _id: id,
 
       }, httpOptions).subscribe(data => {

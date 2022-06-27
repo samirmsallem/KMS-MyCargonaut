@@ -1,9 +1,12 @@
 <div class="container-fluid">
-  <h2 class="text-center">Verfügbare Angebote:</h2><br>
   <h2 class="text-center"><span class="badge alert-success align-content-center text-center">aktuelles Guthaben: {{coins}}<br><br>
     <input class="text-center" *ngIf="showCoinInput" [(ngModel)]="newCoins"><br><br>
     <button type="button" class="btn btn-primary mt-auto align-content-center text-center" *ngIf="!showCoinInput" (click)="toggleCoinInput()">Coins aufladen</button>
     <button type="button" class="btn btn-primary mt-auto align-content-center text-center" *ngIf="showCoinInput" (click)="addCoins()" >Kauf bestätigen</button></span></h2><br>
+  <h2 class="text-center">Verfügbare Angebote:</h2>
+  <div class="alert alert-success" role="alert" *ngIf="applied">
+    Sie haben erfolgreich eine Fahrt gebucht!
+  </div>
   <div class="mb-5 mb-lg-0 position-relative card-group align-content-center">
     <div class="card-group">
       <div *ngFor="let item of listingsArray">
@@ -19,8 +22,8 @@
             <h5 *ngIf="coins >= item.kosten">Kosten in CargoCoins: <span class="badge alert-success align-content-center text-center">{{item.kosten}}</span></h5>
             <h5 *ngIf="coins < item.kosten">Kosten in CargoCoins: <span class="badge alert-danger align-content-center text-center">{{item.kosten}}</span></h5>
             <br>
+            <div class="text-center">
             <button type="submit" (click)="takeAngebot(item._id)" class="btn btn-primary" *ngIf="coins >= item.kosten">Angebot annehmen</button>
-
           </div>
         </div>
       </div>
@@ -55,4 +58,4 @@
     </div>
   </div>
 </div>
-
+</div>

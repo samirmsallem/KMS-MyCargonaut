@@ -42,7 +42,6 @@ export class ListingService {
 
     async getListing(listingId: string) : Promise<Listing> {
         const listing = await this.listingModel.findById(listingId);
-        console.log(listing)
         if (!listing) {
             throw new NotAcceptableException('no matching listing');
         }
@@ -96,24 +95,15 @@ export class ListingService {
     }
 
 
-
-
-    // Angebot annehmen
     async takeOffer(
-        angebotsId,
+        offerId,
         userId
-
     ) {
-
-        const angebot = await this.getListing(angebotsId);
-
-        // User coins transactions
-        this.userModel.findOneAndUpdate({_id: angebot.ersteller}, {$inc : {coins : angebot.kosten}})
-        this.userModel.findOneAndUpdate({_id: userId}, {$inc : {coins : -angebot.kosten}})
-
-        this.listingModel.findOneAndUpdate({_id: angebotsId}, {bucher: userId, angenommen: true}, (err, res) => {
+        const angebot = await this.getListing(offerId);
+        await this.userModel.findOneAndUpdate({email: angebot.ersteller}, {$inc : {coins : angebot.kosten}})
+        await this.userModel.findOneAndUpdate({email: userId}, {$inc : {coins : -angebot.kosten}})
+        this.listingModel.findOneAndUpdate({_id: offerId}, {bucher: userId, angenommen: true}, (err, res) => {
             if (err) {
-                console.log("Listing update failed")
                 return (err)
             } else {
                 return (res)

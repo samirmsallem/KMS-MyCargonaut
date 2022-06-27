@@ -15,6 +15,7 @@ export class DashboardComponent implements OnInit {
   coins: number = 0;
   showCoinInput = false;
   newCoins: number;
+  applied = false;
 
   constructor(private listingsService: ListingService, private _router: Router, private userService: UserService, public datepipe: DatePipe) {
     if(localStorage.getItem('authenticated') === null){
@@ -41,11 +42,11 @@ export class DashboardComponent implements OnInit {
   takeAngebot(id :string) {
     this.listingsService.claimAngebot(id).then(res => {
       if (res) {
-        console.log("Angebot erfolgreich angenommen")
         this.getAllListings()
         this.getCoins()
       }
     })
+    window.location.reload();
   }
 
   getUserInfo(id: string): any{
