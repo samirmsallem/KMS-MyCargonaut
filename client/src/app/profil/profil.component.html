@@ -1,9 +1,11 @@
 <div class="mb-5 mb-lg-0 position-relative card-group">
   <div class="card bg-glass">
     <div class="card-body mt-3 px-4 py-5 px-md-5">
-      <h4 class="card-title">Deine CargoCoins: {{coins}}</h4>
+      <div class="text-center">
+      <h4 class="card-title">Deine CargoCoins:<br> {{coins}}</h4>
       <br>
-      <h4 class="card-title">Meine Daten</h4>
+      <h4 class="card-title">Profil bearbeiten:</h4><br>
+      </div>
         <div class="row">
           <div class="mb-2">
             <div class="form-outline">
@@ -46,7 +48,9 @@
         </div>
         <br>
         <!-- Submit button -->
+      <div class="text-center">
         <button type="submit" class="btn align-content-center text-center mt-4 mb-4" (click)="updateUser()">Speichern</button>
+      </div>
     </div>
   </div>
   <div class="card bg-glass">
@@ -90,7 +94,9 @@
         </div>
       </div>
       <br>
+      <div class="text-center">
       <button type="submit" class="btn text-white shadow orange btn-block mt-2 mb-2" (click)="addVehicle()">Speichern</button>
+        </div>
     </div>
   </div>
 </div>
@@ -127,7 +133,9 @@
           </div>
         </div>
         <br>
+        <div class="text-center">
         <button type="submit" class="btn text-white shadow orange btn-block mt-2 mb-2" (click)="deleteVehicle(vehicleArray[i][0])">Fahrzeug entfernen</button>
+          </div>
       </div>
     </div>
   </div>

@@ -34,20 +34,21 @@ export class DriverSearchComponent implements OnInit {
     this.created = false;
     this.incomplete = false;
 
-    if(kosten != null && sitzplaetze != null && frachtplatz != null && startort != "" && ziel != "" && zeit != ""){
-      this.listingService.addRequest(new ListingsDto(startort, ziel, zeit, frachtplatz, sitzplaetze, kosten)).then(() => {
-        this.created = true;
-        console.log("Successfully added request")
-        this.from.nativeElement.value = ""
-        this.to.nativeElement.value = ""
-        this.spaces.nativeElement.value = ""
-        this.coins.nativeElement.value = ""
-      }).catch(() => {
-        console.log("Error");
+    if (kosten != null && sitzplaetze != null && frachtplatz != null && startort != "" && ziel != "" && zeit != "") {
+      this.listingService.addRequest(new ListingsDto(startort, ziel, zeit, frachtplatz, sitzplaetze, kosten)).subscribe(res => {
+        if (res) {
+          this.created = true;
+          console.log("Successfully added request")
+          this.from.nativeElement.value = ""
+          this.to.nativeElement.value = ""
+          this.spaces.nativeElement.value = ""
+          this.coins.nativeElement.value = ""
+        }
       })
     } else {
       this.incomplete = true
     }
+
 
 
   }
