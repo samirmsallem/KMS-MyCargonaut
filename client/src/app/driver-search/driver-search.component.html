@@ -1,11 +1,14 @@
-<div class="card-body mt-3 px-4 py-5 px-md-5">
+<div class="container-fluid">
+<div class="container-fluid">
   <div class="alert alert-success" role="alert" *ngIf="created">
     Erfolgreich eine Suche erstellt!
+  </div>
+  <div class="text-center">
+  <h2>Finde deinen Fahrer:</h2><br>
   </div>
   <div class="alert alert-danger" role="alert" *ngIf="incomplete">
     Bitte alle Felder ausfüllen
   </div>
-  <h2 class="card-title">Finde deinen Fahrer</h2><br>
   <form id="SelbstAnbietenForm">
     <input #from placeholder="Von" type="text" class="form-control"><br>
     <input #to placeholder="Nach" type="text" class="form-control"><br>
@@ -23,11 +26,12 @@
       </div>
     </form>
     <br>
-  <div class="button-group">
-    <button type="submit" (click)="searchRide(coins.valueAsNumber, spaces.valueAsNumber, storage.valueAsNumber, from.value, to.value, dateToString())" class="btn btn-primary">Suche veröffentlichen</button>
+  <div class="text-center">
+    <button type="submit" (click)="searchRide(coins.valueAsNumber, spaces.valueAsNumber, storage.valueAsNumber, from.value, to.value, dateToString())" class="btn align-content-center text-center mt-4 mb-4">Suche veröffentlichen</button>
 
-    <button type="submit" (click)="filterExistingOnes()" class="btn btn-primary">Fahrer finden</button>
+    <!-- <button type="submit" (click)="filterExistingOnes()" class="btn btn-primary">Fahrer finden</button> -->
   </div>
 
   </form>
+</div>
 </div>
