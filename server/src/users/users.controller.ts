@@ -89,15 +89,19 @@ export class UsersController {
   @UseGuards(AuthenticatedGuard)
   @Put('/loadCoins')
   async loadCoins(
-      @Body('coins') coins: number,
+      @Body('coins') updateCoins: number,
       @Request() req
   ) {
     const emailID = req.user.userEmail;
-    const coinStatus = await this.usersService.loadCoins(
+    const currentCoins = await this.usersService.getCoins(
+        emailID
+    );
+    const currentCoinsNew: number = Number(currentCoins.coins)
+    const coins: number = currentCoinsNew + Number(updateCoins);
+    return await this.usersService.loadCoins(
         emailID,
         coins
     );
-    return coinStatus;
   }
   @UseGuards(AuthenticatedGuard)
   @Post('/addVehicle')

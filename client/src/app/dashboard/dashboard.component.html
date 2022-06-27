@@ -1,7 +1,9 @@
 <div class="container-fluid">
   <h2 class="text-center">Verfügbare Angebote:</h2><br>
-  <h2 class="text-center"><span class="badge alert-success align-content-center text-center">CargoCoins: {{coins}}<br>
-    <button type="button" class="btn btn-primary" (click)="addCoins()">+</button></span></h2><br>
+  <h2 class="text-center"><span class="badge alert-success align-content-center text-center">aktuelles Guthaben: {{coins}}<br><br>
+    <input class="text-center" *ngIf="showCoinInput" [(ngModel)]="newCoins"><br><br>
+    <button type="button" class="btn btn-primary mt-auto align-content-center text-center" *ngIf="!showCoinInput" (click)="toggleCoinInput()">Coins aufladen</button>
+    <button type="button" class="btn btn-primary mt-auto align-content-center text-center" *ngIf="showCoinInput" (click)="addCoins()" >Kauf bestätigen</button></span></h2><br>
   <div class="mb-5 mb-lg-0 position-relative card-group align-content-center">
     <div class="card-group">
       <div *ngFor="let item of listingsArray">
@@ -31,10 +33,10 @@
 
   <h2 class="text-center">Verfügbare Gesuche:</h2>
 
-  <div class="mb-5 mb-lg-0 position-relative card-group align-content-center" style="display: flex;">
+  <div class="mb-5 mb-lg-0 position-relative card-group align-content-center">
     <div class="card-group">
       <div *ngFor="let item of searchesArray">
-        <div class="card m-3" style="width: 27rem;">
+        <div class="card m-3">
           <div class="card-header">
             <h3 class="card-title">{{item.startort}} --> {{item.ziel}}</h3>
             <h5>Am {{datepipe.transform(item.zeit, 'dd/MM/yyyy')}}</h5>

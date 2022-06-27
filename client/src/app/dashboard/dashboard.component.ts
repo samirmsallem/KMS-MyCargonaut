@@ -13,6 +13,8 @@ import {DatePipe} from "@angular/common";
 export class DashboardComponent implements OnInit {
 
   coins: number = 0;
+  showCoinInput = false;
+  newCoins: number;
 
   constructor(private listingsService: ListingService, private _router: Router, private userService: UserService, public datepipe: DatePipe) {
     if(localStorage.getItem('authenticated') === null){
@@ -28,6 +30,7 @@ export class DashboardComponent implements OnInit {
 
   listingsArray: Listing[] = [];
   searchesArray: Listing[] = [];
+
 
   getAllListings() {
     this.listingsService.getAllListings().then(res => {
@@ -55,10 +58,16 @@ export class DashboardComponent implements OnInit {
     })
   }
 
-  addCoins() {
-    //call userservice to add 5000 coins or idk..
-    this.getCoins()
+  toggleCoinInput() {
+    this.showCoinInput = !this.showCoinInput;
   }
-
-
+  addCoins() {
+    this.userService.loadCoins(this.newCoins).then(res => {
+        this.userService.getUserData().then(res => {
+          this.coins = res.coins
+          this.newCoins = 0;
+          this.toggleCoinInput();
+        })
+    })
+  }
 }
