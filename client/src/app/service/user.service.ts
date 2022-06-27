@@ -169,4 +169,15 @@ export class UserService {
         console.log('vehicle addition failed' + err);
       })
   }
+
+  loadCoins(coins: number): Promise<any> {
+    return this.http.put(this.localhostURL + "/users/loadCoins", {
+      coins: coins,
+    }, httpOptions).toPromise()
+      .then((res: any) => {
+        console.log('coins updated successfully' + res);
+      }).catch((err: any) => {
+        console.log('coins update failed' + err);
+      })
+  }
 }

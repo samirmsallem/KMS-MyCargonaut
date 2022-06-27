@@ -160,8 +160,8 @@ export class UsersService {
     }
   }
 
-  getCoins(email: string) {
-    return this.userModel.findOne({email: email});
+  async getCoins(email: string): Promise<any> {
+    return this.userModel.findOne({email: email}, '-_id coins')
   }
 
   getEvaluations(email: string) {
