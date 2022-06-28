@@ -1,5 +1,5 @@
 /* eslint-disable */
-import {Injectable, NotAcceptableException, UnauthorizedException} from '@nestjs/common';
+import {Injectable, NotAcceptableException} from '@nestjs/common';
 import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 import { Listing } from './listing.model';
@@ -50,7 +50,7 @@ export class ListingService {
 
     async getListings(user: any) {
 
-        const listings = await this.listingModel.find({ $and: [{ angenommen: { $eq: false } }, { ersteller: { $ne: user.userId} }] }).exec();
+        const listings = await this.listingModel.find({ $and: [{ angenommen: { $eq: false } }, { ersteller: { $ne: user.userEmail} }] }).exec();
 
         return listings as Listing[];
     }

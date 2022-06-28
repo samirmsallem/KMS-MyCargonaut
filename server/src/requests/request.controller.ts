@@ -59,8 +59,7 @@ export class RequestController {
 
     @Get('/getAllRequests')
     async getRequests(@Request() req) {
-        const requests = await this.requestService.getRequests(req.user._id);
-        return requests
+        return await this.requestService.getRequests(req.user.userEmail);
     }
 
 
