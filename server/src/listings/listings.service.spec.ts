@@ -33,6 +33,52 @@ describe('ListingService', () => {
 
     });
 
+    const mockListingOne = (
+        ersteller= "123123123",
+        bucher= "123123123",
+        angenommen = true,
+        zeit = new Date(),
+        kosten = 6,
+        sitzplaetze = 6,
+        frachtplatz = 6,
+        startort = "Macao",
+        ziel = "Kiel"
+    ): Listing => <Listing>({
+        bucher,
+        zeit,
+        kosten,
+        sitzplaetze,
+        frachtplatz,
+        startort,
+        ziel,
+        angenommen,
+        ersteller,
+
+    });
+
+    const mockListingTwo = (
+        ersteller= "123123123",
+        bucher= "1",
+        angenommen = false,
+        zeit = new Date(),
+        kosten = 6,
+        sitzplaetze = 6,
+        frachtplatz = 6,
+        startort = "A",
+        ziel = "B"
+    ): Listing => <Listing>({
+        bucher,
+        zeit,
+        kosten,
+        sitzplaetze,
+        frachtplatz,
+        startort,
+        ziel,
+        angenommen,
+        ersteller,
+
+    });
+
     const mockUser = (
         _id = '1',
         firstname = 'Test',
@@ -49,21 +95,6 @@ describe('ListingService', () => {
         description,
     });
 
-    const mockVehicle = (
-        _id = '1',
-        model = 'Test',
-        space = 1,
-        seats = 1,
-        email = 'test@mail.de'
-    ): Vehicle => <Vehicle>({
-        _id,
-        model,
-        space,
-        seats,
-        email
-    });
-
-
 
     beforeEach(async () => {
         const module: TestingModule = await Test.createTestingModule({
@@ -74,12 +105,15 @@ describe('ListingService', () => {
                     useValue: {
                         new: jest.fn().mockResolvedValue(mockListing()),
                         constructor: jest.fn().mockResolvedValue(mockListing()),
-                        find: jest.fn(),
-                        findOne: jest.fn(),
+                        find: jest.fn().mockResolvedValue(mockListing()),
+                        findOne: jest.fn().mockResolvedValue(mockListing()),
+                        findOneAndDelete: jest.fn().mockResolvedValue(mockListing()),
+                        findOneAndUpdate: jest.fn().mockResolvedValue(mockListingTwo()),
                         update: jest.fn(),
                         create: jest.fn(),
                         remove: jest.fn(),
                         exec: jest.fn(),
+                        findById: jest.fn().mockResolvedValue(mockListing())
                     },
                 },
                 {
@@ -105,4 +139,60 @@ describe('ListingService', () => {
     it('should be defined', () => {
         expect(service).toBeDefined();
     });
+
+    it('should return listng', () => {
+        service.getListing(mockListing()._id).then(data => {
+            expect(data).toEqual(mockListing())
+        }).catch(error => {
+            throw error // time problem
+        })
+    });
+
+    it('should return all listings', () => {
+        service.getListings(mockUser()).then(data => {
+            expect(data).toStrictEqual(mockListing())
+        }).catch(error => { // exec is not a func
+            throw error
+        })
+    });
+
+    it('should insert listing', () => {
+        service.insertListing(new Date(),mockListing().bucher,mockListing().kosten,mockListing().sitzplaetze,mockListing().frachtplatz,mockListing().startort,mockListing().ziel,mockListing().ersteller ).then(data => {
+            expect(data).toEqual(mockListing()._id)
+        }).catch(error => { // listingModel is not a constructor
+            throw error
+        })
+    });
+
+    // delete listing
+    it('should delete listing', () => {
+        service.deleteListing(mockListing()._id ).then(data => {
+            expect(data).toEqual(mockListing())
+        }).catch(error => { // time problem
+            throw error
+        })
+    });
+
+    // update listing
+    it('should update listing', () => {
+        service.insertListing(new Date(),mockListing().bucher,mockListing().kosten,mockListing().sitzplaetze,mockListing().frachtplatz,mockListing().startort,mockListing().ziel,mockListing().ersteller);
+        service.updateListing(new Date(),mockListing().kosten + 1,mockListing().sitzplaetze + 1,mockListing().frachtplatz + 1, "Macao","Kiel", mockListing()._id ).then(data => {
+            expect(data).toEqual(mockListingOne())
+        }).catch(error => { // this.listingModel is not a constructor
+            throw error
+        })
+    });
+
+    //take offer
+    it('should take offer', () => {
+        service.takeOffer(mockListing()._id, mockUser()._id ).then(data => {
+            expect(data).toEqual(mockListingTwo())
+        }).catch(error => {
+            throw error // findOneAndUpdate is not a function
+        })
+    });
+
+
+
+
 });
