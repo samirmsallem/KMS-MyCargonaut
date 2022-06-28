@@ -1,9 +1,8 @@
 /* eslint-disable */
-import {Injectable, NotAcceptableException, UnauthorizedException} from '@nestjs/common';
+import {Injectable, NotAcceptableException} from '@nestjs/common';
 import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 import { Request } from './request.model';
-import {Listing} from "../listings/listing.model";
 import {User} from "../users/user.model";
 
 @Injectable()
@@ -37,8 +36,7 @@ export class RequestService {
     }
 
     async getRequest(requestId: Number) {
-        const id = requestId;
-        const request = await this.requestModel.findOne({id: id});
+        const request = await this.requestModel.findOne({id: requestId});
         if (!request) {
             throw new NotAcceptableException('no matching request');
         }
@@ -49,9 +47,7 @@ export class RequestService {
         const filter = {
             id: requestId
         };
-        const request = await this.requestModel.findOneAndDelete(filter)
-
-        return request;
+        return await this.requestModel.findOneAndDelete(filter)
     }
 
     async updateRequest(
@@ -84,8 +80,8 @@ export class RequestService {
         })
     }
 
-    async getRequests(userId: string) {
-        const requests = await this.requestModel.find({ $and: [{ angenommen: { $eq: false } }, { sucher: { $ne: userId} }] }).exec();
+    async getRequests(userEmail: string) {
+        const requests = await this.requestModel.find({ $and: [{ angenommen: { $eq: false } }, { sucher: { $ne: userEmail} }] }).exec();
         return requests as Request[];
     }
 
