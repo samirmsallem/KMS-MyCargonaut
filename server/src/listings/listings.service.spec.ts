@@ -127,6 +127,7 @@ describe('ListingService', () => {
                         create: jest.fn(),
                         remove: jest.fn(),
                         exec: jest.fn(),
+                        findOneAndUpdate: jest.fn().mockResolvedValue(mockUser())
                     },
                 }
 
@@ -188,10 +189,9 @@ describe('ListingService', () => {
         service.takeOffer(mockListing()._id, mockUser()._id ).then(data => {
             expect(data).toEqual(mockListingTwo())
         }).catch(error => {
-            throw error // findOneAndUpdate is not a function
+            throw error // Received: undefined
         })
     });
-
 
 
 
