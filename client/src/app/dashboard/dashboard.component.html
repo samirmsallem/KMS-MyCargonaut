@@ -21,15 +21,14 @@
             <br>
             <div class="text-center">
             <button type="submit" (click)="takeAngebot(item._id)" class="btn btn-primary" *ngIf="coins >= item.kosten">Angebot annehmen</button>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
 
-
-<br>
-
+  <br>
 
   <h2 class="text-center">Verfügbare Gesuche:</h2><br>
 
@@ -49,12 +48,11 @@
             <h5 *ngIf="coins < item.kosten">Kosten in CargoCoins: <span class="badge alert-danger align-content-center text-center">{{item.kosten}}</span></h5>
             <br>
             <div class="text-center">
-            <button type="submit" class="btn btn-primary" *ngIf="coins >= item.kosten" (click)="takeRequest(item._id)">Als Fahrer melden</button>
+              <button type="submit" class="btn btn-primary" *ngIf="coins >= item.kosten" (click)="takeRequest(item._id)">Als Fahrer melden</button>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 </div>
