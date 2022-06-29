@@ -24,18 +24,19 @@ export class DriverSearchComponent implements OnInit {
   @ViewChild("spaces") spaces: ElementRef = {} as ElementRef;
   @ViewChild("storage") storage: ElementRef = {} as ElementRef;
   @ViewChild("coins") coins: ElementRef = {} as ElementRef;
+  @ViewChild("commentar") commentar: ElementRef = {} as ElementRef;
 
   ngOnInit(): void {
   }
 
 
 
-  searchRide(kosten: number, sitzplaetze: number, frachtplatz: number, startort: string, ziel: string, zeit: string) {
+  searchRide(kosten: number, sitzplaetze: number, frachtplatz: number, startort: string, ziel: string, zeit: string, commentar: string) {
     this.created = false;
     this.incomplete = false;
 
     if (kosten != null && sitzplaetze != null && frachtplatz != null && startort != "" && ziel != "" && zeit != "") {
-      this.listingService.addRequest(new ListingsDto(startort, ziel, zeit, frachtplatz, sitzplaetze, kosten)).subscribe(res => {
+      this.listingService.addRequest(new ListingsDto(startort, ziel, zeit, frachtplatz, sitzplaetze, kosten, commentar)).subscribe(res => {
         if (res) {
           this.created = true;
           console.log("Successfully added request")
@@ -43,6 +44,7 @@ export class DriverSearchComponent implements OnInit {
           this.to.nativeElement.value = ""
           this.spaces.nativeElement.value = ""
           this.coins.nativeElement.value = ""
+          this.commentar.nativeElement.value = ""
         }
       })
     } else {

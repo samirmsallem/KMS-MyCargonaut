@@ -16,6 +16,7 @@
             <h5>Angebot von:<br> {{item.ersteller}}</h5>
             <h5>Frachtplatz: {{item.frachtplatz}} </h5>
             <h5>Freie Sitzplätze: {{item.sitzplaetze}} </h5>
+            <h5>Commentar: {{item.commentar}} </h5>
             <h5 *ngIf="coins >= item.kosten">Kosten in CargoCoins: <span class="badge alert-success align-content-center text-center">{{item.kosten}}</span></h5>
             <h5 *ngIf="coins < item.kosten">Kosten in CargoCoins: <span class="badge alert-danger align-content-center text-center">{{item.kosten}}</span></h5>
             <br>
@@ -44,6 +45,7 @@
             <h5>Suche von: <br> {{item.sucher}}</h5>
             <h5>Frachtplatz: {{item.frachtplatz}} </h5>
             <h5>Freie Sitzplätze: {{item.sitzplaetze}} </h5>
+            <h5>Commentar: {{item.commentar}} </h5>
             <h5 *ngIf="coins >= item.kosten">Kosten in CargoCoins: <span class="badge alert-success align-content-center text-center">{{item.kosten}}</span></h5>
             <h5 *ngIf="coins < item.kosten">Kosten in CargoCoins: <span class="badge alert-danger align-content-center text-center">{{item.kosten}}</span></h5>
             <br>

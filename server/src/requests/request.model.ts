@@ -14,6 +14,7 @@ export const RequestSchema = new mongoose.Schema({
     startort: {type: String},
     ziel: {type: String},
     angenommen: {type: Boolean},
+    commentar: {type: String}
 });
 RequestSchema.plugin(uniqueValidator);
 export interface Request extends mongoose.Document {
@@ -26,4 +27,5 @@ export interface Request extends mongoose.Document {
     startort: string;
     ziel: string;
     angenommen: boolean;
+    commentar: string;
 }

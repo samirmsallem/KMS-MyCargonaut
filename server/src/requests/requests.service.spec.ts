@@ -19,7 +19,8 @@ describe('RequestService', () => {
         frachtplatz = 5,
         startort = "A",
         ziel = "B",
-        angenommen = false
+        angenommen = false,
+        commentar = "schneller bitte"
     ): Request => <Request>({
         sucher,
         bucher,
@@ -29,7 +30,8 @@ describe('RequestService', () => {
         frachtplatz,
         startort,
         ziel,
-        angenommen
+        angenommen,
+        commentar
     });
 
     const mockUser = (

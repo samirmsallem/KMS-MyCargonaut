@@ -16,6 +16,7 @@
     <input #storage placeholder="Frachtraum (in Liter)" type="number" class="form-control"><br>
     <input #vehicle placeholder="Fahrzeug" type="text" class="form-control"><br>
     <input #coins placeholder="Kosten" type="number" class="form-control"><br>
+    <input #commentar placeholder="Commentar" type="text" class="form-control"><br>
 
     <form class="row row-cols-sm-auto">
       <div class="col-12">
@@ -29,7 +30,7 @@
     <br>
  <div class="text-center">
     <button type="submit"
-            (click)="offerRide(coins.valueAsNumber, spaces.valueAsNumber, storage.valueAsNumber, from.value, to.value, dateToString())"
+            (click)="offerRide(coins.valueAsNumber, spaces.valueAsNumber, storage.valueAsNumber, from.value, to.value, dateToString(), commentar.value)"
             class="btn align-content-center text-center mt-4 mb-4">Fahrt anbieten
     </button>
  </div>

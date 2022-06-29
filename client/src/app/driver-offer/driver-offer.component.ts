@@ -23,6 +23,7 @@ export class DriverOfferComponent implements OnInit {
   @ViewChild("storage") storage: ElementRef = {} as ElementRef;
   @ViewChild("vehicle") vehicle: ElementRef = {} as ElementRef;
   @ViewChild("coins") coins: ElementRef = {} as ElementRef;
+  @ViewChild("commentar") commentar: ElementRef = {} as ElementRef;
 
 
   date: NgbDateStruct = this.calendar.getToday();
@@ -31,12 +32,12 @@ export class DriverOfferComponent implements OnInit {
   }
 
 
-  offerRide(kosten: number, sitzplaetze: number, frachtplatz: number, startort: string, ziel: string, zeit: string) {
+  offerRide(kosten: number, sitzplaetze: number, frachtplatz: number, startort: string, ziel: string, zeit: string, commentar: string) {
     this.created = false;
     this.incomplete = false;
 
     if(kosten != null && sitzplaetze != null && frachtplatz != null && startort != "" && ziel != "" && zeit != ""){
-      this.listingService.addOffer(new ListingsDto(startort, ziel, zeit, frachtplatz, sitzplaetze, kosten)).subscribe( res => {
+      this.listingService.addOffer(new ListingsDto(startort, ziel, zeit, frachtplatz, sitzplaetze, kosten, commentar)).subscribe( res => {
         if(res){
           this.created = true;
           console.log("Successfully added offer")
@@ -45,6 +46,7 @@ export class DriverOfferComponent implements OnInit {
           this.spaces.nativeElement.value = ""
           this.vehicle.nativeElement.value = ""
           this.coins.nativeElement.value = ""
+          this.commentar.nativeElement.value = ""
         }
       })
     } else {
