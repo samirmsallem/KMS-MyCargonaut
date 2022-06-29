@@ -20,7 +20,8 @@ describe('ListingService', () => {
         sitzplaetze = 5,
         frachtplatz = 5,
         startort = "A",
-        ziel = "B"
+        ziel = "B",
+        commentar = "schneller bitte"
     ): Listing => <Listing>({
         bucher,
         zeit,
@@ -31,6 +32,7 @@ describe('ListingService', () => {
         ziel,
         angenommen,
         ersteller,
+        commentar
 
     });
 
@@ -43,7 +45,8 @@ describe('ListingService', () => {
         sitzplaetze = 6,
         frachtplatz = 6,
         startort = "Macao",
-        ziel = "Kiel"
+        ziel = "Kiel",
+        commentar = "schneller bitte"
     ): Listing => <Listing>({
         bucher,
         zeit,
@@ -54,6 +57,7 @@ describe('ListingService', () => {
         ziel,
         angenommen,
         ersteller,
+        commentar
 
     });
 
@@ -66,7 +70,8 @@ describe('ListingService', () => {
         sitzplaetze = 6,
         frachtplatz = 6,
         startort = "A",
-        ziel = "B"
+        ziel = "B",
+        commentar = "schneller bitte"
     ): Listing => <Listing>({
         bucher,
         zeit,
@@ -77,6 +82,7 @@ describe('ListingService', () => {
         ziel,
         angenommen,
         ersteller,
+        commentar
 
     });
 

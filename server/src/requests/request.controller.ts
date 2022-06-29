@@ -1,3 +1,4 @@
+/* eslint-disable */
 import {Controller, Post, Body, UseGuards, Request, Get, Put, Delete} from '@nestjs/common';
 import { RequestService } from './request.service';
 import {AuthenticatedGuard} from "../auth/authenticated.guard";
@@ -16,6 +17,7 @@ export class RequestController {
         @Body('frachtplatz') frachtplatz: number,
         @Body('startort') startort: string,
         @Body('ziel') ziel: string,
+        @Body('commentar') commentar: string,
         @Request() req
     ) {
         const bucher = '';
@@ -27,7 +29,8 @@ export class RequestController {
             frachtplatz,
             startort,
             ziel,
-            bucher
+            bucher,
+            commentar
         );
         return {id: generatedId}
     }

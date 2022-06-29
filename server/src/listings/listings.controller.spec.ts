@@ -19,7 +19,8 @@ describe('ListingsController', () => {
         sitzplaetze = 5,
         frachtplatz = 5,
         startort = "A",
-        ziel = "B"
+        ziel = "B",
+        commentar = "schnellstmöglich"
     ): Listing => <Listing>({
         bucher,
         zeit,
@@ -30,6 +31,7 @@ describe('ListingsController', () => {
         ziel,
         angenommen,
         ersteller,
+        commentar
 
     });
 

@@ -15,6 +15,7 @@
     <input #spaces placeholder="Anzahl benötigter Sitzplätze" type="number" class="form-control"><br>
     <input #storage placeholder="Benötigter Frachtraum (in Liter)" type="number" class="form-control"><br>
     <input #coins placeholder="Wunschkosten" type="number" class="form-control"><br>
+    <input #commentar placeholder="Commentar" type="text" class="form-control"><br>
 
     <form class="row row-cols-sm-auto">
       <div class="col-12">
@@ -27,7 +28,7 @@
     </form>
     <br>
   <div class="text-center">
-    <button type="submit" (click)="searchRide(coins.valueAsNumber, spaces.valueAsNumber, storage.valueAsNumber, from.value, to.value, dateToString())" class="btn align-content-center text-center mt-4 mb-4">Suche veröffentlichen</button>
+    <button type="submit" (click)="searchRide(coins.valueAsNumber, spaces.valueAsNumber, storage.valueAsNumber, from.value, to.value, dateToString(), commentar.value)" class="btn align-content-center text-center mt-4 mb-4">Suche veröffentlichen</button>
 
     <!-- <button type="submit" (click)="filterExistingOnes()" class="btn btn-primary">Fahrer finden</button> -->
   </div>

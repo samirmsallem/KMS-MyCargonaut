@@ -18,6 +18,7 @@ export class RequestService {
         startort: string,
         ziel: string,
         bucher: string,
+        commentar: string
     ) {
         const newRequest = new this.requestModel({
             zeit: zeit,
@@ -28,7 +29,8 @@ export class RequestService {
             startort: startort,
             ziel: ziel,
             bucher: bucher,
-            angenommen: false
+            angenommen: false,
+            commentar: commentar
         });
         const result = await newRequest.save();
         console.log(result);

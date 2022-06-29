@@ -15,6 +15,7 @@ export const ListingSchema = new mongoose.Schema({
     ziel: {type: String},
     angenommen: {type: Boolean},
     ersteller: {type: String},
+    commentar: {type: String},
 });
 ListingSchema.plugin(uniqueValidator);
 
@@ -30,4 +31,5 @@ export interface Listing extends mongoose.Document {
     ziel: string;
     angenommen: boolean;
     ersteller: string;
+    commentar: string;
 }

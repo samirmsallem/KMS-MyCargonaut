@@ -19,7 +19,8 @@ export class ListingService {
         frachtplatz: number,
         startort: string,
         ziel: string,
-        ersteller: string
+        ersteller: string,
+        commentar: string
 
     ) {
         const newListing = new this.listingModel({
@@ -33,6 +34,7 @@ export class ListingService {
             startort: startort,
             ziel: ziel,
             angenommen: false,
+            commentar: commentar,
         });
         const result = await newListing.save();
         console.log(result);
@@ -71,7 +73,8 @@ export class ListingService {
         frachtplatz: number,
         startort: string,
         ziel: string,
-        _id: string
+        _id: string,
+        commentar: string
     ) {
         const conditions = {
             _id: _id
@@ -82,7 +85,8 @@ export class ListingService {
             sitzplaetze,
             frachtplatz,
             startort,
-            ziel
+            ziel,
+            commentar
         }
         this.listingModel.findByIdAndUpdate(conditions,updetedListing,(err,res) =>{
             if (err) {

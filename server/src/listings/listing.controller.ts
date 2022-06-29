@@ -18,6 +18,7 @@ export class ListingController {
         @Body('frachtplatz') frachtplatz: number,
         @Body('startort') startort: string,
         @Body('ziel') ziel: string,
+        @Body('commentar') commentar: string,
         @Request() req
     ) {
         const bucher = '';
@@ -29,6 +30,7 @@ export class ListingController {
             frachtplatz,
             startort,
             ziel,
+            commentar,
             req.user.userEmail
         );
         return {id: generatedId}
@@ -77,6 +79,7 @@ export class ListingController {
         const startort = req.startort;
         const ziel = req.ziel;
         const id = req.id;
+        const commentar = req.commentar;
         await this.listingService.updateListing(
             zeit,
             kosten,
@@ -84,7 +87,8 @@ export class ListingController {
             frachtplatz,
             startort,
             ziel,
-            id
+            id,
+            commentar
         );
         return;
     }

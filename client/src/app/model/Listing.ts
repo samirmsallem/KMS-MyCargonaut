@@ -9,9 +9,10 @@ export class Listing {
   kosten: number
   sitzplaetze: number
   frachtplatz: number
+  commentar: string
 
 
-  constructor(id: string, ersteller: string, bucher: string, angenommen: boolean, startort: string, ziel: string, zeit: Date, kosten: number, sitzplaetze: number, frachtplatz: number) {
+  constructor(id: string, ersteller: string, bucher: string, angenommen: boolean, startort: string, ziel: string, zeit: Date, kosten: number, sitzplaetze: number, frachtplatz: number, commentar: string) {
     this._id = id;
     this.ersteller = ersteller;
     this.bucher = bucher;
@@ -22,5 +23,6 @@ export class Listing {
     this.kosten = kosten;
     this.sitzplaetze = sitzplaetze;
     this.frachtplatz = frachtplatz;
+    this.commentar = commentar;
   }
 }

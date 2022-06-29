@@ -11,6 +11,7 @@ const httpOptions = {
   headers : new HttpHeaders({'Content-Type': 'application/json'})
 };
 
+// not in use
 class listingClass {
   email: string;
   zeit: Date;
@@ -51,7 +52,7 @@ export class ListingService {
         let listings: Listing[] = []
         for(let listing of data){
           console.log(listing.ziel)
-          listings.push(new Listing(listing._id, listing.ersteller, listing.bucher, listing.angenommen, listing.startort, listing.ziel, listing.zeit,  listing.kosten, listing.sitzplaetze, listing.frachtplatz))
+          listings.push(new Listing(listing._id, listing.ersteller, listing.bucher, listing.angenommen, listing.startort, listing.ziel, listing.zeit,  listing.kosten, listing.sitzplaetze, listing.frachtplatz, listing.commentar))
         }
         resolve(listings)
       })
@@ -86,7 +87,7 @@ export class ListingService {
     );
   }
 
-  async updateListing(zeit: Date, bucher: string, kosten: number, sitzplaetze: number, frachtplatz: number,startort: string,ziel: string) {
+  async updateListing(zeit: Date, bucher: string, kosten: number, sitzplaetze: number, frachtplatz: number,startort: string,ziel: string, commentar: string) {
     return this.http.put(this.localhostURL + "/users/updateListing", {
       zeit: zeit,
       bucher: bucher,
@@ -94,7 +95,8 @@ export class ListingService {
       sitzplaetze: sitzplaetze,
       frachtplatz: frachtplatz,
       startort: startort,
-      ziel: ziel
+      ziel: ziel,
+      commentar: commentar
     }, httpOptions).toPromise()
       .then((res: any) => {
         console.log('listing was updated' + res);
@@ -145,7 +147,7 @@ export class ListingService {
       this.http.get<Request[]>(this.localhostURL + "/requests/getAllRequests ", httpOptions).subscribe(data => {
         let requests: Request[] = []
         for(let request of data){
-          requests.push(new Request(request._id, request.sucher, request.bucher, request.angenommen, request.startort, request.ziel, request.zeit,  request.kosten, request.sitzplaetze, request.frachtplatz))
+          requests.push(new Request(request._id, request.sucher, request.bucher, request.angenommen, request.startort, request.ziel, request.zeit,  request.kosten, request.sitzplaetze, request.frachtplatz, request.commentar))
         }
         resolve(requests)
       })
