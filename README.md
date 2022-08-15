@@ -21,6 +21,8 @@ Wir haben uns zunächst zusammengesetzt und einen Technologiestack definiert. Im
 
 Im Anschluss wurde dann die Pipeline implementiert und mit den zwei Demo Projekten getestet. Nachdem dann viele Features implementiert wurden musste die Pipeline noch angepasst werden (Dependencies, Routing, CORS). Das solide Konstrukt stand aber bereits nach dem ersten Sprint.
 
+Workflow: https://github.com/samirmsallem/KMS-MyCargonaut/wiki/Workflow
+
 
 ## Features
 
